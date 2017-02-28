@@ -1,0 +1,20 @@
+removed code:
+
+ console.log('mounting')
+    getProjects()
+      .then(response => {
+        // console.log(response)
+        const data = Immutable.fromJS(response.data);
+        console.log(JSON.stringify(data, null, 2));
+        const first = data.get(0).get('message')
+        console.log(first);
+
+        // console.log('data')
+        // console.log(data);
+        // const first = data[0]
+        // console.log(first)
+      })
+      .catch(error => {
+        console.log('error')
+        console.log(error);
+      });
