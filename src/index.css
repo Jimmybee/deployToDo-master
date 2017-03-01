@@ -3,3 +3,26 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.textSnippet {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+@media (min-width: 992px) {
+  .textSnippet{
+    padding-top: 230px;
+    padding-bottom: 230px;
+  }
+}
+
+.iosBttn {
+  display:inline-block;
+  overflow:hidden;
+  background:url(//linkmaker.itunes.apple.com/assets/shared/badges/en-us/appstore-lrg.svg) 
+  no-repeat;
+  width:135px;
+  height:40px;
+  background-size:contain;
+}

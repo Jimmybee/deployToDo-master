@@ -1,5 +1,6 @@
 import React from "react";
 
+
 export default class Explore extends React.Component {
   render() {
     const { query } = this.props.location;
@@ -10,6 +11,7 @@ export default class Explore extends React.Component {
     return (
       <div>
         <h1>Explore</h1>
+        
       </div>
     );
   }

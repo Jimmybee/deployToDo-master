@@ -1,4 +1,7 @@
 import React from "react";
+import ImageComponent from '../Components/Common/ImageComponent';
+import IosDownloadBttn from '../Components/Common/IosDownloadBttn';
+
 
 export default class LandingPage extends React.Component {
   render() {
@@ -13,8 +16,20 @@ export default class LandingPage extends React.Component {
 
     return (
       <div>
-        <h1>Appventures</h1>
+        <h1 className='text-center'>Appventures</h1>
+        <div className='row'>
+        <div className="col-md-4">
+          <ImageComponent/>
+        </div>
+        <div className="col-md-8">
+           <div className="textSnippet">
+              <h3> City Adventures </h3>
+              <h4> Secret routes. Clever clues. Historical insights. </h4>
+               <IosDownloadBttn/>
+          </div>
+        </div>
+        </div>
       </div>
     );
-  }e
+  }
 }
