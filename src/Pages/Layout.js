@@ -12,6 +12,8 @@ export default class Layout extends React.Component {
       marginTop: "60px"
     };
     console.log("layout");
+    console.log(location);
+
     return (
       <div>
 
@@ -20,8 +22,6 @@ export default class Layout extends React.Component {
         <div className="container" style={containerStyle}>
           <div className="row">
             <div className="col-lg-12">
-                  <button className="bttn btn-success">This is a button</button>
-
 
               {this.props.children}
 

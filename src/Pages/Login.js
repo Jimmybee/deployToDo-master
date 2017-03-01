@@ -5,16 +5,12 @@ export default class LandingPage extends React.Component {
     const { query } = this.props.location;
     const { params } = this.props;
     const { article } = params;
-    const { date, filter, appventureId } = query;
-
-    console.log("params")
-    console.log(params)
-    console.log(appventureId)
+    const { date, filter } = query;
 
     return (
       <div>
-        <h1>Appventures</h1>
+        <h1>Login</h1>
       </div>
     );
-  }e
+  }
 }

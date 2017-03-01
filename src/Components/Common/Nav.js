@@ -1,6 +1,5 @@
 import React from "react";
 import { IndexLink, Link } from "react-router";
-import 'bootstrap/dist/css/bootstrap.css';
 import '../../App.css';
 
 
@@ -20,9 +19,9 @@ export default class Nav extends React.Component {
   render() {
     const { location } = this.props;
     const { collapsed } = this.state;
-    // const featuredClass = location.pathname === "/" ? "active" : "";
-    // const archivesClass = location.pathname.match(/^\/archives/) ? "active" : "";
-    // const settingsClass = location.pathname.match(/^\/settings/) ? "active" : "";
+    const featuredClass = location.pathname === "/" ? "active" : "";
+    const archivesClass = location.pathname.match(/^\/explore/) ? "active" : "";
+    const settingsClass = location.pathname.match(/^\/login/) ? "active" : "";
     const navClass = collapsed ? "collapse" : "";
 
     return (
@@ -39,13 +38,13 @@ export default class Nav extends React.Component {
           <div className={"navbar-collapse " + navClass} id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
               <li activeClassName="active" onlyActiveOnIndex={true}>
-                <IndexLink to="/" onClick={this.toggleCollapse.bind(this)}>Featured</IndexLink>
+                <IndexLink to="/?filter=12&appventureId=1232132123" onClick={this.toggleCollapse.bind(this)}>Download</IndexLink>
               </li>
               <li activeClassName="active">
-                <Link to="archives" onClick={this.toggleCollapse.bind(this)}>Archives</Link>
+                <Link to="explore" onClick={this.toggleCollapse.bind(this)}>Explore</Link>
               </li>
               <li activeClassName="active">
-                <Link to="settings" onClick={this.toggleCollapse.bind(this)}>Settings</Link>
+                <Link to="login" onClick={this.toggleCollapse.bind(this)}>Login</Link>
               </li>
             </ul>
           </div>
