@@ -1,3 +1,5 @@
+// @flow
+
 import React from "react";
 import ImageComponent from '../Components/Common/ImageComponent';
 import IosDownloadBttn from '../Components/Common/IosDownloadBttn';
@@ -5,14 +7,14 @@ import IosDownloadBttn from '../Components/Common/IosDownloadBttn';
 
 export default class LandingPage extends React.Component {
   render() {
-    const { query } = this.props.location;
-    const { params } = this.props;
-    const { article } = params;
-    const { date, filter, appventureId } = query;
+    // const { query } = this.props.location;
+    // const { params } = this.props;
+    // const { article } = params;
+    // const { date, filter, appventureId } = query;
 
-    console.log("params")
-    console.log(params)
-    console.log(appventureId)
+    // console.log("params")
+    // console.log(params)
+    // console.log(appventureId)
 
     return (
       <div>

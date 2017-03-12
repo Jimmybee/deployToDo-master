@@ -1,6 +1,9 @@
+// @flow
+
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, IndexRoute, hashHistory } from "react-router";
+import { Router, Route, IndexRoute } from "react-router";
 import 'bootstrap/dist/css/bootstrap.css';
 
 import Layout from './Pages/Layout';

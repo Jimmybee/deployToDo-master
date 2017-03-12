@@ -1,3 +1,5 @@
+// @flow
+
 import { backendless as config } from '../config';
 import Backendless from 'backendless';
 

@@ -1,9 +1,11 @@
+// @flow
+
 import React, { Component } from 'react';
 
-const imageStyle = {
-  maxWidth: '100%',
-  height: 'auto'
-};
+// const imageStyle = {
+//   maxWidth: '100%',
+//   height: 'auto'
+// };
 
 
 class ImageComponent extends Component {

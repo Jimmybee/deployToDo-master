@@ -1,3 +1,5 @@
+// @flow
+
 import { backendless as config } from '../config';
 
 export const getProjects = () => new Promise((resolve) => {
