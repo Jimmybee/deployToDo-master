@@ -3,9 +3,14 @@
 import React from "react";
 import AppventureSearch from '../Components/Explore/AppventureSearch';
 import AppventureDoubleCard from '../Components/Explore/AppventureDoubleCard';
+import { asyncCreate, asyncFetch } from '../api/Backendless.js';
 
 
 export default class Explore extends React.Component {
+  componentWillMount() {
+    asyncFetch()
+  }
+
   render() {
     // const { query } = this.props.location;
     // const { params } = this.props;

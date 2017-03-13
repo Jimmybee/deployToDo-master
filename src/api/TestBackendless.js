@@ -15,10 +15,6 @@ function Contact(args) {
     this.title = args.title || "";
 }
 
-function BackendlessAppventure(args) {
-    args = args || {};
-}
-
 export const registerUser = () => new Promise((resolve) => {
   Backendless.initApp(config.APPLICATION_ID, config.JAVASCRIPT_KEY, config.VERSION);
   Backendless.enablePromises();
@@ -58,7 +54,7 @@ export function asyncRegisterUser() {
 
 export function asyncCreate() {
   function saved(contact) {
-    console.log("saved ");
+    console.log("then ");
   }
   
   function gotError(err) {
@@ -76,18 +72,6 @@ export function asyncCreate() {
   var savedContact = Backendless.Persistence.of( Contact ).save(contactObject).then(saved).catch(gotError);
 }
 
-export function asyncFetch() {
-  function fetch(appventures) {
-    console.log(appventures.data[0]);
-  }
-  
-  function gotError(err) {
-    console.log("error message - " + err.message);
-    console.log("error code - " + err.statusCode);
-  }
-
-  var dataCollection = Backendless.Persistence.of( BackendlessAppventure ).find().then(fetch).catch(gotError);
-}
 
 
 

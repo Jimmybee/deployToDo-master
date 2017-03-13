@@ -20,10 +20,10 @@ export default class LandingPage extends React.Component {
       <div>
         <h1 className='text-center'>Appventures</h1>
         <div className='row'>
-        <div className="col-md-4">
+        <div className="col-sm-4">
           <ImageComponent/>
         </div>
-        <div className="col-md-8">
+        <div className="col-sm-8">
            <div className="textSnippet">
               <h3> City Adventures </h3>
               <h4> Secret routes. Clever clues. Historical insights. </h4>
