@@ -2,6 +2,7 @@
 
 import { backendless as config } from '../config';
 import Backendless from 'backendless';
+import store from '../store/store';
 
 
 Backendless.initApp(config.APPLICATION_ID, config.JAVASCRIPT_KEY, config.VERSION);
@@ -73,10 +74,12 @@ export function asyncCreate() {
     title: "chief spying officer"
   });
  
-  var savedContact = Backendless.Persistence.of( Contact ).save(contactObject).then(saved).catch(gotError);
+ Backendless.Persistence.of( Contact ).save(contactObject).then(saved).catch(gotError);
 }
 
+
 export function asyncFetch() {
+
   function fetch(appventures) {
     console.log(appventures.data[0]);
   }
@@ -86,9 +89,16 @@ export function asyncFetch() {
     console.log("error code - " + err.statusCode);
   }
 
-  var dataCollection = Backendless.Persistence.of( BackendlessAppventure ).find().then(fetch).catch(gotError);
+  Backendless.Persistence.of( BackendlessAppventure ).find().then(fetch).catch(gotError);
 }
 
+const dispatchFetch = store.dispatch((dispatch) => {
+  dispatch({type:'CHANGE_IT', payload: 'done'})
+})
+
+export {dispatchFetch}
+
+    // store.dispatch({type:'RECIEVED_ALL_APPVENTURES', appventures: appventures.data[0]})
 
 
 

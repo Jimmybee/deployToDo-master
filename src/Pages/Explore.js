@@ -3,12 +3,16 @@
 import React from "react";
 import AppventureSearch from '../Components/Explore/AppventureSearch';
 import AppventureDoubleCard from '../Components/Explore/AppventureDoubleCard';
-import { asyncCreate, asyncFetch } from '../api/Backendless.js';
+import { dispatchFetch, asyncCreate, asyncFetch } from '../api/Backendless.js';
 
+import store from '../store/store';
 
 export default class Explore extends React.Component {
   componentWillMount() {
-    asyncFetch()
+    // store.dispatch({type:'CHANGE_IT', payload: 'done'})
+    // store.dispatch((dispatch) => {
+    //      dispatch({type:'CHANGE_IT', payload: 'done'})
+    // })
   }
 
   render() {
@@ -37,3 +41,5 @@ export default class Explore extends React.Component {
     );
   }
 }
+
+    store.dispatch({type:'CHANGE_IT', payload: 'done'})
