@@ -8,6 +8,8 @@ class AppventureDoubleCard extends Component {
 
   render() {
 
+  const { appventure } = this.props
+
   var greenOutline = {
   	outlineStyle: 'solid',
   	outlineWidth: 1,
@@ -18,7 +20,7 @@ class AppventureDoubleCard extends Component {
            	<div>
            		<div className='col-xs-1'> </div>
            		<div className='col-sm-4 maxWidth' style={greenOutline}>
-          			<AppventureCard/>
+          			<AppventureCard appventure={appventure}/>
           		</div>
           		<div className='col-sm-4 maxWidth' style={greenOutline}>
           			<AppventureCard/>

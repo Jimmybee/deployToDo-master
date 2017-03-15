@@ -7,12 +7,21 @@ class AppventureCard extends Component {
 
   render() {
 
+  	const  { appventure } = this.props
+  	if (appventure) {
+  		var title = appventure.title
+  		console.log('appventure is', appventure)
+  		console.log('title is', title)
+  	} else {
+
+  	}
+
      return (  
 		<div>   
 			<img src={require('./LondonForWeb.png')} alt="boohoo" className="img-responsive" />	
 			<h2> <span>FREE</span> </h2> 	
 			<h3> <span>See More</span></h3>
-			<p> This is an exciting place to find all your stuff and things </p>		
+			<p> {title} : This is an exciting place to find all your stuff and things </p>		
 		</div>        
 	);
   }

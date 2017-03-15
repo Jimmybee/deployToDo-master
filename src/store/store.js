@@ -7,4 +7,5 @@ import reducer from '../reducers/testReducer'
 const middleWare = applyMiddleware(thunk, logger())
 const store = createStore(reducer, middleWare)
 
-store.dispatch({type:'CHANGE_IT', payload: 'done'})
+export default store
+

@@ -3,16 +3,18 @@
 import React from "react";
 import AppventureSearch from '../Components/Explore/AppventureSearch';
 import AppventureDoubleCard from '../Components/Explore/AppventureDoubleCard';
-import { dispatchFetch, asyncCreate, asyncFetch } from '../api/Backendless.js';
+import { asyncFetch } from '../api/Backendless.js';
+import { connect } from 'react-redux'
 
-import store from '../store/store';
+@connect((store) => {
+  return {
+    appventures: store.appventures
+  };
+})
 
 export default class Explore extends React.Component {
   componentWillMount() {
-    // store.dispatch({type:'CHANGE_IT', payload: 'done'})
-    // store.dispatch((dispatch) => {
-    //      dispatch({type:'CHANGE_IT', payload: 'done'})
-    // })
+    asyncFetch()
   }
 
   render() {
@@ -20,6 +22,13 @@ export default class Explore extends React.Component {
     // const { params } = this.props;
     // const { article } = params;
     // const { date, filter } = query;
+    const appventures = this.props.appventures
+
+    if (!appventures.length) {  
+        return <h1>No Appventures</h1>
+     }
+
+    const mappedAppventures = appventures.map(appventure => <AppventureDoubleCard appventure={appventure}/>)
 
     return (
       <div>
@@ -33,7 +42,7 @@ export default class Explore extends React.Component {
           <div className='col-xs-3'></div>
         </div>
         <div className='row'>
-          <AppventureDoubleCard/>
+          {mappedAppventures[0]}
           <div className='col-xs-3'></div>
         </div>
       </div>
@@ -42,4 +51,3 @@ export default class Explore extends React.Component {
   }
 }
 
-    store.dispatch({type:'CHANGE_IT', payload: 'done'})

@@ -81,7 +81,7 @@ export function asyncCreate() {
 export function asyncFetch() {
 
   function fetch(appventures) {
-    console.log(appventures.data[0]);
+    store.dispatch({type:'RECIEVED_ALL_APPVENTURES', appventures: appventures.data})
   }
   
   function gotError(err) {
@@ -92,13 +92,6 @@ export function asyncFetch() {
   Backendless.Persistence.of( BackendlessAppventure ).find().then(fetch).catch(gotError);
 }
 
-const dispatchFetch = store.dispatch((dispatch) => {
-  dispatch({type:'CHANGE_IT', payload: 'done'})
-})
-
-export {dispatchFetch}
-
-    // store.dispatch({type:'RECIEVED_ALL_APPVENTURES', appventures: appventures.data[0]})
 
 
 
