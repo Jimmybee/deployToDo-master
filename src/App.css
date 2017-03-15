@@ -51,7 +51,7 @@
     outline-width: 1px;
 }
 
-.col-xs-3 {
+.row {
     outline-style: solid;
     outline-color: blue;
     outline-width: 1px;
