@@ -12,20 +12,13 @@ export default class Layout extends React.Component {
     const { location } = this.props;
     const containerStyle = {
       marginTop: "60px",
-      outlineStyle: 'solid',
-      outlineColor: 'yellow',
-      outlineWidth: 1
     };
     console.log("layout");
     console.log(location);
 
     return (
       <div>
-        <div className='col-lg-1'>
-        </div>
-        <div className='col-lg-11'>
-          <Nav location={location} />
-        </div>
+        <Nav location={location} />
         <div className="container" style={containerStyle}>
           <div className="row">
             <div className="col-lg-12">

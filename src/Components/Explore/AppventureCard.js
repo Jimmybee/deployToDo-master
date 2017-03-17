@@ -21,7 +21,7 @@ class AppventureCard extends Component {
 			<img src={require('./LondonForWeb.png')} alt="boohoo" className="img-responsive" />	
 			<h2> <span>FREE</span> </h2> 	
 			<h3> <span>See More</span></h3>
-			<p> {title} : This is an exciting place to find all your stuff and things </p>		
+			<div className='well'> {title} : This is an exciting place to find all your stuff and things </div>		
 		</div>        
 	);
   }

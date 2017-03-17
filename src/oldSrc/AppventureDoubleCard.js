@@ -15,6 +15,10 @@ class AppventureDoubleCard extends Component {
   	outlineWidth: 1,
   	outlineColor: 'green'
   }
+
+
+  /*padding: 0px;*/
+}
   
            return ( 
            	<div>

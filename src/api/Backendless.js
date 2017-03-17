@@ -1,6 +1,6 @@
 // @flow
 
-import { backendless as config } from '../config';
+import { backendless as config } from './Config';
 import Backendless from 'backendless';
 import store from '../store/store';
 

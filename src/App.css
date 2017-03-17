@@ -1,4 +1,4 @@
-@import url('https://bootswatch.com/cerulean/bootstrap.min.css');
+@import url('https://bootswatch.com/spacelab/bootstrap.min.css');
 
 .App {
   text-align: center;
@@ -45,19 +45,19 @@
    margin-top: 10px;
 }*/
 
-.col-xs-1 {
+.col-xs-122 {
     outline-style: solid;
     outline-color: red;
     outline-width: 1px;
 }
 
-.row {
+.row2 {
     outline-style: solid;
     outline-color: blue;
     outline-width: 1px;
 }
 
-.col-xs-4 {
+.col-xs-42 {
     outline-style: solid;
     outline-color: green;
     outline-width: 1px;
@@ -98,12 +98,13 @@ h3 span {
 p {
     background-color: #D8D8D8;
     padding: 5px;
-    outline: solid;
-    outline-color: red;
-    outline: 5px;
 }
 
 .DivBorder {
   border: 1px solid #979797;
 }
+
+
+
+
 

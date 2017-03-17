@@ -1,0 +1,31 @@
+.searchTable {
+    position: relative;
+    display: table;
+    table-layout: auto;
+    float: none;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.searchRow {
+    display: table-row;
+    width: 100%;
+    margin-left: -12px;
+    margin-right: -12px;
+}
+
+.searchRow:after {
+   clear: both;
+}
+
+.searchCol {
+    box-sizing: border-box;
+    position: static;
+    display: table-cell;
+    float: none;
+}
+
+.verticalAlign {
+  vertical-align: middle;
+}

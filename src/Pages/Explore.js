@@ -2,7 +2,6 @@
 
 import React from "react";
 import AppventureSearch from '../Components/Explore/AppventureSearch';
-import AppventureDoubleCard from '../Components/Explore/AppventureDoubleCard';
 import AppventureCard from '../Components/Explore/AppventureCard';
 import { asyncFetch } from '../api/Backendless.js';
 import { connect } from 'react-redux'
@@ -29,6 +28,11 @@ export default class Explore extends React.Component {
     outlineColor: 'green'
   }
 
+
+    const textColor = {
+      color: '#E45663'
+    };
+
     // const { query } = this.props.location;
     // const { params } = this.props;
     // const { article } = params;
@@ -44,13 +48,10 @@ export default class Explore extends React.Component {
     const mappedAppventuresLength = mappedAppventures.length
 
     const fixedMappedAppventures = function(mappedAppventures, iteration, inserts) {
-      console.log(iteration, '/', mappedAppventuresLength)
-
       if (iteration == mappedAppventures.length) {
         return mappedAppventures
       } else {
         if (iteration%2 == 0) {
-          console.log('mod 0')
           mappedAppventures.splice(iteration + inserts, 0, clearfix)
           return fixedMappedAppventures(mappedAppventures, iteration + 1, inserts + 1)
         } else {
@@ -64,14 +65,14 @@ export default class Explore extends React.Component {
     return (
       <div>
         <div className='row'>
-          <h1 className='col-xs-12'>Explore</h1>
+          <h1 className='col-xs-12'><span style={textColor}>Explore</span> our appventures and discover fun trails and adventures.</h1>
         </div>
         <AppventureSearch/>
         <div className='row' style={marginTop}>
-          <div className='col-sm-9' style={greenOutline}>
+          <div className='col-sm-9'>
               {calcMappedAppventures}
           </div>
-          <div className='col-sm-3' style={greenOutline}></div>
+          <div className='col-sm-3'></div>
         </div>
       </div>
 
