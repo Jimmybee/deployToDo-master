@@ -20,7 +20,7 @@ export default class LandingPage extends React.Component {
       <div>
         <h1>Test Page</h1>
         <DropzoneUploader />
-
+        <Example/>
       </div>
     );
   }
@@ -53,3 +53,59 @@ export default class LandingPage extends React.Component {
         // <input type="file" ref="fileRef" id="files" name="files[]" multiple=""></input>
         // <input type="button" onClick={this.handleFileUpload.bind(this)} value="Upload File"></input>
         // <button onClick={this.rename.bind(this)}>Rename</button>
+
+class Example extends React.Component {
+  constructor(...args) {
+    super(...args);
+    this.state = {
+      open: true,
+      subOpen: false
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        <button onClick={ ()=> this.setState({ open: !this.state.open })}>
+          click 
+        </button>
+        <div className="panel panel-default">
+        <Panel collapsible expanded={this.state.open}>
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+          Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+           <button onClick={ ()=> this.setState({ subOpen: !this.state.subOpen })}> Sub </button>
+           <Panel collapsible expanded={this.state.subOpen}>
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+           Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+          </Panel>
+        </Panel>
+        </div>
+      </div> 
+    );
+  }
+}
+
+
+class Panel extends React.Component {
+   constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      expanded: this.props.defaultExpanded,
+    };
+  }
+
+  render() {
+    const {
+      expanded, 
+      children } = this.props;
+
+    console.log(children)  
+    console.log(expanded)
+    return(
+      <div className="panel-body">
+        {expanded === true ? <label> {children} </label> : null}
+      </div>
+    );
+  }
+}
