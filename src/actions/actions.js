@@ -1,5 +1,10 @@
-export const changeIt = () => ({
-  type: 'CHANGE_IT',
-  payload: 'updated' 
-})
+import store from '../store/store';
+
+export function updateUser(user){
+    store.dispatch({
+ 		type: 'UPDATE_USER',
+  		user: user 
+  });
+}
+
 

@@ -39,14 +39,14 @@ class AppventureSearch extends Component {
 			  <div className="searchRow">
 			    <div className="searchCol" style={box1}>
 			      <div className="form-group">
- 					 <label className="control-label" for="inputSmall">Where</label>
+ 					 <label className="control-label" htmlFor="inputSmall">Where</label>
  					 <input className="form-control input-sm" type="text" id="inputSmall" placeholder="London, United Kingdom"/>
 				</div>
 			  </div>
 			  <div className="searchCol" style={box2}>
 			  	<div className="searchCol" style={box2}> 
 			    	<div className="form-group">
- 						 <label className="control-label" for="inputSmall">For</label>
+ 						 <label className="control-label" htmlFor="inputSmall">For</label>
  						 <input className="form-control input-sm" type="text" id="inputSmall" placeholder="Family, Fun"/>
 					</div>
 			  	</div>

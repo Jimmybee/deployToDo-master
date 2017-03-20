@@ -4,9 +4,14 @@ import logger  from 'redux-logger'
 import thunk from 'redux-thunk'
 
 import appventures from '../reducers/Appventures'
+import editAppventure from '../reducers/EditAppventure'
+import user from '../reducers/User'
+
 
 const reducers = combineReducers({
-  appventures
+  appventures,
+  editAppventure,
+  user
 })
 
 const middleWare = applyMiddleware(thunk, logger())

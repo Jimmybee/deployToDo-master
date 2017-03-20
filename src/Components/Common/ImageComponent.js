@@ -13,7 +13,6 @@ class ImageComponent extends Component {
   render() {
            return (
         	 <div><img src={require('./screenAppventures.png')} alt="boohoo" className="img-responsive" /></div>
-
     );
   }
 }

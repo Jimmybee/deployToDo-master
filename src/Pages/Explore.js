@@ -43,15 +43,14 @@ export default class Explore extends React.Component {
         return <h1>No Appventures</h1>
      }
 
-    const mappedAppventures = appventures.map(appventure => <div className='col-sm-6 maxWidth'><AppventureCard appventure={appventure}/></div>)
-    const clearfix = <div className="clearfix"></div>
-    const mappedAppventuresLength = mappedAppventures.length
+    const mappedAppventures = appventures.map(appventure => <div className='col-sm-6 maxWidth' key={appventure.objectId}><AppventureCard appventure={appventure}/></div>)
 
     const fixedMappedAppventures = function(mappedAppventures, iteration, inserts) {
-      if (iteration == mappedAppventures.length) {
+      const clearfix = <div className="clearfix" key={iteration.toString}></div>
+      if (iteration === mappedAppventures.length) {
         return mappedAppventures
       } else {
-        if (iteration%2 == 0) {
+        if (iteration%2 === 0) {
           mappedAppventures.splice(iteration + inserts, 0, clearfix)
           return fixedMappedAppventures(mappedAppventures, iteration + 1, inserts + 1)
         } else {

@@ -1,4 +1,3 @@
-
 const appventures = (state = {}, action) => {
   switch (action.type) {
     case 'RECIEVED_ALL_APPVENTURES':

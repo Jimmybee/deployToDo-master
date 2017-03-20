@@ -3,7 +3,14 @@
 import React from "react";
 import { IndexLink, Link } from "react-router";
 import '../../App.css';
+import { connect } from 'react-redux'
 
+
+@connect((store) => {
+  return {
+    user: store.user
+  };
+})
 
 export default class Nav extends React.Component {
   state: {
@@ -40,6 +47,9 @@ export default class Nav extends React.Component {
     var collapsedLogo = listNav ? logo : "";
     var expandedLogo = listNav ? "" : logo;
 
+    const user = this.props.user;
+    console.log(user);
+
     return (
       <nav className="navbar navbar-fixed-top navbar-default" role="navigation">
         <div className="container-fluid">
@@ -60,7 +70,11 @@ export default class Nav extends React.Component {
                 Download
                 </IndexLink> </li>
               <li> <Link to="explore" onClick={this.toggleCollapse.bind(this)}>Explore</Link> </li>
-              <li> <Link to="login" onClick={this.toggleCollapse.bind(this)}>Login</Link> </li>
+              {user === null ? 
+               <li> <Link to="login" onClick={this.toggleCollapse.bind(this)}>Login</Link> </li> : 
+               <li> <Link to="profile" onClick={this.toggleCollapse.bind(this)}>Profile</Link> </li>
+              }
+              <li> <Link to="testPage" onClick={this.toggleCollapse.bind(this)}>Test Page</Link> </li>
             </ul>
           </div>
         </div>

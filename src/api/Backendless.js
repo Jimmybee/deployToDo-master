@@ -3,7 +3,8 @@
 import { backendless as config } from './Config';
 import Backendless from 'backendless';
 import store from '../store/store';
-
+import { updateUser } from '../Actions/Actions';
+import {browserHistory} from 'react-router';
 
 Backendless.initApp(config.APPLICATION_ID, config.JAVASCRIPT_KEY, config.VERSION);
 Backendless.enablePromises();
@@ -20,30 +21,12 @@ function BackendlessAppventure(args) {
     args = args || {};
 }
 
-export const registerUser = () => new Promise((resolve) => {
-  Backendless.initApp(config.APPLICATION_ID, config.JAVASCRIPT_KEY, config.VERSION);
-  Backendless.enablePromises();
 
-  var user = new Backendless.User();
-  user.email = "michael@backendless.com";
-  user.password = "my_super_password";
-  Backendless.UserService.register(user);
-
-  function Comment(args) {
-     args = args || {};
-     this.message = args.message || "";
-     this.authorEmail = args.authorEmail || "";
-  } 
-
-  var dataStore = Backendless.Persistence.of(Comment);
-  var commentObject = new Comment({message: "From Web", authorEmail: user.email})  
-  dataStore.save( commentObject );
-});
-
-
-export function asyncRegisterUser() {
+// REGISTRATION 
+export function asyncRegisterUser(email, password) {
   function userRegistered(user) {
     console.log("user has registered");
+    updateUser(user)
   }
   
   function gotError(err) {
@@ -52,8 +35,8 @@ export function asyncRegisterUser() {
   }
  
   var user = new Backendless.User();
-  user.email = "backendlessdeveloper@backedless.com";
-  user.password = "password";
+  user.email = email;
+  user.password = password;
   Backendless.UserService.register(user).then(userRegistered).catch(gotError);
 }
 
@@ -77,6 +60,26 @@ export function asyncCreate() {
  Backendless.Persistence.of( Contact ).save(contactObject).then(saved).catch(gotError);
 }
 
+//LOGIN FUNCTIONS
+export function classicLogin(email, password) {
+  function userLoggedIn( user ) {
+    console.log( "user has logged in" );
+    updateUser(user)
+    
+  }
+   
+  function gotError( err ) {
+    console.log( "error message - " + err.message );
+    console.log( "error code - " + err.statusCode );
+  }
+
+  var callback = new Backendless.Async( userLoggedIn, gotError );
+
+  Backendless.UserService.login(email, password, true, callback );
+
+
+}
+
 
 export function asyncFetch() {
 
@@ -92,9 +95,47 @@ export function asyncFetch() {
   Backendless.Persistence.of( BackendlessAppventure ).find().then(fetch).catch(gotError);
 }
 
+export function uploadImage(objectId, files, handleSuccess, handleError) {
+    var callback = {};
+    var renameCallback = {};
+
+    renameCallback.success = handleSuccess.bind(this);
+    renameCallback.fault = handleError.bind(this);
 
 
+    function saveSuccess(result) {
+      console.log(result.fileURL.name)
+      const newName = objectId + ".image.jpg"
+       // Backendless.Files.renameFile(result.fileURL, "image.png", renameCallback);
+    }
 
+    callback.success = handleSuccess;
+    callback.fault = handleError;
+
+
+  
+   Backendless.Files.upload(files, objectId, true, callback);
+}
+
+export function renameFile() {
+  const oldName = "uploadFileFunc/AppIcon60x60_U00402x.png"
+  const newName = "objectId2.png"
+  Backendless.Files.renameFile( oldName, newName );
+}
+
+export function removeFile() {
+  var callback = new Backendless.Async(
+  function(result)
+  {
+    alert( "File successfully deleted" );
+  },
+  function(result)
+  {
+    alert( "error - " + result.message );
+  });
+ 
+  Backendless.Files.remove( "media/Test.txt", callback );
+}
 
 
 
