@@ -3,7 +3,7 @@
 import React from "react";
 import { asyncRegisterUser, classicLogin } from '../api/Backendless.js';
 
-    import {browserHistory} from 'react-router';
+import {browserHistory} from 'react-router-dom';
 
 export default class LandingPage extends React.Component {
 
@@ -30,8 +30,10 @@ export default class LandingPage extends React.Component {
   }
 
   onSubmit (e) {
-    e.preventDefault()
-    browserHistory.push('/profile')
+    e.preventDefault();
+
+    history.pushState({state: 1}, "profile", "/profile");
+    location.reload();
     // if (this.state.typeOfSubmit === 'oneOfThem') {
     // doe something
     // }

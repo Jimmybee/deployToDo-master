@@ -3,7 +3,17 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { history, Router, Route, IndexRoute } from "react-router";
+// import { browserHistory,  
+//   BrowserRouter as Router,
+//   IndexRoute,
+//   Route,
+//   Link } from "react-router";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css';
 
 import Layout from './Pages/Layout';
@@ -21,19 +31,18 @@ import store from './store/store';
 
 
 const app = document.getElementById('root')
-console.log(history)
 
 ReactDOM.render(
 	<Provider store={store}>
-  <Router history={history}>
-    <Route path="/" component={Layout}>
-   	  <IndexRoute component={LandingPage}></IndexRoute>
-      <Route path="explore" name="explore" component={Explore}></Route> 
-	    <Route path="login" name="login" component={Login}></Route> 
-      <Route path="profile" name="profile" component={Profile}></Route> 
-	    <Route path="testPage" name="testPage" component={TestPage}></Route> 
-    </Route>
-  </Router>
+    <Router history={history}>
+      <Layout>
+        <Route exact={true} path="/" component={LandingPage}></Route>
+        <Route path="/explore" name="explore" component={Explore}></Route> 
+    	  <Route path="/login" name="login" component={Login}></Route> 
+        <Route path="/profile" name="profile" component={Profile}></Route> 
+    	  <Route path="/testPage" name="testPage" component={TestPage}></Route> 
+      </Layout>
+    </Router>
   </Provider>,
 app);
 

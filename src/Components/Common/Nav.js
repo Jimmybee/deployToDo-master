@@ -1,7 +1,7 @@
 // @flow
 
 import React from "react";
-import { IndexLink, Link } from "react-router";
+import { Link } from "react-router-dom";
 import '../../App.css';
 import { connect } from 'react-redux'
 
@@ -64,11 +64,11 @@ export default class Nav extends React.Component {
           </div>
           <div className={"navbar-collapse " + navClass} id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav navbar-right">
-              <li> <IndexLink 
+              <li> <Link 
                 to="/?filter=12&appventureId=1232132123" 
                 onClick={this.toggleCollapse.bind(this)}>
                 Download
-                </IndexLink> </li>
+                </Link> </li>
               <li> <Link to="explore" onClick={this.toggleCollapse.bind(this)}>Explore</Link> </li>
               {user === null ? 
                <li> <Link to="login" onClick={this.toggleCollapse.bind(this)}>Login</Link> </li> : 
