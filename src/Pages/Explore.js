@@ -1,5 +1,7 @@
 // @flow
 
+import './Explore.css';
+
 import React from "react";
 import AppventureSearch from '../Components/Explore/AppventureSearch';
 import AppventureCard from '../Components/Explore/AppventureCard';
@@ -41,7 +43,7 @@ export default class Explore extends React.Component {
 
     if (!appventures.length) {  
         return <h1>No Appventures</h1>
-     }
+    }
 
     const mappedAppventures = appventures.map(appventure => <div className='col-sm-6 maxWidth' key={appventure.objectId}><AppventureCard appventure={appventure}/></div>)
 

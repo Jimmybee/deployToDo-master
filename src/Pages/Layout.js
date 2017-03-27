@@ -1,4 +1,6 @@
 // @flow
+// If navState = edittingAppventure, then show different nav bar
+
 
 import React from "react";
 // import { Link } from "react-router";

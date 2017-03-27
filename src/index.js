@@ -21,6 +21,7 @@ import LandingPage from './Pages/LandingPage';
 import Explore from './Pages/Explore';
 import Login from './Pages/Login';
 import Profile from './Pages/Profile';
+import CreateNew from './Pages/CreateNew';
 import TestPage from './Pages/TestPage';
 
 
@@ -39,6 +40,7 @@ ReactDOM.render(
         <Route exact={true} path="/" component={LandingPage}></Route>
         <Route path="/explore" name="explore" component={Explore}></Route> 
     	  <Route path="/login" name="login" component={Login}></Route> 
+        <Route path="/Create" name="Create" component={CreateNew}></Route> 
         <Route path="/profile" name="profile" component={Profile}></Route> 
     	  <Route path="/testPage" name="testPage" component={TestPage}></Route> 
       </Layout>

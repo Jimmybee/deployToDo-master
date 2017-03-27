@@ -20,8 +20,8 @@ class AppventureCard extends Component {
      return (  
 		<div>   
 			<img src={url} alt="boohoo" className="img-responsive" />	
-			<h2> <span>FREE</span> </h2> 	
-			<h3> <span>See More</span></h3>
+			<h2 className="header2"> <span className="header2Span">FREE</span> </h2> 	
+			<h3 className="header3"> <span className="header3Span">See More</span></h3>
 			<div className='well'> {title} : This is an exciting place to find all your stuff and things </div>		
 		</div>        
 	);

@@ -7,4 +7,16 @@ export function updateUser(user){
   });
 }
 
+export function editAppventureTitle(title){
+    store.dispatch({
+ 		type: 'SET_TITLE',
+  		title: title 
+  });
+}
 
+export function editAppventureLocationName(locationName){
+    store.dispatch({
+ 		type: 'SET_LOCATION_NAME',
+  		locationName: locationName 
+  });
+}

@@ -3,8 +3,16 @@
 import React from "react";
 import DropzoneUploader from '../Components/Common/DropzoneUploader.js';
 import { uploadImage, renameFile, removeFile } from '../api/Backendless.js';
+import TextBox from '../Components/Common/TextBox.js';
+import { editAppventureTitle } from '../Actions/Actions';
 
 import { connect } from 'react-redux'
+
+@connect((store) => {
+  return {
+    editAppventure: store.editAppventure
+  };
+})
 
 @connect((store) => {
   return {
@@ -15,14 +23,22 @@ import { connect } from 'react-redux'
 export default class LandingPage extends React.Component {
 
   render() {
-
+    const appventure = this.props.editAppventure
     return (
       <div>
         <h1>Test Page</h1>
+        <TextBox dispatchValue={this.editTitle} placeholder="Title"/>
+        <div><h3>{appventure.title.value}</h3></div>
+        <TextBox dispatchValue={this.editTitle} placeholder="Location name"/>
         <DropzoneUploader />
         <Example/>
       </div>
     );
+  }
+
+  editTitle(title) {
+    console.log("edit title")
+    editAppventureTitle(title)
   }
 
   rename() {

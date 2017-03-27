@@ -32,8 +32,8 @@ export default class LandingPage extends React.Component {
   onSubmit (e) {
     e.preventDefault();
 
-    history.pushState({state: 1}, "profile", "/profile");
-    location.reload();
+    // history.pushState({state: 1}, "profile", "/profile");
+    // location.reload();
     // if (this.state.typeOfSubmit === 'oneOfThem') {
     // doe something
     // }
