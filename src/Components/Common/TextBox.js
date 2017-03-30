@@ -2,7 +2,6 @@
 
 //Requires dispatchValue action to update a state or store 
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
 
 
 const propTypes = {

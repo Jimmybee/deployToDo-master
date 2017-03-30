@@ -1,7 +1,7 @@
 
 import Dropzone from 'react-dropzone';
 import React, { Component } from 'react';
-import { uploadImage, renameFile } from '../../api/Backendless.js';
+import { uploadImage } from '../../api/Backendless.js';
 
 
 class DropzoneUploader extends Component {
@@ -24,7 +24,7 @@ class DropzoneUploader extends Component {
   }
 
   render() {
-  	  	const  { editAppventureUrl } = this.props
+  	  	// const  { editAppventureUrl } = this.props
   	  	console.log(this.props)
            return (
 			<form>
@@ -41,7 +41,7 @@ class DropzoneUploader extends Component {
 		          {this.state.uploadedFile === null ? null :
 		          <div>
 		            <p>{this.state.uploadedFile.name}</p>
-		            <img src={this.state.uploadedFileURL} />
+		            <img src={this.state.uploadedFileURL} alt="uploaded"/>
 		          </div>}
 		        </div>
 		      </form>  

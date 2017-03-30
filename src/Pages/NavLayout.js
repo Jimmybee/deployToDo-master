@@ -6,10 +6,23 @@ import React from "react";
 // import { Link } from "react-router";
 import '../App.css';
 
+// import Footer from "../components/layout/Footer";
+import Nav from "../Components/Common/Nav";
+// import { connect } from 'react-redux';
+
+// @connect((store) => {
+//   return {
+//     location: store.location
+//   };
+// })
 
 
-export default class Layout extends React.Component {
+
+export default class NavLayout extends React.Component {
   render() {
+    const containerStyle = {
+      marginTop: "60px",
+    };
 
     console.log("layout:", this.props.location)
 
@@ -18,7 +31,8 @@ export default class Layout extends React.Component {
 
     return (
       <div>
-        <div className="container">
+        <Nav/>
+        <div className="container" style={containerStyle}>
           <div className="row">
             <div className="col-lg-12">
                {this.props.children}

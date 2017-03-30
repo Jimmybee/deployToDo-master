@@ -1,0 +1,22 @@
+.sidebar{
+  width: 100%;
+  height: 100%;
+  float: left;
+  background: url(http://s21.postimg.org/kexv3aupf/bg_sidebar.png) repeat left top;
+  background-color: blue;
+}
+
+.navMenuWrapper {
+    height: 100% !important;
+    position: fixed !important;
+    overflow-x: hidden !important;
+    overflow-y: scroll !important;
+    -webkit-overflow-scrolling: touch !important;
+    background-color: blue;
+}
+
+ul {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+

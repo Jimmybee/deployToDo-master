@@ -4,7 +4,7 @@ import React from "react";
 import DropzoneUploader from '../Components/Common/DropzoneUploader.js';
 import { uploadImage, renameFile, removeFile } from '../api/Backendless.js';
 import TextBox from '../Components/Common/TextBox.js';
-import { editAppventureTitle } from '../Actions/Actions';
+import { editAppventureTitle } from '../Actions/Actions.js';
 
 import { connect } from 'react-redux'
 

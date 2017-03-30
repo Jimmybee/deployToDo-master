@@ -10,7 +10,7 @@ export default class CreateNew extends React.Component {
       <div className="jumbotron">
         <h1> Create New </h1>
         <p> Design a new appventure in your city right here and share it with others.</p>
-        <p><Link className="btn btn-primary btn-lg" to="/">Start Here</Link></p>
+        <p><Link className="btn btn-primary btn-lg" to="/editAppventure/summary">Start Here</Link></p>
       </div>
     );
   }

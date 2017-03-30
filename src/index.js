@@ -10,20 +10,21 @@ import ReactDOM from 'react-dom';
 //   Link } from "react-router";
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
-  Link
 } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css';
 
 import Layout from './Pages/Layout';
+import NavLayout from './Pages/NavLayout';
+
+
 import LandingPage from './Pages/LandingPage';
 import Explore from './Pages/Explore';
 import Login from './Pages/Login';
 import Profile from './Pages/Profile';
 import CreateNew from './Pages/CreateNew';
 import TestPage from './Pages/TestPage';
-
+import Summary from './Pages/EditAppventure/Summary';
 
 import './index.css';
 
@@ -33,18 +34,39 @@ import store from './store/store';
 
 const app = document.getElementById('root')
 
+// wrapping/composing
+const LayoutRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={props => (
+    <Layout  {...props}>
+      <Component {...props}/>
+    </Layout>
+  )}/>
+)
+
+const NavLayoutRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={props => (
+    <NavLayout  {...props}>
+      <Component {...props}/>
+    </NavLayout>
+  )}/>
+)
+
+
 ReactDOM.render(
 	<Provider store={store}>
-    <Router history={history}>
-      <Layout>
-        <Route exact={true} path="/" component={LandingPage}></Route>
-        <Route path="/explore" name="explore" component={Explore}></Route> 
-    	  <Route path="/login" name="login" component={Login}></Route> 
-        <Route path="/Create" name="Create" component={CreateNew}></Route> 
-        <Route path="/profile" name="profile" component={Profile}></Route> 
-    	  <Route path="/testPage" name="testPage" component={TestPage}></Route> 
-      </Layout>
+    <Router>
+      <div>
+        <NavLayoutRoute exact={true} path="/" component={LandingPage}/>
+        <NavLayoutRoute path="/explore" component={Explore}/>
+        <NavLayoutRoute path="/login" component={Login}/>
+        <NavLayoutRoute path="/Create" name="Create" component={CreateNew}/>
+        <NavLayoutRoute path="/profile" name="profile" component={Profile}/>
+    	  <NavLayoutRoute path="/testPage" name="testPage" component={TestPage}/>
+        <LayoutRoute path="/editAppventure/summary" name="editAppventureSummary" component={Summary}/>
+      </div>
     </Router>
   </Provider>,
 app);
+
+
 

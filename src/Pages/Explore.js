@@ -24,12 +24,6 @@ export default class Explore extends React.Component {
       marginTop: 10
     }
 
-   var greenOutline = {
-    outlineStyle: 'solid',
-    outlineWidth: 1,
-    outlineColor: 'green'
-  }
-
 
     const textColor = {
       color: '#E45663'
@@ -81,3 +75,9 @@ export default class Explore extends React.Component {
   }
 }
 
+
+   {/*var greenOutline = {
+    outlineStyle: 'solid',
+    outlineWidth: 1,
+    outlineColor: 'green'
+  }*/}

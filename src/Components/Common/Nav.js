@@ -48,7 +48,7 @@ export default class Nav extends React.Component {
     var expandedLogo = listNav ? "" : logo;
 
     const user = this.props.user;
-    console.log(user);
+    // console.log(user);
 
     return (
       <nav className="navbar navbar-fixed-top navbar-default" role="navigation">

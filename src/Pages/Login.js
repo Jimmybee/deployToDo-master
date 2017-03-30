@@ -1,15 +1,20 @@
 // @flow
 
 import React from "react";
-import { asyncRegisterUser, classicLogin } from '../api/Backendless.js';
-
-import {browserHistory} from 'react-router-dom';
+import { asyncRegisterUser, classicLogin } from '../api/Backendless.js'; 
+// import { updateLocationPath } from '../Actions/Actions.js';
 
 export default class LandingPage extends React.Component {
 
 
   render() {
 
+    console.log(history.state)
+    console.log(this.props.location)
+
+    // if (location !== undefined) {
+    //   updateLocationPath(this.props.location.pathname)
+    // }
 
     // const { query } = this.props.location;
     // const { params } = this.props;
@@ -48,7 +53,7 @@ export default class LandingPage extends React.Component {
 
     console.log(email.value, password.value)
 
-    asyncRegisterUser(email.value, password.value)
+    asyncRegisterUser(email.value, password.value, handleError())
   }
 
   loginUser() {

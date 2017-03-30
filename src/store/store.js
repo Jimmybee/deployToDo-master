@@ -11,7 +11,7 @@ import user from '../reducers/User'
 const reducers = combineReducers({
   appventures,
   editAppventure,
-  user
+  user,
 })
 
 const middleWare = applyMiddleware(thunk, logger())
