@@ -4,7 +4,6 @@ import { backendless as config } from './Config';
 import Backendless from 'backendless';
 import store from '../store/store';
 import { updateUser } from '../Actions/Actions';
-import {browserHistory} from 'react-router';
 
 Backendless.initApp(config.APPLICATION_ID, config.JAVASCRIPT_KEY, config.VERSION);
 Backendless.enablePromises();
@@ -19,6 +18,11 @@ function Contact(args) {
 
 function BackendlessAppventure(args) {
     args = args || {};
+}
+
+function TestAppventure(args) {
+    args = args || {};
+    this.title = args.title || "";
 }
 
 
@@ -58,6 +62,22 @@ export function asyncCreate() {
   });
  
  Backendless.Persistence.of( Contact ).save(contactObject).then(saved).catch(gotError);
+}
+
+export function updateBackendlessAppventureDetails(appventure){
+  function saved(appventure) {
+    console.log("saved ");
+  }
+  
+  function gotError(err) {
+    console.log("error message - " + err.message);
+    console.log("error code - " + err.statusCode);
+  }
+
+  var backendlessAppventure = new TestAppventure(appventure)
+
+ Backendless.Persistence.of( TestAppventure ).save(backendlessAppventure).then(saved).catch(gotError);
+
 }
 
 //LOGIN FUNCTIONS

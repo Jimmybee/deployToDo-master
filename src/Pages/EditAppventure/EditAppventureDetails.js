@@ -12,7 +12,7 @@ export default class EditAppventureDetails extends React.Component {
     return (
       <div>
         <h1>Edit Details</h1>
-        <TextBox dispatchValue={this.editTitle} placeholder="Title"/>
+        <TextBox dispatchValue={this.editTitle} placeholder="Title" value={appventure.title.value}/>
         <div><h3>{appventure.title.value}</h3></div>
         <TextBox dispatchValue={this.editTitle} placeholder="Location name"/>
       </div>

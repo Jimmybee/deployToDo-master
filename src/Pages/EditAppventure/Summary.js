@@ -2,10 +2,15 @@
 
 import React from "react";
 
-import EditAppventureDetails from "./EditAppventureDetails";
+// import EditAppventureDetails from "./EditAppventureDetails";
 import EditAppventureImage from "./EditAppventureImage";
+import AppventureDetailsForm from "./DetailsForm";
+import { updateAppventureDetails, editAppventureTitle } from '../../Actions/Actions.js';
+import { updateBackendlessAppventureDetails } from '../../api/Backendless.js';
+import store from '../../store/store';
 
-import './Summary.css'
+
+import './Summary.css';
 
 import { connect } from 'react-redux'
 @connect((store) => {
@@ -27,11 +32,11 @@ export default class Summary extends React.Component {
 
   const displayComponent = this.state.displayComponent
   const appventure = this.props.editAppventure
-  console.log(displayComponent)
+  const submitFunciton = this.submit.bind(this)
   const getComponent = function(displayComponent) {   
   	switch (displayComponent) {
   		case 'DETAILS':
-	      return <EditAppventureDetails appventure={appventure}/>
+	      return <AppventureDetailsForm appventure={appventure} onSubmit={submitFunciton}/>
 	    case 'IMAGE':
 	      return <EditAppventureImage/>
 	    default:
@@ -43,30 +48,39 @@ export default class Summary extends React.Component {
 
 
     return (
-    <div className="row">
-      <div className="col-xs-1 col-sm-2">
+    <div className="fluid-container">
+      <div className="col-xs-1 col-sm-2 summaryColumnBlue">
 	      <div className="navMenuWrapper">
 	      	<div className="navScroller">
-		        <ul>
-		        	<li><button onClick={this.showDetails.bind(this)}>Details</button></li>
-		        	<li><button onClick={this.showImage.bind(this)}>Image</button></li>
-		        	<li>List</li>
-		        	<li>List</li>
-		        	<li>List</li>
-		        	<li>List</li>
-					<li>List</li>
-		        	<li>List</li>
-		        	<li>List</li>
-		        	<li>List</li>
-		        	<li>List</li>
-		        	<li>Last</li>
+	      		<label>Appventure</label>
+		        <ul className="sideNavUL">
+		        	<li className="sideNavListItem"><button onClick={this.showDetails.bind(this)}>Details</button></li>
+		        	<li className="sideNavListItem"><button onClick={this.showImage.bind(this)}>Image</button></li>
+		        </ul>
+		        <label>Steps</label>
+		        <ul className="sideNavUL">
+		        	<li className="sideNavListItem">Step One</li>
+		        	<li className="sideNavListItem">Step Two</li>
+		        	<li className="sideNavListItem">Step Three</li>
+		        	<li className="sideNavListItem">List</li>
+					<li className="sideNavListItem">List</li>
+		        	<li className="sideNavListItem">List</li>
+		        	<li className="sideNavListItem">List</li>
+		        	<li className="sideNavListItem">List</li>
+		        	<li className="sideNavListItem">List</li>
+		        	<li className="sideNavListItem">Last</li>
 		        </ul>
 	      	</div>
 	      </div>
       </div>
       <div className="col-xs-11 col-sm-10">
-      	{component}
-      </div> 
+	      <div className="col-xs-12">
+	      	<button className="btn btn-default pull-right"> Save & Exit </button>
+	      </div>
+	      <div className="col-xs-12">
+	      	{component}
+	      </div> 
+      </div>
     </div>
     );
   }
@@ -82,4 +96,16 @@ export default class Summary extends React.Component {
   		displayComponent: "IMAGE",
   	})
   }
+
+  submit(values) {
+  	console.log("values", values)
+
+  	function updatedStore() {
+  	}
+
+  	updateAppventureDetails(values)
+  	console.log("Updated", store.getState());
+
+  }
+
 }

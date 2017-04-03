@@ -37,9 +37,7 @@ const app = document.getElementById('root')
 // wrapping/composing
 const LayoutRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
-    <Layout  {...props}>
       <Component {...props}/>
-    </Layout>
   )}/>
 )
 

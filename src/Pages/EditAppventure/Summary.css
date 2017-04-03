@@ -3,20 +3,40 @@
   height: 100%;
   float: left;
   background: url(http://s21.postimg.org/kexv3aupf/bg_sidebar.png) repeat left top;
-  background-color: blue;
 }
+
+.summaryColumnBlue {
+    background-color: blue;
+}
+
 
 .navMenuWrapper {
     height: 100% !important;
+    width: 12.5%;
     position: fixed !important;
     overflow-x: hidden !important;
     overflow-y: scroll !important;
     -webkit-overflow-scrolling: touch !important;
-    background-color: blue;
+    background-color: #894176;
+    color: rgba(255, 255, 255, 0.65);
 }
 
-ul {
-	margin-top: 50px;
-	margin-bottom: 50px;
+.navScroller {
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
+
+.sideNavUL {
+  padding: 0px;
+}
+
+.sideNavListItem {
+  font-size: 16px;
+  padding-top: 10px;
+  list-style-type: none;
+  margin-left: 10px;
+}
+
+
+
 

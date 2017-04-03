@@ -25,7 +25,8 @@ class TextBox extends Component {
   }
 
   render() {
-    const { placeholder, value } = this.props;
+    const { placeholder, defaultValue } = this.props;
+    console.log("props:", this.props)
     return (
       <div className="nav-search">
         <i className="icon ion-search" />
@@ -34,7 +35,7 @@ class TextBox extends Component {
           className="nav-search-input"
           placeholder={placeholder}
           onKeyPress={this.handleOnKeyPress}
-          value={value}
+          value={defaultValue.value}
           type="text"
         />
       </div>

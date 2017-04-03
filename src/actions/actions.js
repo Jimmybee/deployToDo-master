@@ -14,9 +14,16 @@ export function editAppventureTitle(title){
   });
 }
 
-export function editAppventureLocationName(locationName){
+export function updateAppventureDetails(appventure){
     store.dispatch({
- 		type: 'SET_LOCATION_NAME',
-  		locationName: locationName 
+ 		type: 'UPDATE_APPVENTURE_DETAILS',
+ 		appventure: appventure
   });
 }
+
+
+var p1 = new Promise(function(resolve, reject) {
+  resolve('Success!');
+  // or
+  // reject ("Error!");
+});
