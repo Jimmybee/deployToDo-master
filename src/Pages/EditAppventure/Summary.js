@@ -54,8 +54,8 @@ export default class Summary extends React.Component {
 	      	<div className="navScroller">
 	      		<label>Appventure</label>
 		        <ul className="sideNavUL">
-		        	<li className="sideNavListItem"><button onClick={this.showDetails.bind(this)}>Details</button></li>
-		        	<li className="sideNavListItem"><button onClick={this.showImage.bind(this)}>Image</button></li>
+		        	<li className="sideNavListItem"><button className="sideNavListBtn" onClick={this.showDetails.bind(this)}>Details</button></li>
+		        	<li className="sideNavListItem"><button className="sideNavListBtn" onClick={this.showImage.bind(this)}>Image</button></li>
 		        </ul>
 		        <label>Steps</label>
 		        <ul className="sideNavUL">
