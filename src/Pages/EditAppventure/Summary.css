@@ -51,4 +51,12 @@
   color: #fff;
 }
 
+.summaryThemeDiv {
+  display: inline-block;
+  padding: 10px;
+}
+
+.summaryComponent {
+  margin-right: 100px;
+}
 

@@ -10,7 +10,7 @@ class AppventureDetails extends Component {
   render() {
     const themes = ["Outdoor", "Family", "Puzzle", "Night", "Museum", "Adventurous"]
     const renderThemeSelector = ({ input, meta: { touched, error } }) => (
-      <div>
+      <div className="summaryThemeDiv">
         <select {...input}>
           <option value="">Select a time...</option>
           {themes.map(val => <option value={val} key={val}>{val}</option>)}
@@ -21,7 +21,7 @@ class AppventureDetails extends Component {
 
     const times = this.createTimeArray()
     const renderTimeSelector = ({ input, meta: { touched, error } }) => (
-      <div>
+      <div className="summaryThemeDiv">
         <select {...input}>
           <option value="">Select a time...</option>
           {times.map(val => <option value={val} key={val}>{val}</option>)}
@@ -58,7 +58,7 @@ class AppventureDetails extends Component {
 
    const { handleSubmit } = this.props;
     return (
-      <form onSubmit={handleSubmit} className="form-horizontal">
+      <form onSubmit={handleSubmit} className="form-horizontal summaryComponent">
         <div className="form-group">
           <label htmlFor="title">Title</label>
           <Field name="title" component="input" type="text" placeholder="Title" className="form-control"/>
@@ -72,12 +72,10 @@ class AppventureDetails extends Component {
           <Field name="description" component="textarea" placeholder="Description" className="form-control"/>
         </div>
         <div className="form-group">
-           <label> Theme One </label>
-           <Field name="themeOne" component={renderThemeSelector} className="form-control"/>
-           <label> Theme Two </label>
-           <Field name="themeTwo" component={renderThemeSelector} className="form-control"/>
-           <Field name="startTime" component={renderTimeSelector} className="form-control"/>
-           <Field name="endTime" component={renderTimeSelector} className="form-control"/>
+           <LabelSelect name="themeOne" labelTitle="Theme One" component={renderThemeSelector} classNames="col-xs-6"/> 
+           <LabelSelect name="themeTwo" labelTitle="Theme Two" component={renderThemeSelector} classNames="col-xs-6"/>
+           <LabelSelect name="startTime" labelTitle="Eariler start time:" component={renderTimeSelector} classNames="col-xs-6"/>
+           <LabelSelect name="endTime" labelTitle="Latest finish time:" component={renderTimeSelector} classNames="col-xs-6"/>    
            <Field name="minutes" component={renderMinuteSelector} className="form-control"/>
            <Field name="hours" component={renderHourSelector} className="form-control"/>
         </div>
@@ -147,3 +145,26 @@ AppventureDetails = connect(
 )(AppventureDetails)
 
 export default AppventureDetails;
+
+
+
+class LabelSelect extends React.Component {
+   constructor(props, context) {
+    super(props, context);
+  }
+
+  render() {
+    const {
+      classNames,
+      labelTitle,
+      name,
+      component } = this.props;
+
+    return(
+      <div className={classNames}>
+        <label> {labelTitle} </label>
+        <Field name="themeTwo" component={component} className="form-control"/>
+       </div>
+    );
+  }
+}
