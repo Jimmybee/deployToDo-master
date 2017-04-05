@@ -1,11 +1,12 @@
 // @flow
 
 import React from "react";
+import GoogleMap from '../Components/Common/GoogleMap.js';
+
+
 import DropzoneUploader from '../Components/Common/DropzoneUploader.js';
 import { uploadImage, renameFile, removeFile } from '../api/Backendless.js';
 import TextBox from '../Components/Common/TextBox.js';
-import GoogleMap from './GoogleMap.js';
-import PlacesMap from './PlacesMaps.js';
 
 import { editAppventureTitle } from '../Actions/Actions.js';
 
@@ -30,7 +31,9 @@ export default class LandingPage extends React.Component {
     return (
       <div>
         <h1>Test Page</h1>
-        <PlacesMap/>
+        <div><h3>{appventure.title}</h3></div>
+        <Example/>
+        <GoogleMap/>
       </div>
     );
   }
