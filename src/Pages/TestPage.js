@@ -1,7 +1,9 @@
 // @flow
 
 import React from "react";
-import GoogleMap from '../Components/Common/GoogleMap.js';
+// import GoogleMap from '../Components/Common/GoogleMap.js';
+// import PlacesMap from './PlacesMaps.js';
+import AutoCompleteMap from '../Components/Common/AutoCompleteMap.js';
 
 
 import DropzoneUploader from '../Components/Common/DropzoneUploader.js';
@@ -33,7 +35,7 @@ export default class LandingPage extends React.Component {
         <h1>Test Page</h1>
         <div><h3>{appventure.title}</h3></div>
         <Example/>
-        <GoogleMap/>
+        <AutoCompleteMap/>
       </div>
     );
   }

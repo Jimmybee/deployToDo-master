@@ -31,6 +31,11 @@ const INPUT_STYLE = {
   textOverflow: `ellipses`,
 };
 
+    const SearchBoxStyle = {
+      width: "100px",
+      height: "100px"
+    };
+
 const SearchBoxExampleGoogleMap = withGoogleMap(props => (
   <GoogleMap
     ref={props.onMapMounted}
@@ -38,6 +43,8 @@ const SearchBoxExampleGoogleMap = withGoogleMap(props => (
     center={props.center}
     onBoundsChanged={props.onBoundsChanged}
   >
+
+
     <SearchBox
       ref={props.onSearchBoxMounted}
       bounds={props.bounds}
@@ -110,9 +117,11 @@ export default class SearchBoxExample extends Component {
   render() {
 
      const containerStyle = {
-      width: "900px",
-      height: "900px"
+      width: "400px",
+      height: "400px"
     };
+
+    
 
     return (
       <div style={containerStyle}>
