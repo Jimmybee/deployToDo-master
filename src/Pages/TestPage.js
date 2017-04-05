@@ -4,7 +4,8 @@ import React from "react";
 import DropzoneUploader from '../Components/Common/DropzoneUploader.js';
 import { uploadImage, renameFile, removeFile } from '../api/Backendless.js';
 import TextBox from '../Components/Common/TextBox.js';
-import UncontrolledTextBox from '../Components/Common/UncontrolledTextBox.js';
+import GoogleMap from './GoogleMap.js';
+import PlacesMap from './PlacesMaps.js';
 
 import { editAppventureTitle } from '../Actions/Actions.js';
 
@@ -29,10 +30,7 @@ export default class LandingPage extends React.Component {
     return (
       <div>
         <h1>Test Page</h1>
-        <TextBox dispatchValue={this.editTitle} placeholder="Title"/>
-        <div><h3>{appventure.title.value}</h3></div>
-        <DropzoneUploader />
-        <Example/>
+        <PlacesMap/>
       </div>
     );
   }
