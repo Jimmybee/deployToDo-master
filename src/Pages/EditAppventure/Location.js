@@ -10,7 +10,7 @@ class Location extends Component {
 
   render() {
 
-   const { handleSubmit } = this.props;
+    const { handleSubmit } = this.props;
     return (
       <div>
         <form onSubmit={handleSubmit} className="form-horizontal summaryComponent">
