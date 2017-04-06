@@ -25,6 +25,27 @@ function TestAppventure(args) {
     this.title = args.title || "";
 }
 
+// EASY FACEBOOK LOGIN 
+
+export function facebookLogin() {
+    function userLoggedIn( user ) {
+    console.log( "user has logged in" );
+    updateUser(user)
+  }
+   
+  function gotError( err ) {
+    console.log( "error message - " + err.message );
+    console.log( "error code - " + err.statusCode );
+  }
+
+  var callback = new Backendless.Async( userLoggedIn, gotError );
+
+  const permissions = "email";
+  const facebookFieldsMapping = {email:"email"};
+
+  Backendless.UserService.loginWithFacebook(facebookFieldsMapping, permissions, callback)
+}
+
 
 // REGISTRATION 
 export function asyncRegisterUser(email, password) {

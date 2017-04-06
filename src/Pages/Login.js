@@ -1,7 +1,7 @@
 // @flow
 
 import React from "react";
-import { asyncRegisterUser, classicLogin } from '../api/Backendless.js'; 
+import { asyncRegisterUser, classicLogin, facebookLogin } from '../api/Backendless.js'; 
 // import { updateLocationPath } from '../Actions/Actions.js';
 
 export default class LandingPage extends React.Component {
@@ -29,6 +29,9 @@ export default class LandingPage extends React.Component {
           <input type="password" placeholder="password" ref="password" required/>
           <button onClick={this.loginUser.bind(this)}>Login</button>
           <button onClick={this.registerNewUser.bind(this)}>Register</button>
+          <div>
+            <button onClick={this.facebookLogin.bind(this)}>FacebookLogin</button>
+          </div>
         </form>
       </div>
     );
@@ -42,6 +45,10 @@ export default class LandingPage extends React.Component {
     // if (this.state.typeOfSubmit === 'oneOfThem') {
     // doe something
     // }
+  }
+
+  facebookLogin() {
+    facebookLogin()
   }
 
   registerNewUser() {

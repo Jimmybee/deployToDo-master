@@ -23,7 +23,7 @@ export class Container extends React.Component {
 }
  
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyAOBxlw64KDySert353RpCENs9_fSV-6jY",
+  apiKey: "AIzaSyCllFVuaNSICnlLN0fCIbI8dbV_twJPOFs",
   version: "3"
 })(Container)
 
@@ -83,9 +83,9 @@ const Contents = React.createClass({
 
   },
 
-  onMapClicked: function(event) {
+  onMapClicked: function(clickEvent) {
     console.log("click", event);
-    console.log("click", event.latLng);
+    console.log("click", clickEvent.latLng);
   },
 
   render: function() {
@@ -121,7 +121,7 @@ const Contents = React.createClass({
               }}
               center={this.state.position}
               centerAroundCurrentLocation={true}>
-                <Marker position={this.state.position} />
+              <Marker position={this.state.position} />
           </Map>
         </div>
       </div>
@@ -134,12 +134,8 @@ const MapWrapper = React.createClass({
     const props = this.props;
     const {google} = this.props;
 
-    return (
-      <Map google={google}
-          className={'map'}
-          visible={false}>
+    return ( 
             <Contents {...props} />
-      </Map>
     );
   }
 })

@@ -63,10 +63,7 @@ class AppventureDetails extends Component {
           <label htmlFor="title">Title</label>
           <Field name="title" component="input" type="text" placeholder="Title" className="form-control"/>
         </div>
-        <div className="form-group">
-          <label htmlFor="locationName">Location Name</label>
-          <Field name="locationName" component="input" type="text" placeholder="Location Name" className="form-control"/>
-        </div>
+       
         <div className="form-group">
           <label htmlFor="description">Description</label>
           <Field name="description" component="textarea" placeholder="Description" className="form-control"/>
