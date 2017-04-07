@@ -1,36 +1,36 @@
-import {Map, GoogleApiWrapper, Marker} from 'google-maps-react'
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+// import {Map, GoogleApiWrapper, Marker} from 'google-maps-react'
+// import React, { Component } from 'react';
+// import ReactDOM from 'react-dom';
 
-export class Container extends React.Component {
+// export class Container extends React.Component {
 
-  render() {
+//   render() {
     
-   const style = {
-      width: '50vw',
-      height: '50vh'
-    }
+//    const style = {
+//       width: '50vw',
+//       height: '50vh'
+//     }
 
-    return (
-      <div>
-      	<Map
-          style={style} 
-          google={this.props.google}
-          centerAroundCurrentLocation={true}
-        >
-          <Marker
-          name={'SOMA'}
-          position={{lat: 37.778519, lng: -122.405640}} />
-        </Map>
-      </div>
-    )
-  }
-}
+//     return (
+//       <div>
+//       	<Map
+//           style={style} 
+//           google={this.props.google}
+//           centerAroundCurrentLocation={false}
+//         >
+//           <Marker
+//           name={'SOMA'}
+//           position={{lat: 37.778519, lng: -122.405640}} />
+//         </Map>
+//       </div>
+//     )
+//   }
+// }
  
-export default GoogleApiWrapper({
-  apiKey: "AIzaSyAOBxlw64KDySert353RpCENs9_fSV-6jY",
-  version: "3"
-})(Container)
+// export default GoogleApiWrapper({
+//   apiKey: "AIzaSyAOBxlw64KDySert353RpCENs9_fSV-6jY",
+//   version: "3"
+// })(Container)
 
 
 // class Map extends React.Component {

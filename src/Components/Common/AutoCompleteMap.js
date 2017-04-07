@@ -23,13 +23,15 @@ export class Container extends React.Component {
 }
  
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyAOBxlw64KDySert353RpCENs9_fSV-6jY",
+  apiKey: "AIzaSyD9SZOqhWyFHdJg1vtyJhLDY5YJUe_dl_0",
   version: "3"
 })(Container)
 
 
 const Contents = React.createClass({
   getInitialState() {
+
+
     return {
       place: null,
       position: null
@@ -83,14 +85,27 @@ const Contents = React.createClass({
 
   },
 
-  onMapClicked: function(event) {
-    console.log("click", event);
-    console.log("click", event.latLng);
+  mapClicked: function(mapProps, map, clickEvent) {
+      console.log(mapProps)
+      console.log(map)
+      console.log(clickEvent)
+      this.setState({
+        place: null,
+        position: clickEvent.latLng
+      })
+
+  },
+
+  onReady: function() {
+    console.log("ready")
   },
 
   render: function() {
     const props = this.props;
     const {position} = this.state;
+
+    const center = new this.props.google.maps.LatLng(51, 0)
+    {console.log(this.state.position)}
 
     return (
       <div className={styles.flexWrapper}>
@@ -113,7 +128,8 @@ const Contents = React.createClass({
         <div className={styles.right}>
           <Map {...props}
               ref='map'
-              onClick={this.onMapClicked}
+              onClick={this.mapClicked}
+              onReady={this.onReady}
               containerStyle={{
                 position: 'relative',
                 height: '50vh',
@@ -121,7 +137,7 @@ const Contents = React.createClass({
               }}
               center={this.state.position}
               centerAroundCurrentLocation={true}>
-                <Marker position={this.state.position} />
+              <Marker position={this.state.position} />
           </Map>
         </div>
       </div>
