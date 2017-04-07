@@ -5,6 +5,7 @@ import React from "react";
 // import EditAppventureDetails from "./EditAppventureDetails";
 import EditAppventureImage from "./EditAppventureImage";
 import AppventureDetailsForm from "./DetailsForm";
+import Location from "./Location";
 import { updateAppventureDetails, editAppventureTitle } from '../../Actions/Actions.js';
 import { updateBackendlessAppventureDetails } from '../../api/Backendless.js';
 import store from '../../store/store';
@@ -39,6 +40,8 @@ export default class Summary extends React.Component {
 	      return <AppventureDetailsForm appventure={appventure} onSubmit={submitFunciton}/>
 	    case 'IMAGE':
 	      return <EditAppventureImage/>
+	    case 'LOCATION':
+	      return <Location/>
 	    default:
 	      return <h1>404</h1>
 	  }
@@ -56,6 +59,7 @@ export default class Summary extends React.Component {
 		        <ul className="sideNavUL">
 		        	<li className="sideNavListItem"><button className="sideNavListBtn" onClick={this.showDetails.bind(this)}>Details</button></li>
 		        	<li className="sideNavListItem"><button className="sideNavListBtn" onClick={this.showImage.bind(this)}>Image</button></li>
+		        	<li className="sideNavListItem"><button className="sideNavListBtn" onClick={this.showLocation.bind(this)}>Location</button></li>
 		        </ul>
 		        <label>Steps</label>
 		        <ul className="sideNavUL">
@@ -94,6 +98,12 @@ export default class Summary extends React.Component {
   showImage() {
   	this.setState({
   		displayComponent: "IMAGE",
+  	})
+  }
+
+   showLocation() {
+  	this.setState({
+  		displayComponent: "LOCATION",
   	})
   }
 

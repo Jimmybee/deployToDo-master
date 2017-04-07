@@ -150,12 +150,8 @@ const MapWrapper = React.createClass({
     const props = this.props;
     const {google} = this.props;
 
-    return (
-      <Map google={google}
-          className={'map'}
-          visible={false}>
+    return ( 
             <Contents {...props} />
-      </Map>
     );
   }
 })
