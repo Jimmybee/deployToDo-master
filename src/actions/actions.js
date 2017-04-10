@@ -14,7 +14,7 @@ export function editAppventureTitle(title){
   });
 }
 
-export function updateAppventureDetails(appventure){
+export function updateReduxAppventureDetails(appventure){
     store.dispatch({
  		type: 'UPDATE_APPVENTURE_DETAILS',
  		appventure: appventure

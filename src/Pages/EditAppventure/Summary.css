@@ -5,14 +5,9 @@
   background: url(http://s21.postimg.org/kexv3aupf/bg_sidebar.png) repeat left top;
 }
 
-.summaryColumnBlue {
-    background-color: blue;
-}
-
-
 .navMenuWrapper {
     height: 100% !important;
-    width: 12.5%;
+    width: 20%;
     position: fixed !important;
     overflow-x: hidden !important;
     overflow-y: scroll !important;

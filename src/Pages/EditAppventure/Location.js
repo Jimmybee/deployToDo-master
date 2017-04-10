@@ -15,16 +15,22 @@ class Location extends Component {
       <div>
         <form onSubmit={handleSubmit} className="form-horizontal summaryComponent">
           <div className="form-group">
-            <label htmlFor="locationName">Location Name</label>
-            <Field name="locationName" component="input" type="text" placeholder="Location Name" className="form-control"/>
+            <label htmlFor="startingLocationName">Location Name</label>
+            <Field name="startingLocationName" component="input" type="text" placeholder="Location Name" className="form-control"/>
           </div>
            <button type="submit">Submit</button>
         </form>
-        <AutoCompleteMap/>
+        <AutoCompleteMap placeFound={this.placeFound}/>
       </div>
     );
   }
+
+  placeFound() {
+    console.log("passed function")
+  }
 }
+
+
 
 // Decorate the form component
 Location = reduxForm({

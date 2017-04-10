@@ -6,9 +6,10 @@ import React from "react";
 import EditAppventureImage from "./EditAppventureImage";
 import AppventureDetailsForm from "./DetailsForm";
 import Location from "./Location";
-import { updateAppventureDetails, editAppventureTitle } from '../../Actions/Actions.js';
+import { updateReduxAppventureDetails } from '../../Actions/Actions.js';
 import { updateBackendlessAppventureDetails } from '../../api/Backendless.js';
 import store from '../../store/store';
+import { Link } from 'react-router-dom'
 
 
 import './Summary.css';
@@ -41,7 +42,7 @@ export default class Summary extends React.Component {
 	    case 'IMAGE':
 	      return <EditAppventureImage/>
 	    case 'LOCATION':
-	      return <Location/>
+	      return <Location onSubmit={submitFunciton}/>
 	    default:
 	      return <h1>404</h1>
 	  }
@@ -52,7 +53,7 @@ export default class Summary extends React.Component {
 
     return (
     <div className="fluid-container">
-      <div className="col-xs-1 col-sm-2 summaryColumnBlue">
+      <div className="col-xs-2 col-sm-3">
 	      <div className="navMenuWrapper">
 	      	<div className="navScroller">
 	      		<label>Appventure</label>
@@ -77,9 +78,9 @@ export default class Summary extends React.Component {
 	      	</div>
 	      </div>
       </div>
-      <div className="col-xs-11 col-sm-10">
+      <div className="col-xs-10 col-sm-9">
 	      <div className="col-xs-12">
-	      	<button className="btn btn-default pull-right"> Save & Exit </button>
+	        <p><Link className="btn btn-default pull-right" to="/create">Save & Exit</Link></p>
 	      </div>
 	      <div className="summaryComponent col-xs-12">
 	      	{component}
@@ -108,13 +109,12 @@ export default class Summary extends React.Component {
   }
 
   submit(values) {
-  	console.log("values", values)
+	
+	const state =  store.getState();
+	console.log("New Edit = ",state.editAppventure);
+	console.log("values = ", values);
 
-  	function updatedStore() {
-  	}
-
-  	updateAppventureDetails(values)
-  	console.log("Updated", store.getState());
+  	updateBackendlessAppventureDetails(state.editAppventure, values, updateReduxAppventureDetails)
 
   }
 

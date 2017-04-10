@@ -160,7 +160,7 @@ class LabelSelect extends React.Component {
     return(
       <div className={classNames}>
         <label> {labelTitle} </label>
-        <Field name="themeTwo" component={component} className="form-control"/>
+        <Field name={name} component={component} className="form-control"/>
        </div>
     );
   }

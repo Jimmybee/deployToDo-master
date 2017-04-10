@@ -1,71 +1,59 @@
 // @flow
 
+import "./login.css"
+
 import React from "react";
 import { asyncRegisterUser, classicLogin, facebookLogin } from '../api/Backendless.js'; 
 // import { updateLocationPath } from '../Actions/Actions.js';
+import { updateUser } from '../Actions/Actions';
 
 export default class LandingPage extends React.Component {
-
+  constructor(props) {
+      super(props);
+      this.successfullLogin = this.successfullLogin.bind(this);
+  }
 
   render() {
-
-    console.log(history.state)
-    console.log(this.props.location)
-
-    // if (location !== undefined) {
-    //   updateLocationPath(this.props.location.pathname)
-    // }
-
-    // const { query } = this.props.location;
-    // const { params } = this.props;
-    // const { article } = params;
-    // const { date, filter } = query;
 
     return (
       <div>
         <h1>Login</h1>
-        <form onSubmit={ this.onSubmit }>
+        <form onSubmit={ this.onSubmit.bind(this) }>
           <input type="email" placeholder="email" ref="email" required/>
           <input type="password" placeholder="password" ref="password" required/>
           <button onClick={this.loginUser.bind(this)}>Login</button>
           <button onClick={this.registerNewUser.bind(this)}>Register</button>
-          <div>
-            <button onClick={this.facebookLogin.bind(this)}>FacebookLogin</button>
+          <div className="pull-right">
+            <button onClick={this.facebookLogin.bind(this)}>
+              <img src={require('../images/fbLogin.png')} alt="facebook login"  className="fbLoginBtn"/>
+            </button>
           </div>
         </form>
       </div>
     );
   }
 
-  onSubmit (e) {
+  onSubmit(e) {
     e.preventDefault();
+  }
 
-    // history.pushState({state: 1}, "profile", "/profile");
-    // location.reload();
-    // if (this.state.typeOfSubmit === 'oneOfThem') {
-    // doe something
-    // }
+  successfullLogin( user ) {
+    updateUser(user)
+    this.props.history.push("/create")
   }
 
   facebookLogin() {
-    facebookLogin()
+    facebookLogin(this.successfullLogin)
   }
 
   registerNewUser() {
     const {email, password} = this.refs;
-  
-    function handleError(result) {
-       alert( "error - " + result.message );
-    }
-
-    console.log(email.value, password.value)
-
-    asyncRegisterUser(email.value, password.value, handleError())
+    asyncRegisterUser(email.value, password.value, this.successfullLogin)
   }
 
   loginUser() {
     const {email, password} = this.refs;
-    classicLogin(email.value, password.value)
+    classicLogin(email.value, password.value, this.successfullLogin)
   }
 
 }

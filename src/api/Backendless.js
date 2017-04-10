@@ -8,37 +8,48 @@ import { updateUser } from '../Actions/Actions';
 Backendless.initApp(config.APPLICATION_ID, config.JAVASCRIPT_KEY, config.VERSION);
 Backendless.enablePromises();
 
-function Contact(args) {
+function BackendlessAppventure(args, original) {
     args = args || {};
-    this.name = args.name || "";
-    this.age = args.age || "";
-    this.phone = args.phone || "";
-    this.title = args.title || "";
+    original = original || {};
+    this.objectId = args.objectId || original.objectId || null;
+    this.title = args.title || original.title || null;
+    this.description = args.description || original.description || null;
+    this.themeOne = args.themeOne || original.themeOne || null;
+    this.themeTwo = args.themeTwo || original.themeTwo || null;
+    this.startingLocationName = args.startingLocationName || original.startingLocationName || null;
 }
 
-function BackendlessAppventure(args) {
-    args = args || {};
+
+// REGISTRATION 
+export function asyncRegisterUser(email, password, successCallback) {
+ 
+  var user = new Backendless.User();
+  user.email = email;
+  user.password = password;
+  Backendless.UserService.register(user).then(successCallback).catch(gotError);
 }
 
-function TestAppventure(args) {
-    args = args || {};
-    this.title = args.title || "";
-}
-
-// EASY FACEBOOK LOGIN 
-
-export function facebookLogin() {
-    function userLoggedIn( user ) {
-    console.log( "user has logged in" );
-    updateUser(user)
-  }
+//LOGIN FUNCTIONS
+export function classicLogin(email, password, successCallback) {
+  
    
   function gotError( err ) {
     console.log( "error message - " + err.message );
     console.log( "error code - " + err.statusCode );
   }
 
-  var callback = new Backendless.Async( userLoggedIn, gotError );
+  var callback = new Backendless.Async( successCallback, gotError );
+
+  Backendless.UserService.login(email, password, true, callback );
+
+
+}
+
+// EASY FACEBOOK LOGIN 
+
+export function facebookLogin(successCallback) {
+   
+  var callback = new Backendless.Async( successCallback, gotError );
 
   const permissions = "email";
   const facebookFieldsMapping = {email:"email"};
@@ -47,46 +58,12 @@ export function facebookLogin() {
 }
 
 
-// REGISTRATION 
-export function asyncRegisterUser(email, password) {
-  function userRegistered(user) {
-    console.log("user has registered");
-    updateUser(user)
-  }
-  
-  function gotError(err) {
-    console.log("error message - " + err.message);
-    console.log("error code - " + err.statusCode);
-  }
- 
-  var user = new Backendless.User();
-  user.email = email;
-  user.password = password;
-  Backendless.UserService.register(user).then(userRegistered).catch(gotError);
-}
 
-export function asyncCreate() {
-  function saved(contact) {
-    console.log("saved ");
-  }
-  
-  function gotError(err) {
-    console.log("error message - " + err.message);
-    console.log("error code - " + err.statusCode);
-  }
+export function updateBackendlessAppventureDetails(appventure, update, successUpdate){
+    console.log("values", appventure, update)
 
-  var contactObject = new Contact( {
-    name: "James Bond",
-    age: 45,
-    phone: "1-800-JAMESBOND",
-    title: "chief spying officer"
-  });
- 
- Backendless.Persistence.of( Contact ).save(contactObject).then(saved).catch(gotError);
-}
-
-export function updateBackendlessAppventureDetails(appventure){
   function saved(appventure) {
+    successUpdate(appventure)
     console.log("saved ");
   }
   
@@ -95,47 +72,38 @@ export function updateBackendlessAppventureDetails(appventure){
     console.log("error code - " + err.statusCode);
   }
 
-  var backendlessAppventure = new TestAppventure(appventure)
+  var backendlessAppventure = new BackendlessAppventure(update, appventure)
 
- Backendless.Persistence.of( TestAppventure ).save(backendlessAppventure).then(saved).catch(gotError);
-
-}
-
-//LOGIN FUNCTIONS
-export function classicLogin(email, password) {
-  function userLoggedIn( user ) {
-    console.log( "user has logged in" );
-    updateUser(user)
-    
-  }
-   
-  function gotError( err ) {
-    console.log( "error message - " + err.message );
-    console.log( "error code - " + err.statusCode );
-  }
-
-  var callback = new Backendless.Async( userLoggedIn, gotError );
-
-  Backendless.UserService.login(email, password, true, callback );
-
+ Backendless.Persistence.of( BackendlessAppventure ).save(backendlessAppventure).then(saved).catch(gotError);
 
 }
 
 
+//FETCH TO EXPLORE
 export function asyncFetch() {
 
   function fetch(appventures) {
     store.dispatch({type:'RECIEVED_ALL_APPVENTURES', appventures: appventures.data})
   }
-  
-  function gotError(err) {
-    console.log("error message - " + err.message);
-    console.log("error code - " + err.statusCode);
-  }
 
   Backendless.Persistence.of( BackendlessAppventure ).find().then(fetch).catch(gotError);
 }
 
+//FETCH OWNED
+export function fetchQuery(condition) {
+
+  function fetched(appventures) {
+    store.dispatch({type:'RECIEVED_ALL_APPVENTURES', appventures: appventures.data})
+  }
+
+  var callback = new Backendless.Async( fetched, gotError );
+
+  var dataQuery = new Backendless.DataQuery();
+  dataQuery.condition = condition;
+  Backendless.Persistence.of( BackendlessAppventure ).find( dataQuery, callback);
+}
+
+// IMAGE METHODS
 export function uploadImage(objectId, files, handleSuccess, handleError) {
     var callback = {};
     var renameCallback = {};
@@ -178,6 +146,11 @@ export function removeFile() {
   Backendless.Files.remove( "media/Test.txt", callback );
 }
 
+
+function gotError(err) {
+    console.log( "error message - " + err.message );
+    console.log( "error code - " + err.statusCode );
+}
 
 
 

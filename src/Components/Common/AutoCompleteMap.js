@@ -8,15 +8,12 @@ import styles from './autocomplete.css'
 export class Container extends React.Component {
 
   render() {
-    
-   const style = {
-      width: '50vw',
-      height: '50vh'
-    }
 
+    const { placeFound } = this.props
+    
     return (
       <div>
-        <MapWrapper google={this.props.google}/>
+        <MapWrapper google={this.props.google} placeFound={placeFound}/>
       </div>
     )
   }
@@ -77,6 +74,8 @@ const Contents = React.createClass({
         map.setZoom(17);
       }
 
+      this.props.placeFound();
+
       this.setState({
         place: place,
         position: place.geometry.location
@@ -104,11 +103,9 @@ const Contents = React.createClass({
     const props = this.props;
     const {position} = this.state;
 
-    const center = new this.props.google.maps.LatLng(51, 0)
-    {console.log(this.state.position)}
 
     return (
-      <div className={styles.flexWrapper}>
+      <div className=".flexWrapper">
         <div className={styles.left}>
           <form onSubmit={this.onSubmit}>
             <input
@@ -129,7 +126,6 @@ const Contents = React.createClass({
           <Map {...props}
               ref='map'
               onClick={this.mapClicked}
-              onReady={this.onReady}
               containerStyle={{
                 position: 'relative',
                 height: '50vh',
@@ -137,7 +133,7 @@ const Contents = React.createClass({
               }}
               center={this.state.position}
               centerAroundCurrentLocation={true}>
-              <Marker position={this.state.position} />
+              {position !== null ?  <Marker position={this.state.position} /> : null}
           </Map>
         </div>
       </div>
@@ -148,10 +144,15 @@ const Contents = React.createClass({
 const MapWrapper = React.createClass({
   render: function() {
     const props = this.props;
-    const {google} = this.props;
+    const {google, placeFound} = this.props;
 
     return ( 
+      <Map google={google}
+          className={'map'}
+          visible={false}
+          placeFound={placeFound}>
             <Contents {...props} />
+      </Map>
     );
   }
 })

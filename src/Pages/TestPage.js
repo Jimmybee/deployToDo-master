@@ -35,7 +35,7 @@ export default class LandingPage extends React.Component {
         <h1>Test Page</h1>
         <div><h3>{appventure.title}</h3></div>
         <Example/>
-        <AutoCompleteMap/>
+        <AppventureRow/>
       </div>
     );
   }
@@ -129,3 +129,40 @@ class Panel extends React.Component {
     );
   }
 }
+
+
+
+import '../Components/Create/appventureRow.css'
+
+class AppventureRow extends React.Component {
+  
+  renderValidation() {
+    return (
+      <h3> This appventure requires more to be complete</h3>
+      );
+  }
+
+  render() {
+    
+
+    return (  
+      <div className= "appventureRow"> 
+        <div style={{padding : "10px", margin: "20px"}}>  
+          <button className="btn btn-default pull-right editBtn" onClick={this.edit.bind(this)}> Edit </button>
+          <img src={require('../images/LondonForWeb.png')} alt="facebook login"  className="appventureRowImage"/>
+          <h1 className="appventureRowTitle"> This is a title </h1>
+          {this.renderValidation()}
+        </div>
+      </div>        
+    );
+  }
+
+  edit() {
+    const  { appventure, edit } = this.props
+
+    edit(appventure)
+  }
+
+}
+
+

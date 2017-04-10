@@ -10,11 +10,9 @@ class AppventureCard extends Component {
   	if (appventure) {
   		var objectId = appventure.objectId
   		var title = appventure.title
-  		console.log('title is', title)
   		var url = "https://api.backendless.com/" + config.APPLICATION_ID + "/" + config.VERSION + "/files/myfiles/" + objectId + "/image.jpg"
-  		console.log('url is', url)
   	} else {
-
+      return <label> Loading... </label>
   	}
 
      return (  

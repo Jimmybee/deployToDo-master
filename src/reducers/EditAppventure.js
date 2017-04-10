@@ -12,11 +12,13 @@ const editAppventure = (state = initialState, action) => {
     case 'UPDATE_APPVENTURE_DETAILS':
       const appventure = action.appventure
       return Object.assign({}, state, {
+        objectId: appventure.objectId,
         title: appventure.title,
-        locationName: action.appventure.locationName,
+        startingLocationName: action.appventure.startingLocationName,
         description: appventure.description,
         duration: appventure.duration,
-        theme: appventure.theme,
+        themeOne: appventure.themeOne,
+        themeTwo: appventure.themeTwo,
         startTime: appventure.startTime,
         endTime: appventure.endTime,
       });
