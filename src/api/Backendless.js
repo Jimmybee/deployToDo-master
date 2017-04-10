@@ -104,33 +104,35 @@ export function fetchQuery(condition) {
 }
 
 // IMAGE METHODS
-export function uploadImage(objectId, files, handleSuccess, handleError) {
+export function uploadImage(objectId, file, handleSuccess, handleError) {
     var callback = {};
     var renameCallback = {};
 
     renameCallback.success = handleSuccess.bind(this);
     renameCallback.fault = handleError.bind(this);
 
-
-    function saveSuccess(result) {
-      console.log(result.fileURL.name)
-      const newName = objectId + ".image.jpg"
-       // Backendless.Files.renameFile(result.fileURL, "image.png", renameCallback);
+   function renameFile(callback) {
+     const oldName = "myfiles/562820C8-06E1-A04D-FFBA-9BEEDED19100/AppLogo.png"
+     const newName = "myfiles/562820C8-06E1-A04D-FFBA-9BEEDED19100/image.png"
+     Backendless.Files.renameFile( oldName, newName, callback );
     }
 
-    callback.success = handleSuccess;
+    function saveSuccess(result) {
+      // console.log(result.fileURL.name)
+      // const newName = objectId + ".image.jpg"
+      // Backendless.Files.renameFile(result.fileURL, "image.png", renameCallback);
+      renameFile(renameCallback)
+    }
+
+    callback.success = saveSuccess;
     callback.fault = handleError;
 
-
+    const fullPath = "myfiles/562820C8-06E1-A04D-FFBA-9BEEDED19100"
   
-   Backendless.Files.upload(files, objectId, true, callback);
+   Backendless.Files.upload(file, fullPath, true, callback);
 }
 
-export function renameFile() {
-  const oldName = "uploadFileFunc/AppIcon60x60_U00402x.png"
-  const newName = "objectId2.png"
-  Backendless.Files.renameFile( oldName, newName );
-}
+
 
 export function removeFile() {
   var callback = new Backendless.Async(

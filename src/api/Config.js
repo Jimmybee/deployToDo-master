@@ -5,3 +5,7 @@ export const backendless = {
   VERSION: 'v1',
 };
 
+
+export function imageUrl(objectId) {
+	return  "https://api.backendless.com/" + backendless.APPLICATION_ID + "/" + backendless.VERSION + "/files/myfiles/" + objectId + "/image.jpg"
+}

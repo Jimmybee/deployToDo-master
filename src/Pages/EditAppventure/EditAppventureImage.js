@@ -9,11 +9,12 @@ import { connect } from 'react-redux'
 export default class EditAppventureImage extends React.Component {
 
   render() {
-    const appventure = this.props.appventure
+    const {imgSrc} = this.props
+
     return (
       <div>
         <h1>Edit Image</h1>
-        <DropzoneUploader/>
+        <DropzoneUploader imgSrc={imgSrc}/>
       </div>
     );
   }

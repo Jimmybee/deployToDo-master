@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import { backendless as config } from '../../api/Config';
+import { imageUrl } from '../../api/Config';
 
 class AppventureCard extends Component {
 
@@ -10,7 +10,7 @@ class AppventureCard extends Component {
   	if (appventure) {
   		var objectId = appventure.objectId
   		var title = appventure.title
-  		var url = "https://api.backendless.com/" + config.APPLICATION_ID + "/" + config.VERSION + "/files/myfiles/" + objectId + "/image.jpg"
+      var url = imageUrl(objectId)
   	} else {
       return <label> Loading... </label>
   	}

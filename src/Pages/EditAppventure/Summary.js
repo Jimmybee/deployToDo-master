@@ -10,6 +10,7 @@ import { updateReduxAppventureDetails } from '../../Actions/Actions.js';
 import { updateBackendlessAppventureDetails } from '../../api/Backendless.js';
 import store from '../../store/store';
 import { Link } from 'react-router-dom'
+import { imageUrl } from '../../api/Config';
 
 
 import './Summary.css';
@@ -35,12 +36,13 @@ export default class Summary extends React.Component {
   const displayComponent = this.state.displayComponent
   const appventure = this.props.editAppventure
   const submitFunciton = this.submit.bind(this)
+  const imgSrc = imageUrl(appventure.objectId)
   const getComponent = function(displayComponent) {   
   	switch (displayComponent) {
   		case 'DETAILS':
 	      return <AppventureDetailsForm appventure={appventure} onSubmit={submitFunciton}/>
 	    case 'IMAGE':
-	      return <EditAppventureImage/>
+	      return <EditAppventureImage imgSrc={imgSrc}/>
 	    case 'LOCATION':
 	      return <Location onSubmit={submitFunciton}/>
 	    default:
