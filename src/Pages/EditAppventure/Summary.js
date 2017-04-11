@@ -37,12 +37,13 @@ export default class Summary extends React.Component {
   const appventure = this.props.editAppventure
   const submitFunciton = this.submit.bind(this)
   const imgSrc = imageUrl(appventure.objectId)
+  
   const getComponent = function(displayComponent) {   
   	switch (displayComponent) {
   		case 'DETAILS':
 	      return <AppventureDetailsForm appventure={appventure} onSubmit={submitFunciton}/>
 	    case 'IMAGE':
-	      return <EditAppventureImage imgSrc={imgSrc}/>
+	      return <EditAppventureImage appventure={appventure}/>
 	    case 'LOCATION':
 	      return <Location onSubmit={submitFunciton}/>
 	    default:

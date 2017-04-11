@@ -1,7 +1,7 @@
 
 import Dropzone from 'react-dropzone';
 import React, { Component } from 'react';
-import { uploadImage, renameFile } from '../../api/Backendless.js';
+import { uploadImage, updateBackendlessAppventureDetails } from '../../api/Backendless.js';
 
 // Pass in appventure
 // Check url for image
@@ -12,7 +12,7 @@ class DropzoneUploader extends Component {
   constructor(props) {
     super(props);
 
-    const {imgSrc} = this.props
+    const { imgSrc, appventure } = this.props
 
     this.state = {
       noImage: false,
@@ -63,28 +63,6 @@ class DropzoneUploader extends Component {
   	 console.log(result.fileURL)
   }
 
-  handleFileUpload(files) {
-    
-   function handleSuccess (result) {
-      alert( "File successfully uploaded. Path to download: " + result.fileURL, );
-      
-
-      renameFile(result)
-      this.setState({
-        noImage: false,
-        uploadedFileURL: result.fileURL
-       });
-   };
-  
-    function handleError(result) {
-       alert( "error - " + result.message );
-    }
-
-    console.log(files)
-    uploadImage("folder", files, handleSuccess.bind(this), handleError.bind(this))
-  }
-
-
   // handleFileUpload(files) {
     
   //  function handleSuccess (result) {
@@ -94,8 +72,8 @@ class DropzoneUploader extends Component {
   //     renameFile(result)
   //     this.setState({
   //       noImage: false,
-  //     	uploadedFileURL: result.fileURL
-  //  	   });
+  //       uploadedFileURL: result.fileURL
+  //      });
   //  };
   
   //   function handleError(result) {
@@ -105,6 +83,25 @@ class DropzoneUploader extends Component {
   //   console.log(files)
   //   uploadImage("folder", files, handleSuccess.bind(this), handleError.bind(this))
   // }
+
+
+  handleFileUpload(files) {
+
+   function updateAppventure() {
+      alert( "File successfully uploaded");
+   }
+    
+   function saveComplete (result) {
+      this.setState({
+        noImage: false,
+        uploadedFileURL: result.fileURL
+       });
+      const newAppventure = {imageUrl: result.fileURL}
+      updateBackendlessAppventureDetails(this.props.appventure, newAppventure, updateAppventure)
+   };
+
+    uploadImage("folder", files, saveComplete.bind(this))
+  }
   
 }
 

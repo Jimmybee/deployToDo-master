@@ -5,17 +5,30 @@
  	border: 1px solid #979797;
 }
 
-.appventureRowTitle {
+.appventureRow .textContainer {
 	display: inline;
-	padding: 10px;
+ 	padding-left: 10px;
+	width: 80%;
+}
+
+.appventureRow h1 {
+	display: inline;
+	margin-left: 10px;
 	margin-top: 0px !important;
+}
+
+.appventureRow h3 {
+	display: block;
+	padding-left: 10px;
+	overflow: hidden;
+}
+
+.appventureRow img {
+	width: 20%;
+	height: auto;
 }
 
 .editBtn {
 
 }
 
-.appventureRowImage{
-	width: 20%;
-	height: auto;
-}

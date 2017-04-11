@@ -4,17 +4,20 @@ import React from "react";
 import DropzoneUploader from '../../Components/Common/DropzoneUploader.js';
 import { editAppventureTitle } from '../../Actions/Actions.js';
 
-import { connect } from 'react-redux'
-
 export default class EditAppventureImage extends React.Component {
+	constructor(props) {
+	    super(props);
+
+	  }
 
   render() {
-    const {imgSrc} = this.props
+    const { appventure } = this.props;
+ 	 console.log("appventure", appventure)
 
     return (
       <div>
         <h1>Edit Image</h1>
-        <DropzoneUploader imgSrc={imgSrc}/>
+        <DropzoneUploader imgSrc={appventure.imageUrl || null} appventure={appventure} />
       </div>
     );
   }

@@ -17,6 +17,7 @@ function BackendlessAppventure(args, original) {
     this.themeOne = args.themeOne || original.themeOne || null;
     this.themeTwo = args.themeTwo || original.themeTwo || null;
     this.startingLocationName = args.startingLocationName || original.startingLocationName || null;
+    this.imageUrl = args.imageUrl || null;
 }
 
 
@@ -60,7 +61,7 @@ export function facebookLogin(successCallback) {
 
 
 export function updateBackendlessAppventureDetails(appventure, update, successUpdate){
-    console.log("values", appventure, update)
+  console.log("values", appventure, update)
 
   function saved(appventure) {
     successUpdate(appventure)
@@ -106,33 +107,41 @@ export function fetchQuery(condition) {
 // IMAGE METHODS
 export function uploadImage(objectId, file, handleSuccess, handleError) {
     var callback = {};
-    var renameCallback = {};
 
-    renameCallback.success = handleSuccess.bind(this);
-    renameCallback.fault = handleError.bind(this);
 
-   function renameFile(callback) {
-     const oldName = "myfiles/562820C8-06E1-A04D-FFBA-9BEEDED19100/AppLogo.png"
-     const newName = "myfiles/562820C8-06E1-A04D-FFBA-9BEEDED19100/image.png"
-     Backendless.Files.renameFile( oldName, newName, callback );
-    }
+    // renameCallback.success = handleSuccess;
+    // renameCallback.fault = handleError;
 
-    function saveSuccess(result) {
+    // function saveSuccess(result) {
       // console.log(result.fileURL.name)
       // const newName = objectId + ".image.jpg"
       // Backendless.Files.renameFile(result.fileURL, "image.png", renameCallback);
-      renameFile(renameCallback)
-    }
+    //   renameFile(renameCallback)
+    // }
 
-    callback.success = saveSuccess;
-    callback.fault = handleError;
+    callback.success = handleSuccess;
+    callback.fault = gotError;
 
     const fullPath = "myfiles/562820C8-06E1-A04D-FFBA-9BEEDED19100"
   
    Backendless.Files.upload(file, fullPath, true, callback);
 }
 
+export function renameFile(handleSuccess) {
+     var callback = new Backendless.Async(
+     function(result)
+      {
+        handleSuccess(result)
+      },
+      function(result)
+      {
+        gotError(result)
+      });
 
+     const oldName = "myfiles/562820C8-06E1-A04D-FFBA-9BEEDED19100/AppLogo.png"
+     const newName = "image.png"
+     Backendless.Files.renameFile( oldName, newName, callback );
+}
 
 export function removeFile() {
   var callback = new Backendless.Async(

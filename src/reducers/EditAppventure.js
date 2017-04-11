@@ -21,6 +21,7 @@ const editAppventure = (state = initialState, action) => {
         themeTwo: appventure.themeTwo,
         startTime: appventure.startTime,
         endTime: appventure.endTime,
+        imageUrl: appventure.imageUrl,
       });
     default:
       return state

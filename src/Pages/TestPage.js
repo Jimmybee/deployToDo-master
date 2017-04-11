@@ -138,7 +138,7 @@ class AppventureRow extends React.Component {
   
   renderValidation() {
     return (
-      <h3> This appventure requires more to be complete</h3>
+      <h3> This appventure requires more to be complete for wrap</h3>
       );
   }
 
@@ -148,10 +148,10 @@ class AppventureRow extends React.Component {
     return (  
       <div className= "appventureRow"> 
         <div style={{padding : "10px", margin: "20px"}}>  
-          <button className="btn btn-default pull-right editBtn" onClick={this.edit.bind(this)}> Edit </button>
-          <img src={require('../images/LondonForWeb.png')} alt="facebook login"  className="appventureRowImage"/>
-          <h1 className="appventureRowTitle"> This is a title </h1>
-          {this.renderValidation()}
+          <img src={require('../images/LondonForWeb.png')} alt="facebook login"  className="appventureRowImage pull-left"/>
+            <button className="btn btn-default pull-right editBtn" onClick={this.edit.bind(this)}> Edit </button>
+            <h1 className="appventureRowTitle"> This is a title </h1>
+            {this.renderValidation()}
         </div>
       </div>        
     );
