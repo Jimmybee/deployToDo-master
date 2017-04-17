@@ -15,6 +15,7 @@ const editAppventure = (state = initialState, action) => {
         objectId: appventure.objectId,
         title: appventure.title,
         startingLocationName: action.appventure.startingLocationName,
+        location: appventure.location,
         description: appventure.description,
         duration: appventure.duration,
         themeOne: appventure.themeOne,
@@ -22,7 +23,16 @@ const editAppventure = (state = initialState, action) => {
         startTime: appventure.startTime,
         endTime: appventure.endTime,
         imageUrl: appventure.imageUrl,
+        steps: appventure.steps,
       });
+    case 'ADD_NEW_STEP':
+        const stepNumber = state.steps.length + 1;
+        var step = {};
+        step.stepNumber = stepNumber;
+        const steps = state.steps.concat(step);
+        return Object.assign({}, state, {
+          steps: steps,
+        });
     default:
       return state
   }

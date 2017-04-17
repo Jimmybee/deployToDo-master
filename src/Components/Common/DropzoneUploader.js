@@ -44,7 +44,7 @@ class DropzoneUploader extends Component {
                     <div>Drop an image or click to select a file to upload.</div>
                   :
                     <div>
-                       <img onError={this.noImage.bind(this)} src={this.state.uploadedFileURL} alt="uploaded"/>
+                       <img onError={this.noImage.bind(this)} src={this.state.uploadedFileURL} alt="uploaded" style={{width: '200px', height: 'auto'}}/>
                     </div>
                   }
 		          </Dropzone>

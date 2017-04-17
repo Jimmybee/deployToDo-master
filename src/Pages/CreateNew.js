@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Link } from 'react-router-dom'
-import { backendless as config } from '../api/Config';
+import { backendless as config, imageUrl } from '../api/Config';
 import { fetchQuery } from '../api/Backendless.js';
 import { connect } from 'react-redux'
 import store from '../store/store';

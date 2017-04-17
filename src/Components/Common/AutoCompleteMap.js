@@ -9,11 +9,10 @@ export class Container extends React.Component {
 
   render() {
 
-    const { placeFound } = this.props
-    
+    const { placeFound, initialLocation } = this.props
     return (
       <div>
-        <MapWrapper google={this.props.google} placeFound={placeFound}/>
+        <MapWrapper google={this.props.google} placeFound={placeFound} initialLocation={initialLocation}/>
       </div>
     )
   }
@@ -27,8 +26,6 @@ export default GoogleApiWrapper({
 
 const Contents = React.createClass({
   getInitialState() {
-
-
     return {
       place: null,
       position: null
@@ -48,6 +45,8 @@ const Contents = React.createClass({
     if (map !== prevProps.map) {
       this.renderAutoComplete();
     }
+
+
   },
 
   renderAutoComplete: function() {
@@ -74,7 +73,7 @@ const Contents = React.createClass({
         map.setZoom(17);
       }
 
-      this.props.placeFound();
+      this.props.placeFound(place.geometry.location);
 
       this.setState({
         place: place,
@@ -85,18 +84,22 @@ const Contents = React.createClass({
   },
 
   mapClicked: function(mapProps, map, clickEvent) {
-      console.log(mapProps)
-      console.log(map)
-      console.log(clickEvent)
       this.setState({
         place: null,
         position: clickEvent.latLng
       })
-
+      this.props.placeFound(clickEvent.latLng);
   },
 
   onReady: function() {
-    console.log("ready")
+    const {google, initialLocation} = this.props;
+    if (typeof initialLocation != 'undefined') {
+      var myLatLng = new google.maps.LatLng(initialLocation.latitude, initialLocation.longitude)
+      this.setState({
+          place: null,
+          position: myLatLng
+      })
+    }
   },
 
   render: function() {
@@ -115,7 +118,7 @@ const Contents = React.createClass({
             <input
               className={styles.button}
               type='submit'
-              value='Go' />
+              value='Find' />
           </form>
           <div>
             <div>Lat: {position && position.lat()}</div>
@@ -123,16 +126,19 @@ const Contents = React.createClass({
           </div>
         </div>
         <div className={styles.right}>
+
           <Map {...props}
               ref='map'
               onClick={this.mapClicked}
+              onReady={this.onReady}
               containerStyle={{
                 position: 'relative',
                 height: '50vh',
-                width: '50%'
+                width: '50vh'
               }}
               center={this.state.position}
-              centerAroundCurrentLocation={true}>
+              // centerAroundCurrentLocation={this.props.appventure.location === null}
+              >
               {position !== null ?  <Marker position={this.state.position} /> : null}
           </Map>
         </div>

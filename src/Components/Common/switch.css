@@ -1,0 +1,25 @@
+
+.switch {
+	padding: 1em;
+}
+
+.switch label {
+  padding-right: 1em;
+}
+.switch button {
+  margin: 2px;
+}
+.switch button:focus {
+  outline: none;
+}
+
+.openEnabled {
+	background-color: green;
+	color: white;
+}
+
+
+.closedEnabled {
+	background-color: #ff0000;
+	color: white;
+}

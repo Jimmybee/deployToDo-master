@@ -10,7 +10,7 @@ class AppventureCard extends Component {
   	if (appventure) {
   		var objectId = appventure.objectId
   		var title = appventure.title
-      var url = imageUrl(objectId)
+      var url = appventure.imageUrl
   	} else {
       return <label> Loading... </label>
   	}

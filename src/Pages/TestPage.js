@@ -1,10 +1,12 @@
 // @flow
 
-import React from "react";
+import {
+  default as React,
+  PropTypes } from "react";
 // import GoogleMap from '../Components/Common/GoogleMap.js';
 // import PlacesMap from './PlacesMaps.js';
 import AutoCompleteMap from '../Components/Common/AutoCompleteMap.js';
-
+import Switch from '../Components/Common/Switch.js';
 
 import DropzoneUploader from '../Components/Common/DropzoneUploader.js';
 import { uploadImage, renameFile, removeFile } from '../api/Backendless.js';
@@ -34,11 +36,16 @@ export default class LandingPage extends React.Component {
       <div>
         <h1>Test Page</h1>
         <div><h3>{appventure.title}</h3></div>
+        <Switch handleEnabled={this.handleEnabled.bind(this)}/>
         <Example/>
-        <AppventureRow/>
       </div>
     );
   }
+
+  handleEnabled(enabled) {
+    console.log(enabled)
+  }
+
 
   editTitle(title) {
     console.log("edit title")
@@ -74,6 +81,9 @@ export default class LandingPage extends React.Component {
         // <input type="button" onClick={this.handleFileUpload.bind(this)} value="Upload File"></input>
         // <button onClick={this.rename.bind(this)}>Rename</button>
 
+
+
+
 class Example extends React.Component {
   constructor(...args) {
     super(...args);
@@ -95,8 +105,12 @@ class Example extends React.Component {
           Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
            <button onClick={ ()=> this.setState({ subOpen: !this.state.subOpen })}> Sub </button>
            <Panel collapsible expanded={this.state.subOpen}>
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
-           Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+           <ul className="sideNavUL">
+              <li className="sideNavListItem">Step One</li>
+              <li className="sideNavListItem">Step Two</li>
+              <li className="sideNavListItem">Step Three</li>
+              <li className="sideNavListItem">List</li>
+            </ul>
           </Panel>
         </Panel>
         </div>
@@ -131,38 +145,5 @@ class Panel extends React.Component {
 }
 
 
-
-import '../Components/Create/appventureRow.css'
-
-class AppventureRow extends React.Component {
-  
-  renderValidation() {
-    return (
-      <h3> This appventure requires more to be complete for wrap</h3>
-      );
-  }
-
-  render() {
-    
-
-    return (  
-      <div className= "appventureRow"> 
-        <div style={{padding : "10px", margin: "20px"}}>  
-          <img src={require('../images/LondonForWeb.png')} alt="facebook login"  className="appventureRowImage pull-left"/>
-            <button className="btn btn-default pull-right editBtn" onClick={this.edit.bind(this)}> Edit </button>
-            <h1 className="appventureRowTitle"> This is a title </h1>
-            {this.renderValidation()}
-        </div>
-      </div>        
-    );
-  }
-
-  edit() {
-    const  { appventure, edit } = this.props
-
-    edit(appventure)
-  }
-
-}
 
 

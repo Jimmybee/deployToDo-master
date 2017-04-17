@@ -3,7 +3,8 @@
 import { backendless as config } from './Config';
 import Backendless from 'backendless';
 import store from '../store/store';
-import { updateUser } from '../Actions/Actions';
+import { updateUser, updateReduxAppventureDetails } from '../Actions/Actions';
+
 
 Backendless.initApp(config.APPLICATION_ID, config.JAVASCRIPT_KEY, config.VERSION);
 Backendless.enablePromises();
@@ -13,13 +14,20 @@ function BackendlessAppventure(args, original) {
     original = original || {};
     this.objectId = args.objectId || original.objectId || null;
     this.title = args.title || original.title || null;
-    this.description = args.description || original.description || null;
+    this.subtitle = args.subtitle || original.subtitle || null;
     this.themeOne = args.themeOne || original.themeOne || null;
     this.themeTwo = args.themeTwo || original.themeTwo || null;
     this.startingLocationName = args.startingLocationName || original.startingLocationName || null;
+    this.location = args.location || null;
     this.imageUrl = args.imageUrl || null;
 }
 
+
+export function createGeoPoint(googleLocation) {
+  console.log("googleLocation", googleLocation)
+  const geoPoint = new Backendless.GeoPoint({latitude: googleLocation.lat(), longitude: googleLocation.lng()})
+  return geoPoint
+}
 
 // REGISTRATION 
 export function asyncRegisterUser(email, password, successCallback) {
@@ -64,7 +72,7 @@ export function updateBackendlessAppventureDetails(appventure, update, successUp
   console.log("values", appventure, update)
 
   function saved(appventure) {
-    successUpdate(appventure)
+    updateReduxAppventureDetails(appventure)
     console.log("saved ");
   }
   
