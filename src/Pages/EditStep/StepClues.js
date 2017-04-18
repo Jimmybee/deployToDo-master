@@ -5,6 +5,7 @@ import { load } from '../../reducers/EditStep'
 import store from '../../store/store';
 
 import Switch from '../../Components/Common/Switch.js';
+import DropzoneUploader from '../../Components/Common/DropzoneUploader.js';
 
 export default class StepClues extends Component {
   constructor(props) {
@@ -12,11 +13,31 @@ export default class StepClues extends Component {
   }
 
   renderTextField(){
-    const { textClue } = this.props;
-    console.log(textClue);
-
-    if (textClue === true) {
+    if (this.props.textClue === true) {
+      console.log(this.props)
       return (<Field name="initialText" component="textarea" className="form-control"/>);
+    } else {
+      return null;
+    }
+  }
+
+  dropzoneComponent() {
+    return ({ input, meta: { touched, error } }) => (
+          <DropzoneUploader imgSource={input} />
+       )
+  }
+
+  renderImageField(){
+    if (this.props.pictureClue === true) {
+      return (<Field name="imageUrl" component={this.dropzoneComponent()} className="form-control"/>);
+    } else {
+      return null;
+    }
+  }
+
+  renderSoundField(){
+    if (this.props.soundClue === true) {
+      return (<Field name="soundClue" component="textarea" className="form-control"/>);
     } else {
       return null;
     }
@@ -34,9 +55,12 @@ export default class StepClues extends Component {
     return(
       <div>
          <Field name="setup[textClue]" component={switchComponent("setup[textClue]", "Text Clue:", this.handleEnabled.bind(this))} className="form-control"/>
-         <Field name="setup[imageClue]" component={switchComponent("setup[imageClue]", "Image Clue:", this.handleEnabled.bind(this))} className="form-control"/>
+         <Field name="setup[pictureClue]" component={switchComponent("setup[pictureClue]", "Image Clue:", this.handleEnabled.bind(this))} className="form-control"/>
          <Field name="setup[soundClue]" component={switchComponent("setup[soundClue]", "Sound Clue:", this.handleEnabled.bind(this))} className="form-control"/>
          {this.renderTextField()}
+         {this.renderImageField()}
+         {this.renderSoundField()}
+
       </div>
     );
   }
@@ -66,12 +90,17 @@ const selector = formValueSelector('stepClues') // <-- same as form name
 StepClues = connect(
   state => {
     // can select values individually
-    const textClue = selector(state, 'setup[textClue]')
+    const textClue = selector(state, 'setup[textClue]');
+    const pictureClue = selector(state, 'setup[pictureClue]');
+    const soundClue = selector(state, 'setup[soundClue]');
+
     // const favoriteColorValue = selector(state, 'favoriteColor')
     // or together as a group
-    // const { firstName, lastName } = selector(state, 'firstName', 'lastName')
+    // const { textClue, pictureClue, soundClue } = selector(state, 'setup[textClue]', 'setup[pictureClue]', 'setup[soundClue]')
     return {
-      textClue,
+      textClue, 
+      pictureClue,
+      soundClue,
       // favoriteColorValue,
       // fullName: `${firstName || ''} ${lastName || ''}`
     }

@@ -12,7 +12,6 @@ Backendless.enablePromises();
 function BackendlessAppventure(args, original) {
     args = args || {};
     original = original || {};
-    this.objectId = args.objectId || original.objectId || null;
     this.title = args.title || original.title || null;
     this.subtitle = args.subtitle || original.subtitle || null;
     this.themeOne = args.themeOne || original.themeOne || null;
@@ -20,6 +19,45 @@ function BackendlessAppventure(args, original) {
     this.startingLocationName = args.startingLocationName || original.startingLocationName || null;
     this.location = args.location || null;
     this.imageUrl = args.imageUrl || null;
+    if (typeof args.steps !== 'undefined') {
+        var steps = args.steps.map(step => new BackendlessStep(step))
+        this.steps = steps
+    }
+    this.objectId = args.objectId || original.objectId || null;
+
+}
+
+function BackendlessStep(args) {
+    args = args || {};
+    var setup = new BackendlessSetup(args.setup)
+    this.___class = 'BackendlessStep'
+    this.answerHint = args.duration || null;
+    this.answerText = args.answerText || null;
+    this.checkInProximity = args.checkInProximity || null;
+    this.completionText = args.completionText || null;
+    this.freeHints = args.freeHints || null;
+    this.hintPenalty = args.hintPenalty || null;
+    this.initialText = args.initialText || null;
+    this.location = args.location || null;
+    this.nameOrLocation = args.nameOrLocation || null;
+    this.setup = args.setup || null;
+    this.stepNumber = args.stepNumber || null;
+    this.objectId = args.objectId || null;
+}
+
+function BackendlessSetup(args) {
+    args = args || {};
+    this.___class = 'BackendlessSetup'
+    this.checkIn = args.checkIn || null;
+    this.compassShown = args.compassShown || null;
+    this.distanceShown = args.distanceShown || null;
+    this.isLocation = args.isLocation || null;
+    this.locationShown = args.locationShown || null;
+    this.pictureClue = args.pictureClue || null;
+    this.soundClue = args.soundClue || null;
+    this.textClue = args.textClue || null;
+    this.objectId = args.objectId || null;
+
 }
 
 
