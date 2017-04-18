@@ -25,7 +25,7 @@ import Profile from './Pages/Profile';
 import CreateNew from './Pages/CreateNew';
 import TestPage from './Pages/TestPage';
 import SimpleMap from './Pages/SimpleMap';
-import Summary from './Pages/EditAppventure/Summary';
+import Summary from './Pages/CreateNew/Summary';
 
 import './index.css';
 

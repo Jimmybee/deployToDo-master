@@ -12,7 +12,6 @@ export default class EditAppventureImage extends React.Component {
 
   render() {
     const { appventure } = this.props;
- 	 console.log("appventure", appventure)
 
     return (
       <div>

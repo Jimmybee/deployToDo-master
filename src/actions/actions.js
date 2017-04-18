@@ -22,6 +22,25 @@ export function updateReduxAppventureDetails(appventure){
 }
 
 
+export function setEditStep(step){
+  store.dispatch({
+    type: 'SET_EDIT_STEP',
+    step: step
+  });
+}
+
+export function addNewStep(stepNumber) {
+  var step = {}
+  step.stepNumber = stepNumber;
+
+  store.dispatch({
+    type: 'ADD_NEW_STEP',
+    step: [step]
+  });
+
+}
+
+
 var p1 = new Promise(function(resolve, reject) {
   resolve('Success!');
   // or

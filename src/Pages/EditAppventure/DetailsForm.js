@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, change } from 'redux-form';
 import { connect } from 'react-redux'
 import { load } from '../../reducers/EditAppventure'
 
@@ -58,6 +58,7 @@ class AppventureDetails extends Component {
 
    const { handleSubmit } = this.props;
     return (
+      <div>
       <form onSubmit={handleSubmit} className="form-horizontal summaryComponent">
         <div className="form-group">
           <label htmlFor="title">Title</label>
@@ -78,6 +79,7 @@ class AppventureDetails extends Component {
         </div>
          <button type="submit">Submit</button>
       </form>
+      </div>
     );
   }
 

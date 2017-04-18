@@ -14,6 +14,7 @@ import { connect } from 'react-redux'
 
 export default class Nav extends React.Component {
   state: {
+    userOpen: boolean;
     collapsed: boolean;
     listNav: boolean;
   };
@@ -21,6 +22,7 @@ export default class Nav extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      userOpen: false,
       collapsed: true,
       listNav: false,
     };
@@ -33,6 +35,31 @@ export default class Nav extends React.Component {
   toggleCollapse() {
     const collapsed = !this.state.collapsed;
     this.setState({collapsed});
+  }
+
+  toggleUserDropDown() {
+    const userOpen = !this.state.userOpen;
+    this.setState({userOpen});
+    console.log(userOpen)
+  }
+
+  renderUserDropDown() {
+
+    const user = this.props.user;
+    const { userOpen } = this.state;
+    const dropdownOpenClass = userOpen ? "open" : "";
+
+    return (
+      <li className={"dropdown " + dropdownOpenClass}>
+        <a className="dropdown-toggle" onClick={this.toggleUserDropDown.bind(this)}>Dropdown</a>
+        <ul className="dropdown-menu" role="menu">
+             {user === null ? 
+               <li> <Link to="login" onClick={this.toggleUserDropDown.bind(this)}>Login</Link> </li> : 
+               <li> <Link to="create" onClick={this.toggleUserDropDown.bind(this)}>Create</Link> </li>
+              }
+        </ul>
+      </li> 
+    );
   }
 
   render() {
@@ -60,8 +87,10 @@ export default class Nav extends React.Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a href="#" className="nav navbar-left"><img src={require('./AppLogo.png')} alt="boohoo"/></a>
+             <p><Link className="nav navbar-left" to="/"><img src={require('./AppLogo.png')} alt="boohoo"/></Link></p>
+
           </div>
+
           <div className={"navbar-collapse " + navClass} id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav navbar-right">
               <li> <Link 
@@ -70,11 +99,8 @@ export default class Nav extends React.Component {
                 Download
                 </Link> </li>
               <li> <Link to="explore" onClick={this.toggleCollapse.bind(this)}>Explore</Link> </li>
-              {user === null ? 
-               <li> <Link to="login" onClick={this.toggleCollapse.bind(this)}>Login</Link> </li> : 
-               <li> <Link to="create" onClick={this.toggleCollapse.bind(this)}>Create</Link> </li>
-              }
               <li> <Link to="testPage" onClick={this.toggleCollapse.bind(this)}>Test Page</Link> </li>
+              {this.renderUserDropDown()}
             </ul>
           </div>
         </div>
@@ -82,5 +108,20 @@ export default class Nav extends React.Component {
     );
   }
 }
-
+//            <p><Link className="btn btn-primary btn-lg" to="/editAppventure/summary">Start Here</Link></p>
+//                         <a href="#" className="nav navbar-left"><img src={require('./AppLogo.png')} alt="boohoo"/></a>
 //            <IndexLink to="/" onClick={this.toggleCollapse.bind(this)}> Test Left </IndexLink><
+
+
+ // <li class="dropdown">
+ //          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+ //          <ul class="dropdown-menu" role="menu">
+ //            <li><a href="#">Action</a></li>
+ //            <li><a href="#">Another action</a></li>
+ //            <li><a href="#">Something else here</a></li>
+ //            <li class="divider"></li>
+ //            <li><a href="#">Separated link</a></li>
+ //            <li class="divider"></li>
+ //            <li><a href="#">One more separated link</a></li>
+ //          </ul>
+ //        </li>
