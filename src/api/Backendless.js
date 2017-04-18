@@ -161,7 +161,10 @@ export function removeFile() {
 function gotError(err) {
     console.log( "error message - " + err.message );
     console.log( "error code - " + err.statusCode );
+    Backendless.UserService.logout()
 }
+
+
 
 
 
