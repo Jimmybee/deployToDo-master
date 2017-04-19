@@ -1,7 +1,7 @@
 
 import Dropzone from 'react-dropzone';
 import React, { Component } from 'react';
-import { uploadImage, updateBackendlessAppventureDetails } from '../../api/Backendless.js';
+import { uploadFile, updateBackendlessAppventureDetails } from '../../api/Backendless.js';
 
 // Pass in appventure
 // Check url for image
@@ -100,7 +100,7 @@ class DropzoneUploader extends Component {
       updateBackendlessAppventureDetails(this.props.appventure, newAppventure, updateAppventure)
    };
 
-    uploadImage("folder", files, saveComplete.bind(this))
+    uploadFile("folder", files, saveComplete.bind(this))
   }
   
 }

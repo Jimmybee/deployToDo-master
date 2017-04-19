@@ -9,6 +9,8 @@ import AutoCompleteMap from '../Components/Common/AutoCompleteMap.js';
 import Switch from '../Components/Common/Switch.js';
 
 import DropzoneUploader from '../Components/Common/DropzoneUploader.js';
+import AudioUploader from '../Components/Common/AudioUploader.js';
+
 import { uploadImage, renameFile, removeFile } from '../api/Backendless.js';
 import TextBox from '../Components/Common/TextBox.js';
 
@@ -36,8 +38,9 @@ export default class LandingPage extends React.Component {
       <div>
         <h1>Test Page</h1>
         <div><h3>{appventure.title}</h3></div>
-        <Switch handleEnabled={this.handleEnabled.bind(this)}/>
         <Example/>
+      
+        <AudioUploader handleUpload={this.handleEnabled}/>
       </div>
     );
   }

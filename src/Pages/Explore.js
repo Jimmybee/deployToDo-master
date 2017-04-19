@@ -3,10 +3,12 @@
 import './Explore.css';
 
 import React from "react";
+import { connect } from 'react-redux'
+import LazyLoad from 'react-lazy-load';
+
 import AppventureSearch from '../Components/Explore/AppventureSearch';
 import AppventureCard from '../Components/Explore/AppventureCard';
 import { asyncFetch } from '../api/Backendless.js';
-import { connect } from 'react-redux'
 
 @connect((store) => {
   return {

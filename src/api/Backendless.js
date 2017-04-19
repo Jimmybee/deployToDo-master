@@ -38,10 +38,12 @@ function BackendlessStep(args) {
     this.freeHints = args.freeHints || null;
     this.hintPenalty = args.hintPenalty || null;
     this.initialText = args.initialText || null;
+    this.imageUrl = args.imageUrl || null;
     this.location = args.location || null;
     this.nameOrLocation = args.nameOrLocation || null;
     this.setup = args.setup || null;
     this.stepNumber = args.stepNumber || null;
+    this.soundUrl = args.soundUrl || null;
     this.objectId = args.objectId || null;
 }
 
@@ -121,7 +123,7 @@ export function updateBackendlessAppventureDetails(appventure, update, successUp
 
   var backendlessAppventure = new BackendlessAppventure(update, appventure)
 
- Backendless.Persistence.of( BackendlessAppventure ).save(backendlessAppventure).then(saved).catch(gotError);
+  Backendless.Persistence.of( BackendlessAppventure ).save(backendlessAppventure).then(saved).catch(gotError);
 
 }
 
@@ -150,25 +152,15 @@ export function fetchQuery(condition) {
   Backendless.Persistence.of( BackendlessAppventure ).find( dataQuery, callback);
 }
 
+
 // IMAGE METHODS
-export function uploadImage(objectId, file, handleSuccess, handleError) {
-    var callback = {};
+export function uploadFile(objectId, file, handleSuccess, handleError) {
+   var callback = {};
 
+   callback.success = handleSuccess;
+   callback.fault = gotError;
 
-    // renameCallback.success = handleSuccess;
-    // renameCallback.fault = handleError;
-
-    // function saveSuccess(result) {
-      // console.log(result.fileURL.name)
-      // const newName = objectId + ".image.jpg"
-      // Backendless.Files.renameFile(result.fileURL, "image.png", renameCallback);
-    //   renameFile(renameCallback)
-    // }
-
-    callback.success = handleSuccess;
-    callback.fault = gotError;
-
-    const fullPath = "myfiles/562820C8-06E1-A04D-FFBA-9BEEDED19100"
+   const fullPath = "myfiles/" + objectId
   
    Backendless.Files.upload(file, fullPath, true, callback);
 }

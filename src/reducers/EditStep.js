@@ -17,6 +17,7 @@ const editStep = (state = initialState, action) => {
         objectId: step.objectId,
         location: step.location,
         nameOrLocation: step.nameOrLocation,
+        soundUrl: step.soundUrl,
       });
     default:
       return state
