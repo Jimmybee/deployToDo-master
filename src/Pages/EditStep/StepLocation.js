@@ -83,15 +83,11 @@ StepLocation = connect(
 const selector = formValueSelector('stepLocation') // <-- same as form name
 StepLocation = connect(
   state => {
-    // can select values individually
     const isLocation = selector(state, 'setup[isLocation]')
-    // const favoriteColorValue = selector(state, 'favoriteColor')
-    // or together as a group
-    // const { firstName, lastName } = selector(state, 'firstName', 'lastName')
+
     return {
       isLocation,
-      // favoriteColorValue,
-      // fullName: `${firstName || ''} ${lastName || ''}`
+
     }
   }
 )(StepLocation)

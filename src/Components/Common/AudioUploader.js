@@ -3,7 +3,7 @@ import Dropzone from 'react-dropzone';
 import React, { Component } from 'react';
 import { uploadFile } from '../../api/Backendless.js';
 
-class AudioUploader extends Component {
+class Uploader extends Component {
   constructor(props) {
     super(props);
 
@@ -23,16 +23,16 @@ class AudioUploader extends Component {
 
 
   render() {
-      const { input } = this.props;
+      const { input, uploadType } = this.props;
 
       return (
 		        <div className="FileUpload">
 		          <Dropzone
 		            onDrop={this.onDrop.bind(this)}
 		            multiple={false}
-		            accept="audio/*">
+		            accept={uploadType}>
                   {
-                    input.value === null ?  
+                    input.value === "" ?  
                     <div>Select an audio file to upload.</div>
                   :
                     <div>
@@ -47,10 +47,10 @@ class AudioUploader extends Component {
 
  handleFileUpload(files) {
 
-   const { handleUpload, objectId } = this.props; //handle field change
+   const { handleUpload, objectId, fieldName } = this.props; //handle field change
     
    function saveComplete (result) {
-      handleUpload(result.fileURL, "soundUrl")
+      handleUpload(result.fileURL, fieldName)
    };
 
     uploadFile(objectId, files, saveComplete.bind(this))
@@ -58,4 +58,4 @@ class AudioUploader extends Component {
 }
 
 
-export default AudioUploader;
+export default Uploader;

@@ -26,6 +26,7 @@ export default class SideMenuStepItem extends React.Component {
            <ul className="sideNavUL">
               <li className="sideNavListItem"><button className="sideNavListBtn" onClick={() => this.showStep("STEP_LOCATION")}>Location</button></li>
               <li className="sideNavListItem"><button className="sideNavListBtn" onClick={() => this.showStep("STEP_CLUES")}>Clues</button></li>
+              <li className="sideNavListItem"><button className="sideNavListBtn" onClick={() => this.showStep("STEP_ANSWER")}>Answers</button></li>
               <li className="sideNavListItem"><button className="sideNavListBtn" onClick={() => this.showStep("STEP_HINTS")}>Hints</button></li>
               <li className="sideNavListItem"><button className="sideNavListBtn" onClick={() => this.showStep("STEP_COMPLETION")}>Completion</button></li>
            </ul>
