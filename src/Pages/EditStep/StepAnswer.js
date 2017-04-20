@@ -12,9 +12,24 @@ export default class StepAnswer extends Component {
   }
 
   renderAnswersField(){
-    console.log(this.props.checkIn)
+    const proximities = ["Any", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"]
+    const renderProximitySelector = ({ input, meta: { touched, error } }) => (
+      <div className="summaryThemeDiv">
+        <select {...input}>
+          {proximities.map(val => <option value={val} key={val}>{val}</option>)}
+        </select>
+        {touched && error && <span>{error}</span>}
+      </div>
+    )
+
     if (this.props.checkIn === true) {
-      return (<Field name="title" component="input" type="text" placeholder="Title" className="form-control"/>);
+           return (
+            <div>
+              <label> Proximity: </label>
+              <Field name="checkInProximity" component={renderProximitySelector}/> 
+              <label> meters </label>
+            </div>
+           );
     } else {
       return (<label>Not ww</label>);
     }
