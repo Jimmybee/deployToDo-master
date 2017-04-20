@@ -41,7 +41,7 @@ export default class Explore extends React.Component {
         return <h1>No Appventures</h1>
     }
 
-    const mappedAppventures = appventures.map(appventure => <div className='col-sm-6 maxWidth' key={appventure.objectId}><AppventureCard appventure={appventure}/></div>)
+    const mappedAppventures = appventures.map(appventure => <div className='col-sm-6 maxWidth' key={appventure.objectId}><LazyLoad height={350} offsetVertical={300}><AppventureCard appventure={appventure}/></LazyLoad></div>)
 
     const fixedMappedAppventures = function(mappedAppventures, iteration, inserts) {
       var clearfix = <div className="clearfix" key={iteration}></div>
