@@ -7,6 +7,7 @@ import store from '../../store/store';
 import Switch from '../../Components/Common/Switch.js';
 import DropzoneUploader from '../../Components/Common/DropzoneUploader.js';
 import AudioUploader from '../../Components/Common/AudioUploader.js';
+import ImageUploader from '../../Components/Common/ImageUploader.js';
 
 export default class StepClues extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ export default class StepClues extends Component {
 
   dropzoneComponent() {
     return ({ input, meta: { touched, error } }) => (
-          <DropzoneUploader imgSource={input} />
+          <ImageUploader uploadType="image/*" fieldName="imageUrl" objectId={this.props.objectId} input={input} handleUpload={this.handleChange.bind(this)}/>
        )
   }
 
@@ -37,9 +38,8 @@ export default class StepClues extends Component {
   }
 
   audioUploader() {
-
     return ({ input, meta: { touched, error } }) => (
-          <AudioUploader objectId={this.props.objectId} input={input} handleUpload={this.handleChange.bind(this)}/>
+          <AudioUploader uploadType="audio/*" fieldName="soundUrl" objectId={this.props.objectId} input={input} handleUpload={this.handleChange.bind(this)}/>
        )
   }
 

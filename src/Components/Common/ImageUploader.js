@@ -1,34 +1,61 @@
-// @flow
 
+import Dropzone from 'react-dropzone';
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import DropzoneComponent from 'react-dropzone-component';
+import { uploadFile } from '../../api/Backendless.js';
 
-var componentConfig = {
-    iconFiletypes: ['.jpg', '.png', '.gif'],
-    showFiletypeIcon: true,
-    postUrl: 'https://api.backendless.com/975C9B70-4090-2D14-FFB1-BA95CB96F300/v1/files/myfiles/test/image.jpg'
-};
+class Uploader extends Component {
+  constructor(props) {
+    super(props);
 
-var eventHandlers = {
+    this.state = {
+      uploadedFile: null,
+    };
+  }
 
-};
+  onDrop(files) {
 
-var djsConfig = {
-	addRemoveLinks: true,
-}
+    this.setState({
+      uploadedFile: files[0]
+    });
 
+    this.handleFileUpload(files)
+  }
 
-class ImageUploader extends Component {
 
   render() {
-           return (
-        	  <DropzoneComponent config={componentConfig}
-                       eventHandlers={eventHandlers}
-                       djsConfig={djsConfig} />
-    );
+      const { input, uploadType } = this.props;
+      console.log(input)
+      return (
+		        <div className="FileUpload">
+		          <Dropzone
+		            onDrop={this.onDrop.bind(this)}
+		            multiple={false}
+		            accept={uploadType}>
+                  {
+                    input.value === "" ?  
+                    <div>Select an image file to upload.</div>
+                  :
+                    <div>
+                       <img src={input.value} alt="uploaded" style={{width: '200px', height: 'auto'}}/>
+                    </div>
+                  }
+		          </Dropzone>
+		        </div> 
+    	);
   }
+
+
+ handleFileUpload(files) {
+
+   const { handleUpload, objectId, fieldName } = this.props; //handle field change
+    
+   function saveComplete (result) {
+      handleUpload(result.fileURL, fieldName)
+   };
+
+    uploadFile(objectId, files, saveComplete.bind(this))
+  }  
 }
 
 
-export default ImageUploader;
+export default Uploader;

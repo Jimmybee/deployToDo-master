@@ -88,8 +88,8 @@ export default class Summary extends React.Component {
 	      return <EditAppventureImage appventure={appventure}/>
 	    case 'LOCATION':
 	      return <Location appventure={appventure} onSubmit={submitFunciton}/>
-	    case 'StepAnswer':
-	      return <StepLocation onSubmit={submitFunciton}/>
+	    case 'STEP_ANSWER':
+	      return <StepAnswer onSubmit={submitFunciton}/>
 	    case 'STEP_LOCATION':
 	      return <StepLocation onSubmit={submitFunciton}/>
 	    case 'STEP_CLUES':
