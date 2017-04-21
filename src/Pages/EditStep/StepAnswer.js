@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Field, reduxForm, change, formValueSelector } from 'redux-form';
+import { Field, FieldArray, reduxForm, change, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux'
 import { load } from '../../reducers/EditStep'
 
@@ -14,7 +14,7 @@ export default class StepAnswer extends Component {
   renderAnswersField(){
     const proximities = ["Any", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"]
     const renderProximitySelector = ({ input, meta: { touched, error } }) => (
-      <div className="summaryThemeDiv">
+      <div>
         <select {...input}>
           {proximities.map(val => <option value={val} key={val}>{val}</option>)}
         </select>
@@ -22,16 +22,51 @@ export default class StepAnswer extends Component {
       </div>
     )
 
+    const renderField = ({ input, label, type, meta: { touched, error } }) => (
+      <div>
+        <label>{label +":"}</label>
+          <input {...input} type={type} placeholder={label}/>
+          {touched && error && <span>{error}</span>}
+      </div>
+    )
+
+    const renderAnswers = ({ fields, meta: { touched, error } }) => (
+      <ul>
+        <li>
+          <button type="button" onClick={() => fields.push()}>Add Answer</button>
+        </li>
+        {fields.map((anwser, index) =>
+          <li key={index}>
+            <button
+              type="button"
+              title="Remove Hobby"
+              onClick={() => fields.remove(index)}/>
+            <Field
+              name={anwser}
+              type="text"
+              component={renderField}
+              label={`Answer #${index + 1}`}/>
+          </li>
+        )}
+        {error && <li className="error">{error}</li>}
+      </ul>
+    )
+
     if (this.props.checkIn === true) {
-           return (
-            <div>
-              <label> Proximity: </label>
-              <Field name="checkInProximity" component={renderProximitySelector}/> 
-              <label> meters </label>
-            </div>
-           );
+       return (
+        <div>
+          <label> Proximity: </label>
+          <Field name="checkInProximity" component={renderProximitySelector}/> 
+          <label> meters </label>
+        </div>
+       );
     } else {
-      return (<label>Not ww</label>);
+      return (
+        <div>
+          <label>Accepted Answers</label>
+          <FieldArray name="answerText" component={renderAnswers}/>
+        </div>
+        );
     }
   }
   

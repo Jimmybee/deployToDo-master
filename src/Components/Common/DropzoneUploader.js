@@ -8,6 +8,13 @@ import { uploadFile, updateBackendlessAppventureDetails } from '../../api/Backen
 // Or show default image
 
 class DropzoneUploader extends Component {
+   componentDidMount() {
+
+    }
+
+     componentDidUpdate() {
+
+    }
 
   constructor(props) {
     super(props);
@@ -18,16 +25,49 @@ class DropzoneUploader extends Component {
       noImage: false,
       uploadedFile: null,
       uploadedFileURL: imgSrc,
+      compressedUrl: null,
+
     };
   }
 
   onImageDrop(files) {
+    const file = files[0]  
+
     this.setState({
-      uploadedFile: files[0]
+      uploadedFile: file,
+      uploadedFileURL: file.preview
     });
 
-    this.handleFileUpload(files)
+    var img = new Image();
+
+    const updateCanvas = this.updateCanvas;
+    const canvas = this.refs.canvas;
+
+    img.onload = function(){
+      var height = img.naturalHeight;
+      var width = img.naturalWidth;
+      updateCanvas(canvas, img);
+    }
+
+    img.src = file.preview;
+
+    // this.handleFileUpload(files)
   }
+
+   updateCanvas(canvas, img) {
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, img.width, img.height,     // source rectangle
+                   0, 0, canvas.width, canvas.height); // destination rectangle
+        var image = new Image();
+        image.src = canvas.toDataURL("image/png", 70/100);
+        const src = image.src.replace('data:' + "image/png" + ';base64,', '');
+        const decoded = atob(src)
+        const objectURL = window.URL.createObjectURL(image);
+        console.log(objectURL)
+        this.setState = {
+          compressedUrl: objectURL,
+        }
+    }
 
 
   render() {
@@ -35,6 +75,7 @@ class DropzoneUploader extends Component {
       return (
 			<form>
 		        <div className="FileUpload">
+              <canvas ref="canvas" width={800} height={600} style={{display: 'none'}}/>
 		          <Dropzone
 		            onDrop={this.onImageDrop.bind(this)}
 		            multiple={false}
@@ -45,6 +86,7 @@ class DropzoneUploader extends Component {
                   :
                     <div>
                        <img onError={this.noImage.bind(this)} src={this.state.uploadedFileURL} alt="uploaded" style={{width: '200px', height: 'auto'}}/>
+                       <img onError={this.noImage.bind(this)} src={this.state.compressedUrl} alt="uploaded" style={{width: '200px', height: 'auto'}}/>
                     </div>
                   }
 		          </Dropzone>
