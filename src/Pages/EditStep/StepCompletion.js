@@ -10,31 +10,14 @@ export default class StepAnswer extends Component {
   constructor(props) {
     super(props);
   }
-
-  renderAnswersField(){
-    console.log(this.props.checkIn)
-    if (this.props.checkIn === true) {
-      return (<Field name="title" component="input" type="text" placeholder="Title" className="form-control"/>);
-    } else {
-      return (<label>Not ww</label>);
-    }
-  }
   
   render() {
-     const renderButton = ({ input, meta: { touched, error } }) => (
-        <button onClick={() => input.onChange(true)}> Check In </button>
-      )
-
-     const renderWrittenAnswer = ({ input, meta: { touched, error } }) => (
-        <button onClick={() => input.onChange(false)}> Written Answer </button>
-    )
-
 
     return(
       <div>
-          <Field name="setup[checkIn]" component={renderButton}/>
-          <Field name="setup[checkIn]" component={renderWrittenAnswer}/>
-          {this.renderAnswersField()}
+          <form>
+            <Field name="completionText" component="textarea" placeholder="this is the text that people will see when they complete the step" className="form-control"/>
+          </form>
       </div>
     );
   }

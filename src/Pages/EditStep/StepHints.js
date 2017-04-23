@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Field, reduxForm, change, formValueSelector } from 'redux-form';
+import { Field, FieldArray, reduxForm, change, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux'
 import { load } from '../../reducers/EditStep'
 
@@ -11,30 +11,72 @@ export default class StepAnswer extends Component {
     super(props);
   }
 
-  renderAnswersField(){
-    console.log(this.props.checkIn)
-    if (this.props.checkIn === true) {
-      return (<Field name="title" component="input" type="text" placeholder="Title" className="form-control"/>);
-    } else {
-      return (<label>Not ww</label>);
-    }
+  renderHints(){
+
+   
   }
   
   render() {
-     const renderButton = ({ input, meta: { touched, error } }) => (
-        <button onClick={() => input.onChange(true)}> Check In </button>
-      )
+    const { handleSubmit } = this.props;
 
-     const renderWrittenAnswer = ({ input, meta: { touched, error } }) => (
-        <button onClick={() => input.onChange(false)}> Written Answer </button>
+    const penalties = ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"]
+    const renderHintPenalty = ({ input, meta: { touched, error } }) => (
+      <div>
+        <select {...input}>
+          {penalties.map(val => <option value={val} key={val}>{val}</option>)}
+        </select>
+        {touched && error && <span>{error}</span>}
+      </div>
     )
 
+    const freeHintOptions = ["All", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    const renderFreeHints = ({ input, meta: { touched, error } }) => (
+      <div>
+        <select {...input}>
+          {freeHintOptions.map(val => <option value={val} key={val}>{val}</option>)}
+        </select>
+        {touched && error && <span>{error}</span>}
+      </div>
+    )
+
+    const renderField = ({ input, label, type, meta: { touched, error } }) => (
+      <div>
+        <label>{label +":"}</label>
+         <input {...input} type={type} placeholder={label}/>
+      </div>
+    )
+
+    const renderHintList = ({ fields, meta: { touched, error } }) => (
+      <ul>
+        <li>
+          <button type="button" onClick={() => fields.push()}>Add Hint</button>
+        </li>
+        {fields.map((field, index) =>
+          <li key={index}>
+            <button
+              type="button"
+              title="Remove Hobby"
+              onClick={() => fields.remove(index)}/>
+            <Field
+              name={field + "hint"}
+              type="text"
+              component={renderField}
+              label={`Hint #${index + 1}`}/>
+          </li>
+        )}
+        {error && <li className="error">{error}</li>}
+      </ul>
+    )
 
     return(
+      
       <div>
-          <Field name="setup[checkIn]" component={renderButton}/>
-          <Field name="setup[checkIn]" component={renderWrittenAnswer}/>
-          {this.renderAnswersField()}
+        <form onSubmit={handleSubmit}>
+          <Field name="hintPenalty" component={renderHintPenalty}/> 
+          <Field name="freeHints" component={renderFreeHints}/> 
+          <FieldArray name="hints" component={renderHintList}/>
+          <button type="submit">Submit</button>  
+        </form>
       </div>
     );
   }

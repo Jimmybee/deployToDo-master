@@ -21,6 +21,12 @@ export function updateReduxAppventureDetails(appventure){
   });
 }
 
+export function updateAppventureStep(step){
+    store.dispatch({
+    type: 'UPDATE_APPVENTURE_STEP',
+      step: step 
+  });
+}
 
 export function setEditStep(step){
   store.dispatch({

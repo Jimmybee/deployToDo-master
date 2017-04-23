@@ -25,6 +25,13 @@ const editAppventure = (state = initialState, action) => {
         imageUrl: appventure.imageUrl,
         steps: appventure.steps,
       });
+    case 'UPDATE_APPVENTURE_STEP':
+      const step = action.step;
+      var steps = state.steps;
+      steps[step.stepNumber - 1] = step
+      return Object.assign({}, state, {
+        steps: steps,
+      });
     case 'ADD_NEW_STEP':
         const stepNumber = state.steps.length + 1;
         var step = {};

@@ -1,5 +1,10 @@
 @import url('https://bootswatch.com/spacelab/bootstrap.min.css');
 
+.image { opacity: 0; transition: opacity 0.3s; }
+
+.image-loaded { opacity: 1; }
+
+
 .App {
   text-align: center;
 }

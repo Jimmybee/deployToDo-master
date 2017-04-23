@@ -51,24 +51,34 @@ class DropzoneUploader extends Component {
 
     img.src = file.preview;
 
-    // this.handleFileUpload(files)
   }
 
    updateCanvas(canvas, img) {
         const ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0, img.width, img.height,     // source rectangle
                    0, 0, canvas.width, canvas.height); // destination rectangle
-        var image = new Image();
-        image.src = canvas.toDataURL("image/png", 70/100);
-        const src = image.src.replace('data:' + "image/png" + ';base64,', '');
-        const decoded = atob(src)
-        const objectURL = window.URL.createObjectURL(image);
-        console.log(objectURL)
-        this.setState = {
-          compressedUrl: objectURL,
-        }
     }
 
+  uploadImage() {
+    const canvas = this.refs.canvas;
+    var image = new Image();
+    image.src = canvas.toDataURL("image/jpeg", 70/100);
+    const blob = this.dataURItoBlob(image.src)
+    var form = new FormData()
+    form.append("image", blob, "image.jpeg");
+    form.append('username', 'Chris');
+
+    this.handleFileUpload(form.get("image"))
+  }
+
+   dataURItoBlob(dataURI) {
+    var binary = atob(dataURI.split(',')[1]);
+    var array = [];
+    for(var i = 0; i < binary.length; i++) {
+        array.push(binary.charCodeAt(i));
+    }
+    return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
+  }
 
   render() {
 
@@ -76,6 +86,7 @@ class DropzoneUploader extends Component {
 			<form>
 		        <div className="FileUpload">
               <canvas ref="canvas" width={800} height={600} style={{display: 'none'}}/>
+              <button type="button" onClick={this.uploadImage.bind(this)}>Upload</button>
 		          <Dropzone
 		            onDrop={this.onImageDrop.bind(this)}
 		            multiple={false}

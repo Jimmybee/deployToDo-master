@@ -52,6 +52,7 @@ export default class StepClues extends Component {
   }
 
   render() {
+    const { handleSubmit } = this.props;
 
     function switchComponent(fieldName, switchName, handleEnabled) {
       return ({ input, meta: { touched, error } }) => (
@@ -62,13 +63,15 @@ export default class StepClues extends Component {
 
     return(
       <div>
-         <Field name="setup[textClue]" component={switchComponent("setup[textClue]", "Text Clue:", this.handleChange.bind(this))} className="form-control"/>
-         <Field name="setup[pictureClue]" component={switchComponent("setup[pictureClue]", "Image Clue:", this.handleChange.bind(this))} className="form-control"/>
-         <Field name="setup[soundClue]" component={switchComponent("setup[soundClue]", "Sound Clue:", this.handleChange.bind(this))} className="form-control"/>
-         {this.renderTextField()}
-         {this.renderImageField()}
-         {this.renderSoundField()}
-
+          <form onSubmit={handleSubmit}>
+           <Field name="setup[textClue]" component={switchComponent("setup[textClue]", "Text Clue:", this.handleChange.bind(this))} className="form-control"/>
+           <Field name="setup[pictureClue]" component={switchComponent("setup[pictureClue]", "Image Clue:", this.handleChange.bind(this))} className="form-control"/>
+           <Field name="setup[soundClue]" component={switchComponent("setup[soundClue]", "Sound Clue:", this.handleChange.bind(this))} className="form-control"/>
+           {this.renderTextField()}
+           {this.renderImageField()}
+           {this.renderSoundField()}
+           <button type="submit">Submit</button>  
+          </form>
       </div>
     );
   }

@@ -37,6 +37,8 @@ export default class StepLocation extends Component {
 
   render() {
 
+    const { handleSubmit } = this.props;
+
     function switchComponent(fieldName, switchName, handleEnabled) {
       return ({ input, meta: { touched, error } }) => (
           <Switch fieldName={fieldName} handleEnabled={handleEnabled} input={input} switchName={switchName} className="pull-right"/>
@@ -45,8 +47,11 @@ export default class StepLocation extends Component {
 
     return(
       <div>
-         <Field name="setup[isLocation]" component={switchComponent("setup[isLocation]", "Enable Location:", this.handleEnabled.bind(this))} className="form-control"/>
-         {this.renderMap()}
+         <form onSubmit={handleSubmit}>
+              <button type="submit">Submit</button>  
+         </form>
+          <Field name="setup[isLocation]" component={switchComponent("setup[isLocation]", "Enable Location:", this.handleEnabled.bind(this))} className="form-control"/>
+          {this.renderMap()}
       </div>
     );
   }

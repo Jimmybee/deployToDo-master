@@ -1,5 +1,6 @@
 // @flow
 import React, { Component } from 'react';
+import FadeInImage  from '../Common/FadeImage';
 
 import './appventureRow.css'
 
@@ -22,7 +23,7 @@ class AppventureRow extends React.Component {
         <div className="contentContainer">
           {this.renderValidation()}
           <div className="imageContainer">
-            <img src={imageUrl} alt="appventure"/>
+            <FadeInImage src={imageUrl} alt="appventure"/>
           </div>
           <div className="textContainer">  
             <button className="btn btn-default editBtn" onClick={this.edit.bind(this)}> Edit </button>

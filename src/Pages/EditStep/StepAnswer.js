@@ -12,6 +12,8 @@ export default class StepAnswer extends Component {
   }
 
   renderAnswersField(){
+    const { change } = this.props;
+
     const proximities = ["Any", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"]
     const renderProximitySelector = ({ input, meta: { touched, error } }) => (
       <div>
@@ -25,8 +27,7 @@ export default class StepAnswer extends Component {
     const renderField = ({ input, label, type, meta: { touched, error } }) => (
       <div>
         <label>{label +":"}</label>
-          <input {...input} type={type} placeholder={label}/>
-          {touched && error && <span>{error}</span>}
+         <input {...input} type={type} placeholder={label}/>
       </div>
     )
 
@@ -42,7 +43,7 @@ export default class StepAnswer extends Component {
               title="Remove Hobby"
               onClick={() => fields.remove(index)}/>
             <Field
-              name={anwser}
+              name={anwser + "answer"}
               type="text"
               component={renderField}
               label={`Answer #${index + 1}`}/>
@@ -64,7 +65,7 @@ export default class StepAnswer extends Component {
       return (
         <div>
           <label>Accepted Answers</label>
-          <FieldArray name="answerText" component={renderAnswers}/>
+          <FieldArray name="answers" component={renderAnswers}/>
         </div>
         );
     }
@@ -78,13 +79,19 @@ export default class StepAnswer extends Component {
      const renderWrittenAnswer = ({ input, meta: { touched, error } }) => (
         <button onClick={() => input.onChange(false)}> Written Answer </button>
     )
+     
+      const { handleSubmit } = this.props;
 
 
     return(
+      
       <div>
+        <form onSubmit={handleSubmit}>
           <Field name="setup[checkIn]" component={renderButton}/>
           <Field name="setup[checkIn]" component={renderWrittenAnswer}/>
           {this.renderAnswersField()}
+          <button type="submit">Submit</button>  
+        </form>
       </div>
     );
   }

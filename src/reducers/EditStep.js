@@ -5,8 +5,8 @@ const editStep = (state = initialState, action) => {
     case 'SET_EDIT_STEP':
       const step = action.step
       return Object.assign({}, state, {
-        answerHint: step.answerHint,
-        answerText: step.answerText,
+        hints: step.hints,
+        answers: step.answers,
         checkInProximity: step.checkInProximity,
         completionText: step.completionText,
         freeHint: step.freeHint,
@@ -19,6 +19,8 @@ const editStep = (state = initialState, action) => {
         nameOrLocation: step.nameOrLocation,
         soundUrl: step.soundUrl,
       });
+    case 'UPDATE_APPVENTURE_STEP':
+      return state = action.step;
     default:
       return state
   }

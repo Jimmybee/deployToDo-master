@@ -55,6 +55,7 @@
   },
   "dependencies": {
     "backendless": "^3.1.23",
+    "classnames": "^2.2.5",
     "google-maps-react": "^1.0.19",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",

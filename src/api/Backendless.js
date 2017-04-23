@@ -3,7 +3,7 @@
 import { backendless as config } from './Config';
 import Backendless from 'backendless';
 import store from '../store/store';
-import { updateUser, updateReduxAppventureDetails } from '../Actions/Actions';
+import { updateUser, updateReduxAppventureDetails, updateAppventureStep } from '../Actions/Actions';
 
 
 Backendless.initApp(config.APPLICATION_ID, config.JAVASCRIPT_KEY, config.VERSION);
@@ -17,37 +17,57 @@ function BackendlessAppventure(args, original) {
     this.themeOne = args.themeOne || original.themeOne || null;
     this.themeTwo = args.themeTwo || original.themeTwo || null;
     this.startingLocationName = args.startingLocationName || original.startingLocationName || null;
-    this.location = args.location || null;
-    this.imageUrl = args.imageUrl || null;
-    if (typeof args.steps !== 'undefined') {
+    this.location = args.location || original.location || null;
+    this.imageUrl = args.imageUrl || original.null || null;
+    var steps = args.steps || original.steps || null;
+    // if (typeof args.steps !== 'undefined') {
+    if (steps !== null) {
+        var backendlessSteps = steps.map(step => new BackendlessStep(step))
+        this.steps = backendlessSteps
+    }
+    this.objectId = args.objectId || original.objectId || null;
+}
+
+function BackendlessAppventureWithSteps(args) {
+      args = args || {};
+      this.___class = 'BackendlessAppventure';
+      this.objectId = args.objectId;
+      if (typeof args.steps !== 'undefined') {
         var steps = args.steps.map(step => new BackendlessStep(step))
         this.steps = steps
     }
-    this.objectId = args.objectId || original.objectId || null;
-
 }
 
-function BackendlessStep(args) {
+function BackendlessStep(args, original) {
     args = args || {};
-    var setup = new BackendlessSetup(args.setup)
+    original = original || {};
+    var setup = new BackendlessSetup(args.setup, original.setup)
     this.___class = 'BackendlessStep'
-    this.answerHint = args.duration || null;
-    this.answerText = args.answerText || null;
-    this.checkInProximity = args.checkInProximity || null;
-    this.completionText = args.completionText || null;
-    this.freeHints = args.freeHints || null;
-    this.hintPenalty = args.hintPenalty || null;
-    this.initialText = args.initialText || null;
-    this.imageUrl = args.imageUrl || null;
-    this.location = args.location || null;
-    this.nameOrLocation = args.nameOrLocation || null;
-    this.setup = args.setup || null;
-    this.stepNumber = args.stepNumber || null;
-    this.soundUrl = args.soundUrl || null;
-    this.objectId = args.objectId || null;
+    var answers = args.answers || original.answers || null;
+    if (typeof answers !== null) {
+        var backendlessAnswers = answers.map(answer => new BackendlessAnswers(answer))
+        this.answers = backendlessAnswers;
+    }
+    var hints = args.hints || original.hints || null;
+    if (typeof hints !== null) {
+        var backendlessHints = hints.map(answer => new BackendlessAnswers(answer))
+        this.hints = backendlessHints;
+    }
+    this.checkInProximity = args.checkInProximity || original.checkInProximity || null;
+    this.completionText = args.completionText || original.completionText || null;
+    this.freeHints = args.freeHints || original.freeHints || null;
+    this.hintPenalty = args.hintPenalty || original.hintPenalty || null;
+    this.initialText = args.initialText || original.initialText || null;
+    this.imageUrl = args.imageUrl || original.imageUrl || null;
+    this.location = args.location || original.location || null;
+    this.nameOrLocation = args.nameOrLocation || original.nameOrLocation || null;
+    this.setup = setup || null;
+    this.stepNumber = args.stepNumber || original.stepNumber || null;
+    this.soundUrl = args.soundUrl || original.soundUrl || null;
+    this.objectId = args.objectId || original.objectId || null;
 }
 
-function BackendlessSetup(args) {
+function BackendlessSetup(args, original) {
     args = args || {};
     this.___class = 'BackendlessSetup'
     this.checkIn = args.checkIn || null;
@@ -59,7 +79,20 @@ function BackendlessSetup(args) {
     this.soundClue = args.soundClue || null;
     this.textClue = args.textClue || null;
     this.objectId = args.objectId || null;
+}
 
+function BackendlessAnswers(args) {
+  args = args || {};
+  this.___class = 'BackendlessAnswer';
+  this.answer = args.answer || null;
+  this.objectId = args.objectId || null;
+}
+
+function BackendlessHints(args) {
+  args = args || {};
+  this.___class = 'BackendlessHint';
+  this.hint = args.hint || null;
+  this.objectId = args.objectId || null;
 }
 
 
@@ -107,13 +140,13 @@ export function facebookLogin(successCallback) {
 }
 
 
-
+// Update files
 export function updateBackendlessAppventureDetails(appventure, update, successUpdate){
   console.log("values", appventure, update)
 
   function saved(appventure) {
     updateReduxAppventureDetails(appventure)
-    console.log("saved ");
+    console.log("savedAppventure");
   }
   
   function gotError(err) {
@@ -122,6 +155,19 @@ export function updateBackendlessAppventureDetails(appventure, update, successUp
   }
 
   var backendlessAppventure = new BackendlessAppventure(update, appventure)
+
+  Backendless.Persistence.of( BackendlessAppventure ).save(backendlessAppventure).then(saved).catch(gotError);
+
+}
+
+export function updateBackendlessAppventureWithSteps(appventure, successUpdate){
+
+  function saved(appventure) {
+    updateAppventureStep(appventure.steps[0])
+    console.log("savedStep");
+  }
+  console.log(appventure)
+  var backendlessAppventure = new BackendlessAppventureWithSteps(appventure)
 
   Backendless.Persistence.of( BackendlessAppventure ).save(backendlessAppventure).then(saved).catch(gotError);
 

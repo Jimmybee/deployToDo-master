@@ -17,15 +17,17 @@ import { asyncFetch } from '../api/Backendless.js';
 })
 
 export default class Explore extends React.Component {
+
   componentWillMount() {
     asyncFetch()
   }
 
   render() {
-    var marginTop = {
-      marginTop: 10
-    }
 
+    var showPage = {
+      marginTop: 10,
+      opacity: 1
+    }
 
     const textColor = {
       color: '#E45663'
@@ -41,7 +43,16 @@ export default class Explore extends React.Component {
         return <h1>No Appventures</h1>
     }
 
-    const mappedAppventures = appventures.map(appventure => <div className='col-sm-6 maxWidth' key={appventure.objectId}><LazyLoad height={350} offsetVertical={300}><AppventureCard appventure={appventure}/></LazyLoad></div>)
+    const mappedAppventures = appventures.map(appventure => 
+      <div 
+      className='col-sm-6 maxWidth' 
+      key={appventure.objectId}>
+          <AppventureCard 
+          appventure={appventure}
+          loading={this.increaseCardLoadingCount.bind(this)} 
+          loaded={this.decreaseCardLoadingCount.bind(this)} 
+          />
+      </div>)
 
     const fixedMappedAppventures = function(mappedAppventures, iteration, inserts) {
       var clearfix = <div className="clearfix" key={iteration}></div>
@@ -65,7 +76,7 @@ export default class Explore extends React.Component {
           <h1 className='col-xs-12'><span style={textColor}>Explore</span> our appventures and discover fun trails and adventures.</h1>
         </div>
         <AppventureSearch/>
-        <div className='row' style={marginTop}>
+        <div className='row' style={showPage}>
           <div className='col-sm-9'>
               {calcMappedAppventures}
           </div>
@@ -75,6 +86,21 @@ export default class Explore extends React.Component {
 
     );
   }
+
+  increaseCardLoadingCount(){
+    const {cardsLoading }= this.state;
+    this.setState({
+      cardsLoading: cardsLoading + 1
+    });
+  }
+
+  decreaseCardLoadingCount(){
+    const {cardsLoading}= this.state;
+    this.setState({
+      cardsLoading: cardsLoading - 1
+    });
+  }
+
 }
 
 

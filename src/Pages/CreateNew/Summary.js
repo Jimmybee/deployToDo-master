@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import store from '../../store/store';
 import { imageUrl } from '../../api/Config';
 import { setEditStep, addNewStep } from '../../Actions/Actions.js';
-import { updateBackendlessAppventureDetails } from '../../api/Backendless.js';
+import { updateBackendlessAppventureDetails, updateBackendlessAppventureWithSteps } from '../../api/Backendless.js';
 
 // import EditAppventureDetails from "./EditAppventureDetails";
 import EditAppventureImage from "../EditAppventure/EditAppventureImage";
@@ -73,31 +73,32 @@ export default class Summary extends React.Component {
 
   render() {
 
-  const displayComponent = this.state.displayComponent
-  const appventure = this.props.editAppventure
-  const submitFunciton = this.submit.bind(this)
-  const imgSrc = imageUrl(appventure.objectId)
+  const displayComponent = this.state.displayComponent;
+  const appventure = this.props.editAppventure;
+  const submitStep = this.submitStep.bind(this);
+  const submit = this.submit.bind(this);
+  const imgSrc = imageUrl(appventure.objectId);
   const sideOpen = this.state.collapsed ? "" : "open";
 
   
   const getComponent = function(displayComponent) {   
   	switch (displayComponent) {
   		case 'DETAILS':
-	      return <AppventureDetailsForm appventure={appventure} onSubmit={submitFunciton}/>
+	      return <AppventureDetailsForm appventure={appventure} onSubmit={submit}/>
 	    case 'IMAGE':
-	      return <EditAppventureImage appventure={appventure}/>
+	      return <EditAppventureImage appventure={appventure} onSubmit={submit}/>
 	    case 'LOCATION':
-	      return <Location appventure={appventure} onSubmit={submitFunciton}/>
+	      return <Location appventure={appventure} onSubmit={submit}/>
 	    case 'STEP_ANSWER':
-	      return <StepAnswer onSubmit={submitFunciton}/>
+	      return <StepAnswer onSubmit={submitStep}/>
 	    case 'STEP_LOCATION':
-	      return <StepLocation onSubmit={submitFunciton}/>
+	      return <StepLocation onSubmit={submitStep}/>
 	    case 'STEP_CLUES':
-	      return <StepClues onSubmit={submitFunciton}/>
+	      return <StepClues onSubmit={submitStep}/>
 	    case 'STEP_HINTS':
-	      return <StepHints onSubmit={submitFunciton}/>
+	      return <StepHints onSubmit={submitStep}/>
 	    case 'STEP_COMPLETION':
-	      return <StepCompletion onSubmit={submitFunciton}/>
+	      return <StepCompletion onSubmit={submitStep}/>
 	    default:
 	      return <h1>404</h1>
 	  }
@@ -187,13 +188,22 @@ export default class Summary extends React.Component {
 
   submit(values) {
 	
-	const state =  store.getState();
-	console.log("New Edit = ",state.editAppventure);
-	console.log("values = ", values);
+  	const state =  store.getState();
+   	console.log("New Edit = ",state.editAppventure);
+  	console.log("values = ", values);
 
   	updateBackendlessAppventureDetails(state.editAppventure, values)
 
   }
+
+  submitStep(values) {
+    const state =  store.getState();
+    var appventure = {};
+    appventure.objectId = state.editAppventure.objectId;
+    appventure.steps = [values]
+    updateBackendlessAppventureWithSteps(appventure)
+  }
+
 
 }
 
