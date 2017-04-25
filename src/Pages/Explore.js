@@ -22,25 +22,20 @@ export default class Explore extends React.Component {
     asyncFetch()
   }
 
-  render() {
+  renderSpinner() {
+     return (
+          <div className="spinner">
+            <div className="bounce1"></div>
+            <div className="bounce2"></div>
+            <div className="bounce3"></div>
+          </div>
+      )
+  }
 
-    var showPage = {
+  renderPage(appventures) {
+     var showPage = {
       marginTop: 10,
       opacity: 1
-    }
-
-    const textColor = {
-      color: '#E45663'
-    };
-
-    // const { query } = this.props.location;
-    // const { params } = this.props;
-    // const { article } = params;
-    // const { date, filter } = query;
-    const appventures = this.props.appventures
-
-    if (!appventures.length) {  
-        return <h1>No Appventures</h1>
     }
 
     const mappedAppventures = appventures.map(appventure => 
@@ -72,16 +67,32 @@ export default class Explore extends React.Component {
 
     return (
       <div>
-        <div className='row'>
-          <h1 className='col-xs-12'><span style={textColor}>Explore</span> our appventures and discover fun trails and adventures.</h1>
-        </div>
-        <AppventureSearch/>
+      <AppventureSearch/>
         <div className='row' style={showPage}>
           <div className='col-sm-9'>
               {calcMappedAppventures}
           </div>
           <div className='col-sm-3'></div>
         </div>
+      </div>
+    )
+  }
+
+  render() {
+
+    const textColor = {
+      color: '#E45663'
+    };
+
+    const appventures = this.props.appventures
+    const content = (!appventures.length) ? this.renderSpinner() : this.renderPage(appventures);
+
+    return (
+      <div>
+        <div className='row'>
+          <h1 className='col-xs-12'><span style={textColor}>Explore</span> our appventures and discover fun trails and adventures.</h1>
+        </div>
+        {content}
       </div>
 
     );

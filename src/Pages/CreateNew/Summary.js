@@ -78,7 +78,6 @@ export default class Summary extends React.Component {
   const appventure = this.props.editAppventure;
   const submitStep = this.submitStep.bind(this);
   const submit = this.submit.bind(this);
-  const imgSrc = imageUrl(appventure.objectId);
   const sideOpen = this.state.collapsed ? "" : "open";
 
   

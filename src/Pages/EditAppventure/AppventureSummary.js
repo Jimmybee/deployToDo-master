@@ -1,5 +1,7 @@
 // @flow
 
+import './appventureSummary.css'
+
 import React, { Component } from 'react';
 import FadeInImage  from '../../Components/Common/FadeImage';
 
@@ -18,9 +20,9 @@ export default class AppventureSummary extends React.Component {
     const appventure = this.props.appventure
 
     return (
-      <div>
-        <FadeInImage src={appventure.imageUrl}/>
+      <div className="appventure-summary">
         <h1>{appventure.title}</h1>
+        <FadeInImage className="image" src={appventure.imageUrl}/>
         <label> Main Theme: {appventure.themeOne}</label> 
         <label> Estimated duration: {appventure.duration} </label>
         <label> Suggested times restricted to {appventure.startTime} - {appventure.endTime} </label>

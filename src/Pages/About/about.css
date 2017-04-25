@@ -1,0 +1,33 @@
+.about {
+	width: 100%;
+}
+
+.about .subject {
+	padding: 60px;
+	display: flex;
+  	align-items: center;
+  	justify-content: center;
+}
+
+.about h1 {
+	text-align: center;
+}
+
+.about .imageContainer {
+	width: 40%;
+	float: left;
+
+}
+
+.about .imageContainer .image {
+	margin: auto;
+	display: block;
+}
+
+.about p {
+	align-self: flex-start;
+	width: 55%;
+	float: left;
+	margin: 0px;
+}
+

@@ -5,7 +5,6 @@ import { load } from '../../reducers/EditStep'
 import store from '../../store/store';
 
 import Switch from '../../Components/Common/Switch.js';
-import DropzoneUploader from '../../Components/Common/DropzoneUploader.js';
 import AudioUploader from '../../Components/Common/AudioUploader.js';
 import ImageUploader from '../../Components/Common/ImageUploader.js';
 

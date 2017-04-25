@@ -1,0 +1,15 @@
+.appventure-summary {
+	width: 80%;
+}
+
+.appventure-summary .image {
+	width: 100%;
+	height: auto;
+}
+
+.appventure-summary label {
+	display: block;
+	padding: 20px;
+	float: left;
+	width: 50%;
+}

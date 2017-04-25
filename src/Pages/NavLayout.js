@@ -19,6 +19,13 @@ import Nav from "../Components/Common/Nav";
 
 
 export default class NavLayout extends React.Component {
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll.bind(this));
+    this.setState( {
+      fixed: false
+    });
+  } 
+
   render() {
     const containerStyle = {
       marginTop: "60px",
@@ -36,12 +43,20 @@ export default class NavLayout extends React.Component {
           <div className="row">
             <div className="col-lg-12">
                {this.props.children}
-
             </div>
           </div>
         </div>
       </div>
 
     );
+  }
+
+  handleScroll(e) {
+    let scrollTop = event.srcElement.body.scrollTop,
+        itemTranslate = Math.min(0, scrollTop/3 - 60);
+    let fixed = (scrollTop > 80) ? true : false
+    this.setState( {
+      fixed: fixed
+    });
   }
 }

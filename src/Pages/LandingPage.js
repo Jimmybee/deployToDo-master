@@ -27,7 +27,7 @@ export default class LandingPage extends React.Component {
            <div className="textSnippet">
               <h3> City Adventures </h3>
               <h4> Secret routes. Clever clues. Historical insights. </h4>
-               <IosDownloadBttn/>
+              <IosDownloadBttn/>
           </div>
         </div>
         </div>

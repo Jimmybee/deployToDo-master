@@ -18,13 +18,13 @@ import Layout from './Pages/Layout';
 import NavLayout from './Pages/NavLayout';
 
 
+import About from './Pages/About/About';
 import LandingPage from './Pages/LandingPage';
 import Explore from './Pages/Explore';
 import Login from './Pages/Login';
 import Profile from './Pages/Profile';
 import CreateNew from './Pages/CreateNew';
 import TestPage from './Pages/TestPage';
-import SimpleMap from './Pages/SimpleMap';
 import Summary from './Pages/CreateNew/Summary';
 
 import './index.css';
@@ -56,6 +56,7 @@ ReactDOM.render(
     <Router>
       <div>
         <NavLayoutRoute exact={true} path="/" component={LandingPage}/>
+        <NavLayoutRoute path="/about" component={About}/>
         <NavLayoutRoute path="/explore" component={Explore}/>
         <NavLayoutRoute path="/login" component={Login}/>
         <NavLayoutRoute path="/Create" name="Create" component={CreateNew}/>

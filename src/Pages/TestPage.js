@@ -8,7 +8,6 @@ import {
 import AutoCompleteMap from '../Components/Common/AutoCompleteMap.js';
 import Switch from '../Components/Common/Switch.js';
 
-import DropzoneUploader from '../Components/Common/DropzoneUploader.js';
 import AudioUploader from '../Components/Common/AudioUploader.js';
 
 import { uploadImage, renameFile, removeFile } from '../api/Backendless.js';
