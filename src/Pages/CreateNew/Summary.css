@@ -39,8 +39,13 @@
 }
 
 @media (min-width: 768px) {
-  .navMenuWrapper .closeMenu  {
-    visibility:hidden;
+  .navMenuWrapper .closeMenu, 
+  .summaryHeader .toggle  {
+    visibility: hidden;
+  }
+
+  .navMenuWrapper {
+    width: 300px;
   }
 }
 
@@ -49,9 +54,7 @@
 }
 
 @media (min-width: 768px) {
-  .navMenuWrapper {
-    width: 24%;
-  }
+
 }
 
 .summaryHeader .toggle {
@@ -106,7 +109,7 @@
   text-decoration: none!important;
 }
 
-.sideNavUL button {
+.navScroller button {
   outline: none;
   background-color: Transparent;
   border: none;

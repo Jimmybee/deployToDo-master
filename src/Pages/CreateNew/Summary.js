@@ -10,6 +10,7 @@ import { setEditStep, addNewStep } from '../../Actions/Actions.js';
 import { updateBackendlessAppventureDetails, updateBackendlessAppventureWithSteps } from '../../api/Backendless.js';
 
 // import EditAppventureDetails from "./EditAppventureDetails";
+import AppventureSummary from "../EditAppventure/AppventureSummary";
 import EditAppventureImage from "../EditAppventure/EditAppventureImage";
 import AppventureDetailsForm from "../EditAppventure/DetailsForm";
 import Location from "../EditAppventure/Location";
@@ -83,6 +84,8 @@ export default class Summary extends React.Component {
   
   const getComponent = function(displayComponent) {   
   	switch (displayComponent) {
+      case 'APPVENTURE_SUMMARY':
+        return <AppventureSummary appventure={appventure}/>
   		case 'DETAILS':
 	      return <AppventureDetailsForm appventure={appventure} onSubmit={submit}/>
 	    case 'IMAGE':
@@ -112,8 +115,8 @@ export default class Summary extends React.Component {
       <div>
 	      <div className={"navMenuWrapper transition " + sideOpen}>
 	      	<div className="navScroller">
-            <button type="button" className="closeMenu" onClick={this.toggleCollapse.bind(this)}> Close Menu </button>
-	      		<h4>Appventure</h4>
+            <button type="button" className="closeMenu" onClick={this.toggleCollapse.bind(this)}> X </button>
+	      		<button type="button" onClick={() => this.showComponent("APPVENTURE_SUMMARY").bind(this)}><h4>Appventure Summary</h4></button>
 		        <ul className="sideNavUL">
 		        	<li className="sideNavListItem"><button className="sideNavListBtn" onClick={this.showDetails.bind(this)}>Details</button></li>
 		        	<li className="sideNavListItem"><button className="sideNavListBtn" onClick={this.showImage.bind(this)}>Image</button></li>
@@ -143,6 +146,12 @@ export default class Summary extends React.Component {
       </div>
     </div>
     );
+  }
+
+  showComponent(name) {
+    this.setState({
+      displayComponent: name,
+    })
   }
 
   showDetails() {
