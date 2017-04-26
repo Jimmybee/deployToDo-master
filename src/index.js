@@ -19,6 +19,7 @@ import NavLayout from './Pages/NavLayout';
 
 
 import About from './Pages/About/About';
+import HowItWorks from './Pages/HowItWorks/HowItWorks';
 import LandingPage from './Pages/LandingPage';
 import Explore from './Pages/Explore';
 import Login from './Pages/Login';
@@ -57,6 +58,7 @@ ReactDOM.render(
       <div>
         <NavLayoutRoute exact={true} path="/" component={LandingPage}/>
         <NavLayoutRoute path="/about" component={About}/>
+        <NavLayoutRoute path="/howItWorks" component={HowItWorks}/>
         <NavLayoutRoute path="/explore" component={Explore}/>
         <NavLayoutRoute path="/login" component={Login}/>
         <NavLayoutRoute path="/Create" name="Create" component={CreateNew}/>
