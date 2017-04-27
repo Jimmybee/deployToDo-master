@@ -21,7 +21,9 @@ import NavLayout from './Pages/NavLayout';
 import About from './Pages/About/About';
 import HowItWorks from './Pages/HowItWorks/HowItWorks';
 import LandingPage from './Pages/LandingPage';
-import Explore from './Pages/Explore';
+// import Explore from './Pages/Explore';
+import Explore from './Pages/Explore/Explore';
+
 import Login from './Pages/Login';
 import Profile from './Pages/Profile';
 import CreateNew from './Pages/CreateNew';

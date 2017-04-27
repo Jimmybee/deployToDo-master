@@ -20,7 +20,7 @@ import Nav from "../Components/Common/Nav";
 
 export default class NavLayout extends React.Component {
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll.bind(this));
+    // window.addEventListener('scroll', this.handleScroll.bind(this));
     this.setState( {
       fixed: false
     });
@@ -59,4 +59,6 @@ export default class NavLayout extends React.Component {
       fixed: fixed
     });
   }
+
+  
 }

@@ -18,6 +18,11 @@
 	width: 20%;
 }
 
+.appventureRow:hover .imageContainer {
+	  transition: transform 0.3s;
+	  transform: perspective(500px) translateZ(40px); 
+}
+
 .appventureRow img {
 	width: 100%;
 	height: auto;
