@@ -40,7 +40,7 @@ export default class Explore extends React.Component {
 
     const mappedAppventures = appventures.map(appventure => 
       <div 
-      className='col-sm-6 maxWidth' 
+      className='col-sm-6' 
       key={appventure.objectId}>
           <AppventureCard 
           appventure={appventure}
@@ -66,10 +66,10 @@ export default class Explore extends React.Component {
     return (
       <div>
         <div className='row' style={showPage}>
-          <div className='col-sm-3'>
+          <div className='col-sm-2'>
             <Search/>
           </div>
-          <div className='col-sm-9'>
+          <div className='col-sm-10'>
               {calcMappedAppventures}
           </div>
         </div>

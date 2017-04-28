@@ -13,12 +13,12 @@ function BackendlessAppventure(args, original) {
     args = args || {};
     original = original || {};
     this.title = args.title || original.title || null;
-    this.subtitle = args.subtitle || original.subtitle || null;
+    this.description = args.description || original.description || null;
     this.themeOne = args.themeOne || original.themeOne || null;
     this.themeTwo = args.themeTwo || original.themeTwo || null;
     this.startingLocationName = args.startingLocationName || original.startingLocationName || null;
     this.location = args.location || original.location || null;
-    this.imageUrl = args.imageUrl || original.null || null;
+    this.imageUrl = args.imageUrl || original.imageUrl || null;
     var steps = args.steps || original.steps || null;
     // if (typeof args.steps !== 'undefined') {
     if (steps !== null) {

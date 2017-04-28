@@ -24,7 +24,7 @@ import LandingPage from './Pages/LandingPage';
 // import Explore from './Pages/Explore';
 import Explore from './Pages/Explore/Explore';
 
-import Login from './Pages/Login';
+import Login from './Pages/Login/Login';
 import Profile from './Pages/Profile';
 import CreateNew from './Pages/CreateNew';
 import TestPage from './Pages/TestPage';

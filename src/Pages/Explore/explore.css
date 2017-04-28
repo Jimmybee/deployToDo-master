@@ -1,0 +1,48 @@
+
+.Appventure-card {
+/*	border: 1px solid gray; 
+
+*/	
+	background-color: #FFFFFF;
+	box-shadow: 2px 2px 3px #888888;
+	max-width: 400px;
+	min-height: 400px;
+	margin-bottom: 20px; 
+
+}
+
+
+
+.Appventure-card:hover .image{
+	cursor: pointer;
+	transform: perspective(500px) translateZ(20px); 
+	opacity: 0.8;
+}
+
+.Appventure-card .Image-container {
+
+	overflow: hidden;
+}
+
+.Appventure-card h2{
+	margin-top: 10px;
+	font-size: 1.5em;
+}
+
+.Appventure-card h3{
+	font-size: 1em;
+	margin-top: 10px;
+}
+
+
+.Appventure-card  .Text-container {
+	padding: 8px;
+}
+
+.Appventure-card .image {
+	transition: 0.25s;
+	width: 100%;
+	max-width: 400px;
+	height: 400px;
+	height: auto;
+}

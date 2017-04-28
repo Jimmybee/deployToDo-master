@@ -1,0 +1,22 @@
+.Login {
+	background-color: #FFFFFF;
+	margin: auto;
+	width: 60%;
+}
+
+.Rule {
+   width: 100%; 
+   text-align: center; 
+   border-bottom: 1px solid #d4d4d4; 
+   line-height: 0.1em;
+   margin: 10px 0 20px; 
+} 
+
+.Rule span { 
+    background:#fff; 
+    padding:0 10px; 
+}
+
+.Login .FacebookLoginBtn {
+	width: 60%;
+}

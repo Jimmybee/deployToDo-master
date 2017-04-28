@@ -8,7 +8,7 @@ import { selectComponent } from '../../../Components/Form/Select'
 class Search extends Component {
 
   render() {
-    const themes = ["Outdoor", "Family", "Puzzle", "Night", "Museum", "Adventurous"]
+    const themes = ["Select theme...", "Outdoor", "Family", "Puzzle", "Night", "Museum", "Adventurous"]
 
     return (
       <div>
