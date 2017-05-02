@@ -174,27 +174,53 @@ export function updateBackendlessAppventureWithSteps(appventure, successUpdate){
 }
 
 
-//FETCH TO EXPLORE
+//FETCH TO EXPLORE - DEPRECIATED
 export function asyncFetch() {
 
   function fetch(appventures) {
     store.dispatch({type:'RECIEVED_ALL_APPVENTURES', appventures: appventures.data})
   }
 
+
   Backendless.Persistence.of( BackendlessAppventure ).find().then(fetch).catch(gotError);
 }
 
-//FETCH OWNED
-export function fetchQuery(condition) {
+//FETCH PUBLISHED
+export function fetchPublished(theme) {
+
+  var condition = "";
+  if (theme !== "") { condition = condition + "themeOne = '" + theme + "' or themeTwo = '" + theme +"'"}
+  
+  console.log(condition)
+    // var condition = ""
 
   function fetched(appventures) {
     store.dispatch({type:'RECIEVED_ALL_APPVENTURES', appventures: appventures.data})
   }
 
-  var callback = new Backendless.Async( fetched, gotError );
+  fetchQuery(condition, fetched)
+}
+
+//FETCH OWNED
+export function fetchOwned(ownerId) {
+  function fetched(appventures) {
+    store.dispatch({type:'RECIEVED_OWNED_APPVENTURES', appventures: appventures.data})
+  }
+
+  var condition = "ownerId =" + "'" + ownerId + "'"
+
+  fetchQuery(condition, fetched)
+
+}
+
+//HELPER FETCH QUERY
+function fetchQuery(condition, successCallback) {
+
+  var callback = new Backendless.Async( successCallback, gotError );
 
   var dataQuery = new Backendless.DataQuery();
   dataQuery.condition = condition;
+
   Backendless.Persistence.of( BackendlessAppventure ).find( dataQuery, callback);
 }
 

@@ -26,7 +26,7 @@ import Explore from './Pages/Explore/Explore';
 
 import Login from './Pages/Login/Login';
 import Profile from './Pages/Profile';
-import CreateNew from './Pages/CreateNew';
+import CreateNew from './Pages/CreateNew/CreateNew';
 import TestPage from './Pages/TestPage';
 import Summary from './Pages/CreateNew/Summary';
 

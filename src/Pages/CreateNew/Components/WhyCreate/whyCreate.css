@@ -1,0 +1,18 @@
+.Why-create {
+	margin-top: 20px;
+}
+
+.Why-create .Image-container {
+	height: 140px;
+}
+
+.Why-create .Image-container .Subject-image {
+	margin: auto;
+	display: block;
+	width: auto;
+	max-height: 120px;
+}
+
+.Why-create p {
+	padding: 10px;
+}

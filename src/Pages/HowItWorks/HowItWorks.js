@@ -16,14 +16,14 @@ export default class HowItWorks extends React.Component {
       	<h1>How It Works</h1>
       	<div className="Subject">
       		<div className="Image-container">
-	      		<FadeInImage className="Subject-image Slide-left" src={require('../../images/mapWeb.png')} style={{width: '100px', height: 'auto'}}/>
+	      		<FadeInImage className="Subject-image Slide-left" src={require('../../images/ClueCards.png')} style={{width: '120px', height: 'auto'}}/>
 	      	</div>
 		     <p> {howToPlay} </p>
 	    </div>
 	    <div className="Subject">
 	      	<p> {theLocation}</p>
 	      	 <div className="Image-container">
-	      		<FadeInImage className="Subject-image Slide-right" src={require('../../images/mapWeb.png')} style={{width: '100px', height: 'auto'}}/>
+	      		<FadeInImage className="Subject-image Slide-right" src={require('../../images/mapWeb.png')} style={{width: '150px', height: 'auto'}}/>
 	      	</div>
 	    </div>
 	    <div className="Subject">

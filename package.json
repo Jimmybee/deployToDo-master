@@ -58,6 +58,7 @@
     "classnames": "^2.2.5",
     "google-maps-react": "^1.0.19",
     "react": "^15.4.2",
+    "react-bootstrap": "^0.31.0",
     "react-dom": "^15.4.2",
     "react-dropzone": "^3.12.2",
     "react-dropzone-component": "^1.4.1",

@@ -8,7 +8,7 @@ import LazyLoad from 'react-lazy-load';
 
 import Search from './Components/Search';
 import AppventureCard from './Components/AppventureCard';
-import { asyncFetch } from '../../api/Backendless.js';
+import { fetchPublished } from '../../api/Backendless.js';
 
 @connect((store) => {
   return {
@@ -19,7 +19,7 @@ import { asyncFetch } from '../../api/Backendless.js';
 export default class Explore extends React.Component {
 
   componentWillMount() {
-    asyncFetch()
+    fetchPublished("")
   }
 
   renderSpinner() {
@@ -62,14 +62,15 @@ export default class Explore extends React.Component {
     }
 
     const calcMappedAppventures = fixedMappedAppventures(mappedAppventures, 1, 0)
+    const onSubmit = this.onSubmit.bind(this);
 
     return (
       <div>
         <div className='row' style={showPage}>
-          <div className='col-sm-2'>
-            <Search/>
+          <div className='col-sm-3'>
+            <Search onNewSearch={fetchPublished} onSubmit={onSubmit}/>
           </div>
-          <div className='col-sm-10'>
+          <div className='col-sm-9'>
               {calcMappedAppventures}
           </div>
         </div>
@@ -95,6 +96,11 @@ export default class Explore extends React.Component {
       </div>
 
     );
+  }
+
+  onSubmit(values) {
+    console.log("parent", values)
+    fetchPublished(values.theme)
   }
 
 }

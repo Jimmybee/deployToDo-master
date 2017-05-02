@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import '../../App.css';
 import { connect } from 'react-redux'
 
+import ModalLogin from '../../Components/ModalLogin/ModalLogin'
 
 @connect((store) => {
   return {
@@ -25,6 +26,7 @@ export default class Nav extends React.Component {
       userOpen: false,
       collapsed: true,
       listNav: false,
+      showModal: false,
     };
   }
 
@@ -53,8 +55,12 @@ export default class Nav extends React.Component {
       // <li className={"dropdown " + dropdownOpenClass}>
       //   <a className="dropdown-toggle" onClick={this.toggleUserDropDown.bind(this)}>Dropdown</a>
       //   <ul className="dropdown-menu" role="menu">
+      //<li><button type="button" onClick={this.toggleModal.bind(this)}>Login</button></li> 
+      //     
+
              user === null ? 
-               <li> <Link to="login" onClick={this.toggleUserDropDown.bind(this)}>Login</Link> </li> : 
+                <li><button type="button" onClick={this.open.bind(this)}>Login</button></li>
+                : 
                <li> <Link to="profile" onClick={this.toggleUserDropDown.bind(this)}>Profile</Link> </li>
               
       //   </ul>
@@ -106,9 +112,21 @@ export default class Nav extends React.Component {
             </ul>
           </div>
         </div>
+        <ModalLogin openState={this.state.showModal} onHide={this.close.bind(this)} />
       </nav>
     );
   }
+
+
+
+  close() {
+    this.setState({ showModal: false });
+  }
+
+  open() {
+    this.setState({ showModal: true });
+  }
+
 }
 //            <p><Link className="btn btn-primary btn-lg" to="/editAppventure/summary">Start Here</Link></p>
 //                         <a href="#" className="nav navbar-left"><img src={require('./AppLogo.png')} alt="boohoo"/></a>

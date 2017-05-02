@@ -46,13 +46,14 @@ class Uploader extends Component {
     image.src = canvas.toDataURL("image/jpeg", 70/100);
     const blob = this.dataURItoBlob(image.src)
     var form = new FormData()
-    form.append("image", blob, "image.jpeg");
+    var timestamp = new Date().getUTCMilliseconds().toString();
+    form.append("image", blob, timestamp + ".jpeg");
 
     this.handleFileUpload(form.get("image"))
   }
 
   render() {
-      const { input, uploadType } = this.props;
+      var { input, uploadType } = this.props;
 
       return (
 		        <div className="FileUpload">

@@ -1,0 +1,55 @@
+.Login {
+	background-color: #FFFFFF;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+}
+
+.Rule {
+   width: 100%; 
+   text-align: center; 
+   border-bottom: 1px solid #d4d4d4; 
+   line-height: 0.1em;
+   margin: 10px 0 20px; 
+} 
+
+.Rule span { 
+    font-size: 0.6em;
+    background:#fff; 
+    padding:0 10px; 
+}
+
+.Login .FacebookLoginBtn {
+	width: 100%;
+  margin: auto;
+}
+
+.Login .FacebookLoginBtn img{
+  width: 100%;
+}
+
+.Login .FacebookLoginBtn button{
+  border: none;
+  background-color: #FFFFFF;
+}
+
+
+.Login form {
+  width: 80%;
+  margin-left:auto;
+  margin-right: auto;
+}
+
+.Login input {
+  margin-bottom: 10px;
+}
+
+.EmailLoginButton {
+  width: 50%;
+  float: left;
+  height: 100%;
+}
+.Login .EmailSignup .EmailLoginButton button {
+    display: block;
+    margin: auto;
+}
