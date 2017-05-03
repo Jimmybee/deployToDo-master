@@ -28,6 +28,16 @@ export default class CreateNew extends React.Component {
 	    super(props);
   }
 
+ renderSpinner() {
+     return (
+          <div className="spinner">
+            <div className="bounce1"></div>
+            <div className="bounce2"></div>
+            <div className="bounce3"></div>
+          </div>
+      )
+  }
+
   componentWillMount() {
   	const state = store.getState()
      if (state.user) {
@@ -38,11 +48,15 @@ export default class CreateNew extends React.Component {
 
  renderAppventures() {
  	const appventures = this.props.appventures
+  const state = store.getState()
 
- 	if (appventures.length > 0) { 
- 	  const mappedAppventures = appventures.map(appventure => <div key={appventure.objectId}><AppventureRow appventure={appventure} config={config} edit={this.edit.bind(this)}/></div>)
-
-      return mappedAppventures;
+  if (state.user) {
+   	if (appventures.length > 0) { 
+   	    const mappedAppventures = appventures.map(appventure => <div key={appventure.objectId}><AppventureRow appventure={appventure} config={config} edit={this.edit.bind(this)}/></div>)
+        return mappedAppventures;
+      } else {
+         return (this.renderSpinner());
+      }
     }
   }
 
@@ -50,9 +64,9 @@ export default class CreateNew extends React.Component {
     return (
       <div className="col-xs-12">
 	      <div className="jumbotron">
-	        <h1> Create New </h1>
+          <p><Link className="btn buttonA" to="/editAppventure/summary">Get Started</Link></p>
+	        <h1> Make Your Own Appventure </h1>
 	        <p> Design a new appventure in your city right here and share it with others.</p>
-	        <p><Link className="btn btn-primary btn-lg" to="/editAppventure/summary">Start Here</Link></p>
 	      </div>
         {this.renderAppventures()}
         <WhyCreate />

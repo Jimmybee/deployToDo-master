@@ -59,7 +59,7 @@ export default class Nav extends React.Component {
       //     
 
              user === null ? 
-                <li><button type="button" onClick={this.open.bind(this)}>Login</button></li>
+                <li><a onClick={this.open.bind(this)}>Login</a></li>
                 : 
                <li> <Link to="profile" onClick={this.toggleUserDropDown.bind(this)}>Profile</Link> </li>
               

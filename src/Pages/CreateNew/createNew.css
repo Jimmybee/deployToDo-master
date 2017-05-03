@@ -1,3 +1,16 @@
 .jumbotron {
+	background-color: inherit;
 	margin-top: 10px;
+	position: relative;
+}
+
+
+.jumbotron .buttonA {
+	position: absolute;
+	top: 70px;
+	right: 30px;
+  	border: 2px solid #894176;
+  	background-color: inherit;
+  	color: #894176;
+  	font-size: 1em;
 }

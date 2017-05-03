@@ -56,13 +56,14 @@ export default class ModalLogin extends React.Component {
   }
 
   successfullLogin( user ) {
+    updateUser(user)
+    // this.props.history.push("/create")
     const { onHide }  = this.props;
     onHide()
-    updateUser(user)
-    this.props.history.push("/create")
   }
 
   facebookLogin() {
+
     facebookLogin(this.successfullLogin)
   }
 
