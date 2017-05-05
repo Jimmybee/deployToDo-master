@@ -75,7 +75,7 @@ class Uploader extends Component {
     	);
   }
 
-
+  //Image is uploaded to backendless 
  handleFileUpload(files) {
 
    const { handleUpload, objectId, fieldName } = this.props; //handle field change

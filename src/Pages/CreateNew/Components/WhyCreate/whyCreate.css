@@ -3,16 +3,17 @@
 }
 
 .Why-create .Image-container {
-	height: 140px;
+	height: 220px;
 }
 
 .Why-create .Image-container .Subject-image {
 	margin: auto;
 	display: block;
 	width: auto;
-	max-height: 120px;
+	max-height: 220px;
 }
 
 .Why-create p {
+	font-size: 1.2em;
 	padding: 10px;
 }

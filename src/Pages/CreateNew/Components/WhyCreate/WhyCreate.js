@@ -15,19 +15,19 @@ export default class WhyCreate extends React.Component {
       <div className="Why-create">
       	<div className="col-sm-4">
       		<div className="Image-container">
-	      		<FadeInImage className="Subject-image" src={require('../../../../images/domedBuilding.png')}/>
+	      		<FadeInImage className="Subject-image" src={require('../../../../images/familyAroundPhone.jpg')}/>
 	      	</div>
 		     <p> {localQuizzes} </p>
 	    </div>
       	<div className="col-sm-4">
 	      	 <div className="Image-container">
-	      		<FadeInImage className="Subject-image" src={require('../../../../images/GroupHang.png')}/>
+	      		<FadeInImage className="Subject-image" src={require('../../../../images/peopleStanding.jpeg')}/>
 	      	</div>
 	      	<p> {personalised}</p>
 	    </div>
       	<div className="col-sm-4">
       		<div className="Image-container">
-	      		<FadeInImage className="Subject-image" src={require('../../../../images/puzzle.png')}/>
+	      		<FadeInImage className="Subject-image" src={require('../../../../images/mapPlanning.jpeg')}/>
 	      	</div>
 		     <p> {events} </p>
 	    </div>
