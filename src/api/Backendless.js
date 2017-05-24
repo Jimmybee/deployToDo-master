@@ -12,6 +12,7 @@ Backendless.enablePromises();
 function BackendlessAppventure(args, original) {
     args = args || {};
     original = original || {};
+    this.___class = 'BackendlessAppventure'
     this.title = args.title || original.title || null;
     this.description = args.description || original.description || null;
     this.themeOne = args.themeOne || original.themeOne || null;

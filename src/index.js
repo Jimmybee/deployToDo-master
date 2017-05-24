@@ -58,15 +58,15 @@ ReactDOM.render(
 	<Provider store={store}>
     <Router>
       <div>
-        <NavLayoutRoute exact={true} path="/" component={LandingPage}/>
-        <NavLayoutRoute path="/about" component={About}/>
-        <NavLayoutRoute path="/howItWorks" component={HowItWorks}/>
-        <NavLayoutRoute path="/explore" component={Explore}/>
-        <NavLayoutRoute path="/login" component={Login}/>
-        <NavLayoutRoute path="/Create" name="Create" component={CreateNew}/>
-        <NavLayoutRoute path="/profile" name="profile" component={Profile}/>
-    	  <NavLayoutRoute path="/testPage" name="testPage" component={TestPage}/>
-        <LayoutRoute path="/editAppventure/summary" name="editAppventureSummary" component={Summary}/>
+        <NavLayoutRoute exact={true} path="/deployToDo-master/" component={LandingPage}/>
+        <NavLayoutRoute path="/deployToDo-master/about" component={About}/>
+        <NavLayoutRoute path="/deployToDo-master/howItWorks" component={HowItWorks}/>
+        <NavLayoutRoute path="/deployToDo-master/explore" component={Explore}/>
+        <NavLayoutRoute path="/deployToDo-master/login" component={Login}/>
+        <NavLayoutRoute path="/deployToDo-master/Create" name="Create" component={CreateNew}/>
+        <NavLayoutRoute path="/deployToDo-master/profile" name="profile" component={Profile}/>
+    	  <NavLayoutRoute path="/deployToDo-master/testPage" name="testPage" component={TestPage}/>
+        <LayoutRoute path="/deployToDo-master/editAppventure/summary" name="editAppventureSummary" component={Summary}/>
       </div>
     </Router>
   </Provider>,
