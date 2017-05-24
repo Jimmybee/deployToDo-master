@@ -109,6 +109,10 @@
   text-decoration: none!important;
 }
 
+.sideNavUL .selected {
+    background-color: #888888;
+}
+
 .navScroller button {
   outline: none;
   background-color: Transparent;
@@ -116,6 +120,8 @@
   background-repeat:no-repeat;
   transition-duration: 0.2s;
 }
+
+
 
 .sideNavUL button:hover {
   color: #fff;

@@ -62,6 +62,7 @@ export default class Summary extends React.Component {
 			stepNumber={step.stepNumber} 
 			editStep={this.editStep.bind(this)}
 			showStep={this.showStep.bind(this)}
+      displayedComponent={this.state.displayComponent}
 			/>
   	 	)
 
@@ -117,7 +118,7 @@ export default class Summary extends React.Component {
             <button type="button" className="closeMenu" onClick={this.toggleCollapse.bind(this)}> X </button>
 	      		<button type="button" onClick={() => this.showComponent("APPVENTURE_SUMMARY").bind(this)}><h4>Appventure Summary</h4></button>
 		        <ul className="sideNavUL">
-		        	<li className="sideNavListItem"><button className="sideNavListBtn" onClick={this.showDetails.bind(this)}>Details</button></li>
+		        	<li className="sideNavListItem selected"><button className="sideNavListBtn" onClick={this.showDetails.bind(this)}>Details</button></li>
 		        	<li className="sideNavListItem"><button className="sideNavListBtn" onClick={this.showImage.bind(this)}>Image</button></li>
 		        	<li className="sideNavListItem"><button className="sideNavListBtn" onClick={this.showLocation.bind(this)}>Location</button></li>
 		        </ul>
