@@ -1,5 +1,8 @@
 // @flow
 
+import { urlHost } from '../../commonConstants'
+
+
 import React from "react";
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -64,7 +67,7 @@ export default class CreateNew extends React.Component {
     return (
       <div className="col-xs-12">
 	      <div className="jumbotron">
-          <p><Link className="btn buttonA" to="/editAppventure/summary">Get Started</Link></p>
+          <p><Link className="btn buttonA" to={urlHost + "/editAppventure/summary"}>Get Started</Link></p>
 	        <h1> Make Your Own Appventure </h1>
 	        <p> Design a new appventure in your city right here and share it with others.</p>
 	      </div>
@@ -77,8 +80,8 @@ export default class CreateNew extends React.Component {
   edit(appventure) {
     console.log("update edit with:", appventure)
     updateReduxAppventureDetails(appventure)
-
-    this.props.history.push("/editAppventure/summary");
+    const summary = urlHost + "/editAppventure/summary"
+    this.props.history.push(summary);
   }
 
 }

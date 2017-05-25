@@ -138,7 +138,7 @@ export default class Summary extends React.Component {
              <span className="icon-bar"></span>
              <span className="icon-bar"></span>
           </button>
-	        <p><Link className="btn btn-default pull-right" to="/create">Save & Exit</Link></p>
+	        <p><Link className="btn btn-default pull-right" to="/deployToDo-master/create">Save & Exit</Link></p>
 	      </div>
 	      <div className="col-xs-12">
 	      	{component}

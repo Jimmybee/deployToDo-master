@@ -157,7 +157,7 @@ export function updateBackendlessAppventureDetails(appventure, update, successUp
 
   var backendlessAppventure = new BackendlessAppventure(update, appventure)
 
-  Backendless.Persistence.of( BackendlessAppventure ).save(backendlessAppventure).then(saved).catch(gotError);
+  Backendless.Persistence.of( "BackendlessAppventure" ).save(backendlessAppventure).then(saved).catch(gotError);
 
 }
 
@@ -170,7 +170,7 @@ export function updateBackendlessAppventureWithSteps(appventure, successUpdate){
   console.log(appventure)
   var backendlessAppventure = new BackendlessAppventureWithSteps(appventure)
 
-  Backendless.Persistence.of( BackendlessAppventure ).save(backendlessAppventure).then(saved).catch(gotError);
+  Backendless.Persistence.of( "BackendlessAppventure" ).save(backendlessAppventure).then(saved).catch(gotError);
 
 }
 
@@ -183,7 +183,7 @@ export function asyncFetch() {
   }
 
 
-  Backendless.Persistence.of( BackendlessAppventure ).find().then(fetch).catch(gotError);
+  Backendless.Persistence.of( "BackendlessAppventure" ).find().then(fetch).catch(gotError);
 }
 
 //FETCH PUBLISHED
@@ -222,7 +222,7 @@ function fetchQuery(condition, successCallback) {
   var dataQuery = new Backendless.DataQuery();
   dataQuery.condition = condition;
 
-  Backendless.Persistence.of( BackendlessAppventure ).find( dataQuery, callback);
+  Backendless.Persistence.of( "BackendlessAppventure" ).find( dataQuery, callback);
 }
 
 

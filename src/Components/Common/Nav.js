@@ -101,7 +101,7 @@ export default class Nav extends React.Component {
             <ul className="nav navbar-nav navbar-right">
               <li> <Link to="about" onClick={this.toggleCollapse.bind(this)}>About</Link> </li>
               <li> <Link 
-                to="/?filter=12&appventureId=1232132123" 
+                to="/appDownload?filter=12&appventureId=1232132123" 
                 onClick={this.toggleCollapse.bind(this)}>
                 The App
                 </Link> </li>
