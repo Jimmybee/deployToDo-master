@@ -122,7 +122,6 @@ export default class Summary extends React.Component {
 		        	<li className="sideNavListItem"><button className="sideNavListBtn" onClick={this.showImage.bind(this)}>Image</button></li>
 		        	<li className="sideNavListItem"><button className="sideNavListBtn" onClick={this.showLocation.bind(this)}>Location</button></li>
 		        </ul>
-		        <h4>Steps</h4>
 		        {this.renderStepMenuItems()}
             <ul className="sideNavUL">
               <li className="sideNavListItem"><button type="button" className="sideNavListItem" onClick={this.addStep.bind(this)}> Add Step </button></li>

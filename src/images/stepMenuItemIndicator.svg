@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>stepMenuItemIndicator</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="5.18198052" y="5.68198052" width="8" height="1"></rect>
+        <rect id="path-2" x="5.18198052" y="10.6819805" width="8" height="1"></rect>
+    </defs>
+    <g id="Website" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Create" transform="translate(-21.000000, -254.000000)">
+            <g id="SubMenu" transform="translate(21.000000, 211.000000)">
+                <g id="stepMenuItemIndicator" transform="translate(0.000000, 43.000000)">
+                    <rect id="Rectangle-2" fill="#FFFFFF" x="0" y="0" width="18" height="18"></rect>
+                    <g id="Rectangle-5" transform="translate(9.181981, 6.181981) rotate(45.000000) translate(-9.181981, -6.181981) ">
+                        <use fill="#D8D8D8" fill-rule="evenodd" xlink:href="#path-1"></use>
+                        <rect stroke="#894176" stroke-width="1" x="5.68198052" y="6.18198052" width="7" height="1"></rect>
+                    </g>
+                    <g id="Rectangle-5" transform="translate(9.181981, 11.181981) scale(1, -1) rotate(45.000000) translate(-9.181981, -11.181981) ">
+                        <use fill="#D8D8D8" fill-rule="evenodd" xlink:href="#path-2"></use>
+                        <rect stroke="#894176" stroke-width="1" x="5.68198052" y="11.1819805" width="7" height="1"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

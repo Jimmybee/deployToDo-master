@@ -107,13 +107,19 @@
   text-decoration: none!important;
 }
 
-.sideNavUL .selected {
+.sideNavUL {
+  background-color: #888888;
   padding: 0px;
 }
 
-.sideNavStep .selected {
+.sideNavUL .selected {
     background-color: #894176;
     color: #fff;
+}
+
+.sideNavListItem {
+    background-color: #fff;
+    color: #888888;
 }
 
 /*.sideNavUL {
@@ -133,10 +139,12 @@
   transition-duration: 0.2s;
 }
 
-
-
-.sideNavUL button:hover {
+.sideNavListItem .selected button:hover {
   color: #fff;
+}
+
+.sideNavListItem button:hover {
+  color: #000;
 }
 
 
