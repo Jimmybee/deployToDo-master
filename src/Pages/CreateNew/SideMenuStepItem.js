@@ -2,8 +2,6 @@
 import React from "react";
 import MenuItem from "./MenuItem.js"
  
-
-
 export default class SideMenuStepItem extends React.Component {
    constructor(props) {
     super(props);
