@@ -20,6 +20,8 @@ export default class SideMenuStepItem extends React.Component {
      }
 
     const expanded = (expandedStep === stepNumber) ? true : false
+    var classNames = (expandedStep === stepNumber) ? "sideNavStep selected" : "sideNavStep"
+
 
     const stepItems = [{component: "STEP_LOCATION", title: "Location"}, 
                             {component:"STEP_CLUES", title: "Clues"}, 
@@ -33,7 +35,7 @@ export default class SideMenuStepItem extends React.Component {
 
 
     return(
-      <li className="sideNavListItem"><button className="sideNavListBtn" onClick={this.editStep.bind(this)}>{stepTitle(stepNumber)}</button>
+      <li className={classNames}><button className="sideNavListBtn" onClick={this.editStep.bind(this)}>{stepTitle(stepNumber)}</button>
          <Panel collapsible expanded={expanded}>
            <ul className="sideNavUL">
               {stepMenuItems}  
@@ -71,7 +73,7 @@ class Panel extends React.Component {
 
     return(
       <div>
-        {expanded === true ? <label> {children} </label> : null}
+        {expanded === true ? children : null}
       </div>
     );
   }

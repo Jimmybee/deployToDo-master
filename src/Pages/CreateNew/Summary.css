@@ -21,10 +21,10 @@
     overflow-x: hidden !important;
     overflow-y: scroll !important;
     -webkit-overflow-scrolling: touch !important;
-    background-color: #894176;
+    background-color: #fff;
     color: rgba(255, 255, 255, 0.65);
     z-index: 100;
-    box-shadow: 3px 0px 5px #888888;
+    box-shadow: 3px 0px 5px #fff;
 }
 
 .navMenuWrapper .closeMenu {
@@ -86,7 +86,6 @@
 
 
 .navScroller {
-  margin-left: 20px;
   margin-top: 50px;
   margin-bottom: 50px;
 }
@@ -105,19 +104,32 @@
   padding-top: 10px;
   padding-bottom: 10px;
   list-style-type: none;
-  margin-left: 10px;
   text-decoration: none!important;
 }
 
 .sideNavUL .selected {
-    background-color: #888888;
+  padding: 0px;
 }
+
+.sideNavStep .selected {
+    background-color: #894176;
+    color: #fff;
+}
+
+/*.sideNavUL {
+    background-color: #894176;
+}
+
+.sideNavUL .selected {
+    background-color: #888888;
+}*/
 
 .navScroller button {
   outline: none;
   background-color: Transparent;
   border: none;
   background-repeat:no-repeat;
+  padding-left: 10px;
   transition-duration: 0.2s;
 }
 

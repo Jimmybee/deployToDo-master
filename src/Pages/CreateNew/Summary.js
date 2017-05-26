@@ -108,7 +108,7 @@ export default class Summary extends React.Component {
 	}
 
 	const component = getComponent(displayComponent)
-
+  //choose selected className as selected if equal no any of the first 4 components.
 
     return (
     <div className="fluid-container">
