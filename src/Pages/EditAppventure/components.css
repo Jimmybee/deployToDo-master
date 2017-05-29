@@ -1,0 +1,112 @@
+
+.summaryComponent {
+	padding: 0px!important;
+}
+
+.summaryComponent select {
+	margin: 10px;
+	height:40px;
+    line-height:40px;
+	padding: 10px;
+	min-width: 30%;
+	float: right;
+	clear: right;
+	/*height: 1.5em;*/
+}
+
+.Save-Continue {
+	margin-top: 10px;
+	padding: 10px 20px 10px 20px;
+	background-color: #894176;
+	color: #fff;
+}
+
+.offsetTop50 {
+	position: relative;
+	top: 50px
+}
+
+.details-form {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.details-form textarea {
+	min-height: 100px;
+}
+
+hr {
+	border-color: #fff;
+}
+
+.AnswersForm {
+
+}
+
+.AnswersForm .selected {
+	background-color: green;
+	color: white;
+}
+
+.AnswersForm .unSelected {
+	color: #fff;
+	background-color: #888888;
+}
+
+.AnswersForm ul, .Hints ul {
+	padding: 0px;
+ 	list-style-type: none;
+    text-decoration: none!important;
+}
+
+.AnswersForm .Answers,  .AnswersForm .CheckIn {
+	margin-top: 30px;
+}
+
+
+.AnswersForm .Answers input, .Hints .FieldArray input {
+	width: 75%;
+	height: 3em;
+}
+
+.AnswersForm select, .Hints select {
+	height:40px;
+    line-height:40px;
+	padding: 10px;
+	min-width: 20%;
+	margin-left: 20px;
+}
+
+.AnswersForm .Answers label, .Hints .FieldArray label {
+	width: 20%;
+}
+
+.AnswersForm .Answers .addField, .Hints .FieldArray .addField {
+	width: 20%;
+	margin: auto;
+	display: block;
+}
+
+.InLineBlock {
+	display: inline-block;
+	width: 80%;
+	margin-bottom: 10px;
+}
+
+.AnswersForm .Answers .deleteField, .Hints .FieldArray .deleteField {
+
+}
+
+.Hints .SelectField {
+		margin-bottom: 10px;
+}
+
+.Hints .SelectField label {
+	width: 100px;
+}
+
+.AnswersForm .CheckIn label {
+	padding-left: 5px;
+}

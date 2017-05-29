@@ -12,7 +12,9 @@ export default class StepAnswer extends Component {
   }
 
   renderAnswersField(){
-    const { change } = this.props;
+
+    const { change, location } = this.props;
+    console.log(location)
 
     const proximities = ["Any", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"]
     const renderProximitySelector = ({ input, meta: { touched, error } }) => (
@@ -20,50 +22,51 @@ export default class StepAnswer extends Component {
         <select {...input}>
           {proximities.map(val => <option value={val} key={val}>{val}</option>)}
         </select>
+        <label> meters </label>
         {touched && error && <span>{error}</span>}
       </div>
     )
 
     const renderField = ({ input, label, type, meta: { touched, error } }) => (
-      <div>
+      <div className="InLineBlock">
         <label>{label +":"}</label>
          <input {...input} type={type} placeholder={label}/>
       </div>
     )
 
     const renderAnswers = ({ fields, meta: { touched, error } }) => (
-      <ul>
-        <li>
-          <button type="button" onClick={() => fields.push()}>Add Answer</button>
-        </li>
-        {fields.map((anwser, index) =>
-          <li key={index}>
-            <button
-              type="button"
-              title="Remove Hobby"
-              onClick={() => fields.remove(index)}/>
-            <Field
-              name={anwser + "answer"}
-              type="text"
-              component={renderField}
-              label={`Answer #${index + 1}`}/>
-          </li>
-        )}
-        {error && <li className="error">{error}</li>}
-      </ul>
+      <div>
+        <ul>
+          {fields.map((anwser, index) =>
+            <li key={index}>
+              <Field
+                name={anwser + "answer"}
+                type="text"
+                component={renderField}
+                label={`Answer #${index + 1}`}/>
+              <button
+                className="deleteField"
+                type="button"
+                title="Remove Answer"
+                onClick={() => fields.remove(index)}><i className="fa fa-times" aria-hidden="true"></i></button>
+            </li>
+          )}
+          {error && <li className="error">{error}</li>}
+        </ul>
+         <button className="addField" type="button" onClick={() => fields.push()}>Add Answer</button>
+      </div>
     )
 
     if (this.props.checkIn === true) {
        return (
-        <div>
+        <div className="CheckIn">
           <label> Proximity: </label>
           <Field name="checkInProximity" component={renderProximitySelector}/> 
-          <label> meters </label>
         </div>
        );
     } else {
       return (
-        <div>
+        <div className="Answers">
           <label>Accepted Answers</label>
           <FieldArray name="answers" component={renderAnswers}/>
         </div>
@@ -72,25 +75,31 @@ export default class StepAnswer extends Component {
   }
   
   render() {
-     const renderButton = ({ input, meta: { touched, error } }) => (
-        <button onClick={() => input.onChange(true)}> Check In </button>
+     const {checkIn } = this.props 
+     const checkInClass = checkIn === true ? "selected" : "unSelected"
+     const answersClass = checkIn === true ? "unSelected" : "selected"
+
+     const renderCheckIn = ({ input, meta: { touched, error } }) => (
+        <button className={checkInClass} onClick={() => input.onChange(true)}> Check In </button>
       )
 
      const renderWrittenAnswer = ({ input, meta: { touched, error } }) => (
-        <button onClick={() => input.onChange(false)}> Written Answer </button>
+        <button className={answersClass} onClick={() => input.onChange(false)}> Written Answer </button>
     )
      
-      const { handleSubmit } = this.props;
+    const { handleSubmit } = this.props;
 
 
     return(
       
       <div>
-        <form onSubmit={handleSubmit}>
-          <Field name="setup[checkIn]" component={renderButton}/>
+        <h4>Set Answers or Check-In for this Step</h4>
+        <hr/>
+        <form className="AnswersForm" onSubmit={handleSubmit}>
+          <Field name="setup[checkIn]" component={renderCheckIn}/>
           <Field name="setup[checkIn]" component={renderWrittenAnswer}/>
           {this.renderAnswersField()}
-          <button type="submit">Submit</button>  
+          <button className="Save-Continue" type="submit">Save & Continue</button>  
         </form>
       </div>
     );
@@ -118,9 +127,11 @@ const selector = formValueSelector('stepAnswer') // <-- same as form name
 StepAnswer = connect(
   state => {
     const checkIn = selector(state, 'setup[checkIn]')
+    const location = selector(state, 'location')
 
     return {
       checkIn,
+      location
     }
   }
 )(StepAnswer)

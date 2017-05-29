@@ -45,12 +45,12 @@ function BackendlessStep(args, original) {
     var setup = new BackendlessSetup(args.setup, original.setup)
     this.___class = 'BackendlessStep'
     var answers = args.answers || original.answers || null;
-    if (typeof answers !== null) {
+    if (answers != null) {
         var backendlessAnswers = answers.map(answer => new BackendlessAnswers(answer))
         this.answers = backendlessAnswers;
     }
     var hints = args.hints || original.hints || null;
-    if (typeof hints !== null) {
+    if (hints != null) {
         var backendlessHints = hints.map(answer => new BackendlessAnswers(answer))
         this.hints = backendlessHints;
     }
@@ -173,7 +173,6 @@ export function updateBackendlessAppventureWithSteps(appventure, successUpdate){
   Backendless.Persistence.of( "BackendlessAppventure" ).save(backendlessAppventure).then(saved).catch(gotError);
 
 }
-
 
 //FETCH TO EXPLORE - DEPRECIATED
 export function asyncFetch() {

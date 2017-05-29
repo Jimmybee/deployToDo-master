@@ -8,6 +8,12 @@ import AutoCompleteMap from '../../Components/Common/AutoCompleteMap.js';
 import { createGeoPoint } from '../../api/Backendless.js'
 
 export default class StepLocation extends Component {
+  switchComponent(fieldName, switchName, handleEnabled) {
+      return ({ input, meta: { touched, error } }) => (
+          <Switch fieldName={fieldName} handleEnabled={handleEnabled} input={input} switchName={switchName} className="pull-right"/>
+       )
+  }
+
   constructor(props) {
     super(props);
   }
@@ -18,8 +24,6 @@ export default class StepLocation extends Component {
 
       const renderLocation = ({ input, meta: { touched, error } }) => (
         <div>
-          <label>{input.value.latitude}</label>
-          <label>{input.value.longitude}</label>
         </div>
       )
 
@@ -35,23 +39,33 @@ export default class StepLocation extends Component {
       }
     }
 
+  renderLocationSetupBttns() {
+          const { isLocation } = this.props;
+    if (isLocation === true) {
+        return (
+          <div>
+           <Field name="setup[compassShown]" component={this.switchComponent("setup[compassShown]", "Show Compass:", this.handleEnabled.bind(this))} className="form-control"/>
+           <Field name="setup[distanceShown]" component={this.switchComponent("setup[distanceShown]", "Show Distance:", this.handleEnabled.bind(this))} className="form-control"/>
+          </div>
+        );
+      } else {
+        return null;
+      }
+  }
+
   render() {
 
     const { handleSubmit } = this.props;
 
-    function switchComponent(fieldName, switchName, handleEnabled) {
-      return ({ input, meta: { touched, error } }) => (
-          <Switch fieldName={fieldName} handleEnabled={handleEnabled} input={input} switchName={switchName} className="pull-right"/>
-       )
-    }
-
     return(
       <div>
-         <form onSubmit={handleSubmit}>
-              <button type="submit">Submit</button>  
-         </form>
-          <Field name="setup[isLocation]" component={switchComponent("setup[isLocation]", "Enable Location:", this.handleEnabled.bind(this))} className="form-control"/>
+          <h4>Add a location for this step to enable location options</h4>
+          <Field name="setup[isLocation]" component={this.switchComponent("setup[isLocation]", "Enable Location:", this.handleEnabled.bind(this))} className="form-control"/>
           {this.renderMap()}
+          <form className="offsetTop50" onSubmit={handleSubmit}>
+              {this.renderLocationSetupBttns()}
+              <button className="Save-Continue" type="submit">Save & Continue</button>  
+         </form>
       </div>
     );
   }

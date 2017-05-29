@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import store from '../../store/store';
 import { imageUrl } from '../../api/Config';
 import { setEditStep, addNewStep } from '../../Actions/Actions.js';
-import { updateBackendlessAppventureDetails, updateBackendlessAppventureWithSteps } from '../../api/Backendless.js';
+import { updateBackendlessAppventureDetails, updateBackendlessAppventureWithSteps, updateSingleStep } from '../../api/Backendless.js';
 
 // import EditAppventureDetails from "./EditAppventureDetails";
 import AppventureSummary from "../EditAppventure/AppventureSummary";
@@ -22,6 +22,7 @@ import StepHints from "../EditStep/StepHints";
 import StepLocation from "../EditStep/StepLocation";
 
 import SideMenuStepItem from "./SideMenuStepItem.js"
+import MenuItem from "./MenuItem.js"
 
 
 import './Summary.css';
@@ -38,7 +39,7 @@ export default class Summary extends React.Component {
 	    super(props);
 
 	    this.state = {
-	      displayComponent: "DETAILS",
+	      displayComponent: "IMAGE",
 	      stepOpen: 0,
         collapsed: true,
 	    };
@@ -67,7 +68,7 @@ export default class Summary extends React.Component {
   	 	)
 
   	 return (
-	    <ul className="sideNavUL">
+	    <ul className="sideNavUL transition">
 	      {sortedStepsListItems}
 	    </ul>
   	 );
@@ -80,7 +81,6 @@ export default class Summary extends React.Component {
   const submitStep = this.submitStep.bind(this);
   const submit = this.submit.bind(this);
   const sideOpen = this.state.collapsed ? "" : "open";
-
   
   const getComponent = function(displayComponent) {   
   	switch (displayComponent) {
@@ -108,20 +108,34 @@ export default class Summary extends React.Component {
 	}
 
 	const component = getComponent(displayComponent)
+  const appventurePreviewItem = {component: "APPVENTURE_SUMMARY", title: "Appventure"}
   //choose selected className as selected if equal no any of the first 4 components.
+  const appventureSubItems = [{component: "IMAGE", title: "Image"}, 
+                            {component:"DETAILS", title: "Details"}, 
+                            {component:"LOCATION", title: "Location"}]
+    const appventureSubMenuClassName = (this.state.stepOpen === 0) ? "" : "hidePanel"
+    const appventureTopMenuClassName = (this.state.stepOpen === 0) ? "selected" : ""
+
+    const appventureSubMenuItems = appventureSubItems.map(item =>
+              <MenuItem key={item.component} item={item} componentDisplayed={displayComponent} showStep={this.showStep.bind(this)}/>
+    )
+
 
     return (
-    <div className="fluid-container">
-      <div>
+    <div className="row">
+      <div className="col-sm-3">
 	      <div className={"navMenuWrapper transition " + sideOpen}>
 	      	<div className="navScroller">
             <button type="button" className="closeMenu" onClick={this.toggleCollapse.bind(this)}> X </button>
-	      		<button type="button" onClick={() => this.showComponent("APPVENTURE_SUMMARY").bind(this)}><h4>Appventure Summary</h4></button>
-		        <ul className="sideNavUL">
-		        	<li className="sideNavListItem selected"><button className="sideNavListBtn" onClick={this.showDetails.bind(this)}>Details</button></li>
-		        	<li className="sideNavListItem"><button className="sideNavListBtn" onClick={this.showImage.bind(this)}>Image</button></li>
-		        	<li className="sideNavListItem"><button className="sideNavListBtn" onClick={this.showLocation.bind(this)}>Location</button></li>
-		        </ul>
+            <ul className="sideNavUL">
+                <li className={appventureTopMenuClassName}>
+                  <button className={"sideNavListBtn"} onClick={() => this.showStep("APPVENTURE_SUMMARY")}>Appventure</button>
+               </li>
+            <ul className={"sideNavSubUl " + appventureSubMenuClassName}>
+                <div className="verticalLine"/>
+                {appventureSubMenuItems}
+              </ul>
+            </ul>
 		        {this.renderStepMenuItems()}
             <ul className="sideNavUL">
               <li className="sideNavListItem"><button type="button" className="sideNavListItem" onClick={this.addStep.bind(this)}> Add Step </button></li>
@@ -129,7 +143,7 @@ export default class Summary extends React.Component {
 	      	</div>
 	      </div>
       </div>
-      <div className="col-xs-12 col-sm-9 col-sm-offset-3 componentContainer transition">
+      <div className="col-xs-12 col-sm-9 componentContainer transition">
 	      <div className="summaryHeader col-xs-12">
           <button type="button" className="toggle" onClick={this.toggleCollapse.bind(this)} >
              <span className="sr-only">Toggle navigation</span>
@@ -137,7 +151,6 @@ export default class Summary extends React.Component {
              <span className="icon-bar"></span>
              <span className="icon-bar"></span>
           </button>
-	        <p><Link className="btn btn-default pull-right" to="/deployToDo-master/create">Save & Exit</Link></p>
 	      </div>
 	      <div className="col-xs-12">
 	      	{component}
@@ -180,6 +193,13 @@ export default class Summary extends React.Component {
   }
 
   showStep(component) {
+    switch (component) {
+      case 'APPVENTURE_SUMMARY':
+       this.setState({stepOpen: 0});
+      default:
+
+    }
+
   	this.setState({
   		displayComponent: component,
   	})
@@ -207,6 +227,9 @@ export default class Summary extends React.Component {
   submitStep(values) {
     const state =  store.getState();
     var appventure = {};
+    console.log(values)
+    // updateSingleStep()
+
     appventure.objectId = state.editAppventure.objectId;
     appventure.steps = [values]
     updateBackendlessAppventureWithSteps(appventure)
@@ -214,6 +237,9 @@ export default class Summary extends React.Component {
 
 
 }
+
+
+//          <p><Link className="btn btn-default pull-right" to="/create">Save & Exit</Link></p>
 
 
 

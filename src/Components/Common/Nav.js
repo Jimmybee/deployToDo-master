@@ -94,9 +94,7 @@ export default class Nav extends React.Component {
               <span className="icon-bar"></span>
             </button>
              <p><Link className="nav navbar-left" to="/"><img src={require('./AppLogo.png')} alt="boohoo" /></Link></p>
-
           </div>
-
           <div className={"navbar-collapse " + navClass} id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav navbar-right">
               <li> <Link to="about" onClick={this.toggleCollapse.bind(this)}>About</Link> </li>
@@ -107,7 +105,7 @@ export default class Nav extends React.Component {
                 </Link> </li>
               <li> <Link to="howItWorks" onClick={this.toggleCollapse.bind(this)}>How It Works</Link> </li>
               <li> <Link to="explore" onClick={this.toggleCollapse.bind(this)}>Find Appventures</Link> </li>
-              <li> <Link to="create" onClick={this.toggleCollapse.bind(this)}>Create Appventures</Link> </li>
+              <li> <Link to="../create" onClick={this.toggleCollapse.bind(this)}>Create Appventures</Link> </li>
               {this.renderUserDropDown()}
             </ul>
           </div>

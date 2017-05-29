@@ -21,7 +21,8 @@ export default class StepAnswer extends Component {
 
     const penalties = ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"]
     const renderHintPenalty = ({ input, meta: { touched, error } }) => (
-      <div>
+      <div className="SelectField">
+        <label>Hint penalty(seconds):</label>
         <select {...input}>
           {penalties.map(val => <option value={val} key={val}>{val}</option>)}
         </select>
@@ -31,7 +32,8 @@ export default class StepAnswer extends Component {
 
     const freeHintOptions = ["All", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
     const renderFreeHints = ({ input, meta: { touched, error } }) => (
-      <div>
+      <div className="SelectField">
+        <label>Free hints:</label> 
         <select {...input}>
           {freeHintOptions.map(val => <option value={val} key={val}>{val}</option>)}
         </select>
@@ -40,42 +42,47 @@ export default class StepAnswer extends Component {
     )
 
     const renderField = ({ input, label, type, meta: { touched, error } }) => (
-      <div>
+      <div className="InLineBlock">
         <label>{label +":"}</label>
          <input {...input} type={type} placeholder={label}/>
       </div>
     )
 
     const renderHintList = ({ fields, meta: { touched, error } }) => (
+      <div className="FieldArray">
       <ul>
-        <li>
-          <button type="button" onClick={() => fields.push()}>Add Hint</button>
-        </li>
         {fields.map((field, index) =>
           <li key={index}>
-            <button
-              type="button"
-              title="Remove Hobby"
-              onClick={() => fields.remove(index)}/>
             <Field
               name={field + "hint"}
               type="text"
               component={renderField}
               label={`Hint #${index + 1}`}/>
+            <button
+                className="deleteField"
+                type="button"
+                title="Remove Hint"
+                onClick={() => fields.remove(index)}><i className="fa fa-times" aria-hidden="true"></i></button>
           </li>
         )}
         {error && <li className="error">{error}</li>}
       </ul>
+      <button className="addField" type="button" onClick={() => fields.push()}>Add Hint</button>
+      </div>
     )
 
     return(
       
-      <div>
+      <div className="Hints">
+       <h4>Set hints for this step</h4>
+        <hr/>
         <form onSubmit={handleSubmit}>
-          <Field name="hintPenalty" component={renderHintPenalty}/> 
-          <Field name="freeHints" component={renderFreeHints}/> 
+          <div>
+             <Field name="hintPenalty" component={renderHintPenalty}/>
+             <Field name="freeHints" component={renderFreeHints}/> 
+          </div>
           <FieldArray name="hints" component={renderHintList}/>
-          <button type="submit">Submit</button>  
+          <button className="Save-Continue" type="submit">Save & Continue</button>  
         </form>
       </div>
     );

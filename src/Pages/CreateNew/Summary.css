@@ -5,6 +5,16 @@
     transition: all 0.25s ease;
 }
 
+.displayPanel {
+  /*display: none;*/
+}
+
+.hidePanel {
+  display: none!important;
+  height: 0px;
+  overflow: hidden!important;
+}
+
 .sidebar{
   width: 100%;
   height: 100%;
@@ -14,9 +24,9 @@
 
 .navMenuWrapper {
     font-family: "Segoe UI",Arial,sans-serif;
-    height: 100% !important;
+    height: 90vh !important;
     width: 0%;
-    position: fixed !important;
+    /*position: fixed !important;*/
     left: 0px;
     overflow-x: hidden !important;
     overflow-y: scroll !important;
@@ -28,13 +38,14 @@
 }
 
 .navMenuWrapper .closeMenu {
+  position: absolute;
   display: block;
   margin-bottom: 20px;
   background-color: transparent;
   background-image: none;
   border: 1px solid transparent;
   color: white;
-  min-width: 100px;
+  /*min-width: 100px;*/
   
 }
 
@@ -45,7 +56,8 @@
   }
 
   .navMenuWrapper {
-    width: 300px;
+    width: 100%;
+    /*width: 300px;*/
   }
 }
 
@@ -86,40 +98,125 @@
 
 
 .navScroller {
-  margin-top: 50px;
+  /*margin-top: 50px;*/
   margin-bottom: 50px;
 }
 
-.navScroller h4 {
-  text-align: left;
-  color: #fff;
-}
+  .navScroller h4 {
+    text-align: left;
+    color: #fff;
+  }
 
-.sideNavUL {
-  padding: 0px;
+.sideNavUL, .sideNavSubUl{
+    background-color: #888888;
+    padding: 0px;
+    position: relative;
+    margin-bottom: 0px!important;
 }
+  .sideNavUL img {
+    display: none;
+  }
 
-.sideNavUL li {
+  .sideNavUL li {
+    font-size: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    list-style-type: none;
+    text-decoration: none!important;
+    background-color: #4A4A4A;
+    color: #fff;
+  }
+
+ /* .sideNavUL i {
+    width: 10%;
+    height: 80%;
+    color: #4A4A4A;
+  }*/
+
+  .sideNavUL button {
+    text-align: left;
+    width: 90%;
+    height: 100%;
+  }
+
+ .sideNavUL li:hover {
+   background-color: #894176;
+   cursor: pointer;
+  }
+
+  .sideNavUL .selected {
+      background-color: #894176;
+      color: #fff;
+/*      padding-bottom: 0px;
+*/  }
+
+/*  .sideNavUL ul:hover {
+     background-color: #894176;
+     opacity: 0.8;
+     cursor: pointer;
+  }*/
+
+
+/*. ul sideNavUl
+      li sideNavStep 
+        ul sideNavSubUl
+          li 
+*/
+
+.sideNavSubUl li {
   font-size: 16px;
   padding-top: 10px;
   padding-bottom: 10px;
   list-style-type: none;
   text-decoration: none!important;
+  background-color: #fff;
+  color: #4A4A4A;
+  position: relative;
 }
 
-.sideNavUL {
-  background-color: #888888;
-  padding: 0px;
+.sideNavSubUl li:hover {
+   background-color: #f8f8f8;
+   cursor: pointer;
 }
 
-.sideNavUL .selected {
+.sideNavSubUl .selected:hover {
+  color: #894176!important;
+  background-color: #fff!important;
+  opacity: 1;
+}
+
+.sideNavSubUl .selected {
+      color: #894176;
+      background-color: #fff;
+  }
+
+.sideNavSubUl .selected img {
+    display: block;
+    position: absolute;
+    top: 12px;
+    left: 5px;
+    z-index: 100;
+}
+
+.sideNavSubUl .verticalLine {
+    display: block;
+    position: absolute;
+    width: 2px;
+    height: 130px;
+    top: 6px;
+    left: 12px;
     background-color: #894176;
-    color: #fff;
+    z-index: 10;
 }
 
-.sideNavListItem {
-    background-color: #fff;
-    color: #888888;
+.sideNavSubUl .verticalLine-large {
+    height: 220px!important;
+}
+
+
+
+.sideNavSubUl button {
+  padding-left: 30px!important;
 }
 
 /*.sideNavUL {
@@ -139,13 +236,7 @@
   transition-duration: 0.2s;
 }
 
-.sideNavListItem .selected button:hover {
-  color: #fff;
-}
 
-.sideNavListItem button:hover {
-  color: #000;
-}
 
 
 

@@ -1,0 +1,27 @@
+.AppventureLocation {
+	
+}
+
+.Spacer {
+	height: 60px;
+}
+
+
+.AppventureLocation .MapContainer {
+	position: relative;
+	height: 60px;
+}
+
+/*.AppventureLocation form {
+	float: left;
+	width: 50%;
+}*/
+
+/*.AppventureLocation form input {
+	width: 80%;
+}*/
+
+/*.AppventureLocation .MapContainer {
+	float: left;
+	width: 50%;
+}*/

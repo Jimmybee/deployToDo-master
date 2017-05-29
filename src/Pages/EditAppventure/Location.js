@@ -1,3 +1,6 @@
+import './location.css';
+
+
 import React, { Component } from 'react';
 import { Field, reduxForm, change, reset } from 'redux-form';
 import { connect } from 'react-redux'
@@ -9,7 +12,8 @@ import { updateReduxAppventureDetails } from '../../Actions/Actions';
 
 class Location extends Component {
 
-
+//         <label>{input.value.latitude}</label>
+        // <label>{input.value.longitude}</label>
 
   render() {
 
@@ -17,22 +21,27 @@ class Location extends Component {
 
      const renderDiv = ({ input, meta: { touched, error } }) => (
       <div>
-        <label>{input.value.latitude}</label>
-        <label>{input.value.longitude}</label>
       </div>
     )
 
     return (
-      <div>
-        <form onSubmit={handleSubmit} className="form-horizontal summaryComponent">
+      <div className="AppventureLocation fluid-container">
+        <div className="row">
+        <h1>Setup location for this Step</h1>
+        <form onSubmit={handleSubmit} className="form-horizontal summaryComponent col-xs-10">
           <div className="form-group">
             <label htmlFor="startingLocationName">Location Name</label>
             <Field name="startingLocationName" component="input" type="text" placeholder="Location Name" className="form-control"/>
             <Field name="location" component={renderDiv} className="form-control"/>
           </div>
-           <button type="submit">Submit</button>
+          <button className="Save-Continue offsetTop50" type="submit">Save & Continue</button>
         </form>
-        <AutoCompleteMap placeFound={this.placeFound.bind(this)} initialLocation={appventure.location}/>
+        <div className="Spacer">
+        </div>
+        <div className="MapContainer">
+          <AutoCompleteMap placeFound={this.placeFound.bind(this)} initialLocation={appventure.location}/>
+        </div>
+        </div>
       </div>
     );
   }
