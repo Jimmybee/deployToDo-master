@@ -11,7 +11,11 @@ export class Container extends React.Component {
     const { placeFound, initialLocation } = this.props
     return (
       <div>
-        <MapWrapper google={this.props.google} placeFound={placeFound} initialLocation={initialLocation}/>
+        <MapWrapper 
+          style={{width: '1170px', height: '400px', position: 'relative', padding: '20px'}}
+          google={this.props.google} 
+          placeFound={placeFound} 
+          initialLocation={initialLocation}/>
       </div>
     )
   }
@@ -145,7 +149,7 @@ const MapWrapper = React.createClass({
       <Map google={google}
           className=""
           visible={false}
-              style={{width: '50%', height: '400px', position: 'relative', padding: '20px'}}
+          style={{width: '50%', height: '400px', position: 'relative', padding: '20px'}}
           placeFound={placeFound}>
             <Contents {...props} />
       </Map>

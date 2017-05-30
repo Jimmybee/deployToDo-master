@@ -1,0 +1,16 @@
+.HelpBox {
+	background-color: #f8f8f8;
+}
+
+.HelpBox .Aligner {
+	flex-direction: column;
+	display: flex;
+	align-items: center;
+  	justify-content: center;
+}
+
+/*
+.HelpBox img {
+	width: 50px;
+	height: 100px;
+}*/

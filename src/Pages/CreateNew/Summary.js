@@ -24,6 +24,7 @@ import StepLocation from "../EditStep/StepLocation";
 import SideMenuStepItem from "./SideMenuStepItem.js"
 import MenuItem from "./MenuItem.js"
 
+import HelpBox from "../../Components/Common/HelpBox/HelpBox.js"
 
 import './Summary.css';
 
@@ -122,8 +123,9 @@ export default class Summary extends React.Component {
 
 
     return (
+      <div>
     <div className="row">
-      <div className="col-sm-3">
+      <div className="col-sm-3 xsRemove">
 	      <div className={"navMenuWrapper transition " + sideOpen}>
 	      	<div className="navScroller">
             <button type="button" className="closeMenu" onClick={this.toggleCollapse.bind(this)}> X </button>
@@ -156,6 +158,10 @@ export default class Summary extends React.Component {
 	      	{component}
 	      </div> 
       </div>
+    </div>
+    <div className="row">
+      <HelpBox text="This is aosme fogoijsa m snldks"/>
+    </div>
     </div>
     );
   }

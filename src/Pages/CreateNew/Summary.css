@@ -49,6 +49,16 @@
   
 }
 
+@media (max-width: 768px) {
+  .xsRemove {
+    width: 200px;
+  }
+
+  .navMenuWrapper {
+    position: fixed !important;
+  }
+}
+
 @media (min-width: 768px) {
   .navMenuWrapper .closeMenu, 
   .summaryHeader .toggle  {
