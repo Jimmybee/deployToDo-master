@@ -15,6 +15,8 @@ export default class StepAnswer extends Component {
 
     return(
       <div>
+       <h4>Setup completion for this step</h4>
+        <hr/>
           <form>
             <Field name="completionText" component="textarea" placeholder="this is the text that people will see when they complete the step" className="form-control"/>
           </form>

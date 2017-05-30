@@ -2,8 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import {Map, GoogleApiWrapper, Marker} from 'google-maps-react'
-import styles from './autocomplete.css'
-
+import './autocomplete.css';
 
 export class Container extends React.Component {
 
@@ -22,7 +21,6 @@ export default GoogleApiWrapper({
   apiKey: "AIzaSyD9SZOqhWyFHdJg1vtyJhLDY5YJUe_dl_0",
   version: "3"
 })(Container)
-
 
 const Contents = React.createClass({
   getInitialState() {
@@ -102,40 +100,30 @@ const Contents = React.createClass({
     }
   },
 
+            // <div>Lat: {position && position.lat()}</div>
+            // <div>Lng: {position && position.lng()}</div>
   render: function() {
     const props = this.props;
     const {position} = this.state;
 
 
     return (
-      <div className=".flexWrapper">
-        <div className={styles.left}>
+      <div className="flexWrapper">
+        <div className="left">
           <form onSubmit={this.onSubmit}>
+            <img className="flexWrapper" src={require('../../images/SearchText.svg')}/>
             <input
               ref='autocomplete'
               type="text"
               placeholder="Enter a location" />
-            <input
-              className={styles.button}
-              type='submit'
-              value='Find' />
           </form>
-          <div>
-            <div>Lat: {position && position.lat()}</div>
-            <div>Lng: {position && position.lng()}</div>
-          </div>
         </div>
-        <div className={styles.right}>
-
+        <div className="right">
           <Map {...props}
               ref='map'
               onClick={this.mapClicked}
               onReady={this.onReady}
-              containerStyle={{
-                position: 'relative',
-                height: '50vh',
-                width: '50vh'
-              }}
+              style={{width: '50%', height: '400px', position: 'relative', padding: '20px'}}
               center={this.state.position}
               // centerAroundCurrentLocation={this.props.appventure.location === null}
               >
@@ -152,13 +140,16 @@ const MapWrapper = React.createClass({
     const props = this.props;
     const {google, placeFound} = this.props;
 
-    return ( 
+    return (
+      <div>
       <Map google={google}
-          className={'map'}
+          className=""
           visible={false}
+              style={{width: '50%', height: '400px', position: 'relative', padding: '20px'}}
           placeFound={placeFound}>
             <Contents {...props} />
       </Map>
+      </div>
     );
   }
 })

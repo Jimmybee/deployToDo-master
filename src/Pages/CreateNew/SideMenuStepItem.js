@@ -28,18 +28,20 @@ export default class SideMenuStepItem extends React.Component {
                              {component:"STEP_COMPLETION", title: "Complete"}]
 
     const stepMenuItems = stepItems.map(item =>
-              <MenuItem item={item} componentDisplayed={displayedComponent} showStep={this.showStep.bind(this)}/>
+              <MenuItem key={item.component} item={item} componentDisplayed={displayedComponent} showStep={this.showStep.bind(this)}/>
       )
 
 
     return(
-      <li className={classNames}><button className="sideNavListBtn" onClick={this.editStep.bind(this)}>{stepTitle(stepNumber)}</button>
-         <Panel collapsible expanded={expanded}>
-           <ul className="sideNavUL">
-              {stepMenuItems}  
-            </ul>
+      <div>
+      <li className={classNames}><button className="sideNavListBtn" onClick={this.editStep.bind(this)}>{stepTitle(stepNumber)}</button></li>
+      <Panel collapsible expanded={expanded}>
+       <ul className="sideNavSubUl">
+          <div className="verticalLine verticalLine-large"/>
+           {stepMenuItems}  
+       </ul>
         </Panel>
-      </li>
+      </div>
     );
   }
 
@@ -69,9 +71,10 @@ class Panel extends React.Component {
       expanded, 
       children } = this.props;
 
+    const display = expanded ? "displayPanel" : "hidePanel"
     return(
-      <div>
-        {expanded === true ? children : null}
+      <div className={display + " transition"}>
+        {children}
       </div>
     );
   }

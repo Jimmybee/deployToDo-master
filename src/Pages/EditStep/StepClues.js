@@ -15,8 +15,11 @@ export default class StepClues extends Component {
 
   renderTextField(){
     if (this.props.textClue === true) {
-      console.log(this.props)
-      return (<Field name="initialText" component="textarea" className="form-control"/>);
+      return (
+        <div><hr/>
+          <Field name="initialText" component="textarea" className="form-control"/>
+        </div>
+        );
     } else {
       return null;
     }
@@ -30,7 +33,12 @@ export default class StepClues extends Component {
 
   renderImageField(){
     if (this.props.pictureClue === true) {
-      return (<Field name="imageUrl" component={this.dropzoneComponent()} className="form-control"/>);
+      return (         
+              <div>
+                <hr/>              
+                <Field name="imageUrl" component={this.dropzoneComponent()} className="form-control"/>
+              </div>
+              );
     } else {
       return null;
     }
@@ -44,7 +52,12 @@ export default class StepClues extends Component {
 
   renderSoundField(){
     if (this.props.soundClue === true) {
-      return (<Field name="soundUrl" component={this.audioUploader()} className="form-control"/>);
+      return (
+        <div>
+          <hr/>
+           <Field name="soundUrl" component={this.audioUploader()} className="form-control"/>
+        </div>
+      );
     } else {
       return null;
     }
@@ -62,14 +75,17 @@ export default class StepClues extends Component {
 
     return(
       <div>
+          <h4>Setup clues for this Step</h4>
+          <hr/>
           <form onSubmit={handleSubmit}>
-           <Field name="setup[textClue]" component={switchComponent("setup[textClue]", "Text Clue:", this.handleChange.bind(this))} className="form-control"/>
-           <Field name="setup[pictureClue]" component={switchComponent("setup[pictureClue]", "Image Clue:", this.handleChange.bind(this))} className="form-control"/>
+           <Field name="setup[textClue]" component={switchComponent("setup[textClue]", "Text Clue:", this.handleChange.bind(this))} className=""/>
+           <Field name="setup[pictureClue]" component={switchComponent("setup[pictureClue]", "Image Clue:", this.handleChange.bind(this))} className=""/>
            <Field name="setup[soundClue]" component={switchComponent("setup[soundClue]", "Sound Clue:", this.handleChange.bind(this))} className="form-control"/>
            {this.renderTextField()}
            {this.renderImageField()}
            {this.renderSoundField()}
-           <button type="submit">Submit</button>  
+            <hr/>
+           <button className="Save-Continue" type="submit">Submit</button>  
           </form>
       </div>
     );

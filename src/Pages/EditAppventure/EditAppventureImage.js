@@ -1,4 +1,5 @@
 // @flow
+import './components.css'
 
 import React from "react";
 import ImageUploader from '../../Components/Common/ImageUploader.js';
@@ -23,12 +24,14 @@ export default class AppventureImage extends React.Component {
     const { appventure, handleSubmit } = this.props;
 
     return (
-      <div>
-        <form onSubmit={handleSubmit}>
-          <h1>Edit Image</h1>
+      <div className="fluid-container">
+      <div className="row"> 
+        <h1>Add a main photo that looks great to make your appventure stand out.</h1>
+        <form className="col-xs-10" onSubmit={handleSubmit}>
           <Field name="imageUrl" component={this.dropzoneComponent()} className="form-control"/>   
-          <button type="submit">Submit</button>  
+          <button className="Save-Continue" type="submit">Save & Continue</button>  
         </form>
+      </div>
       </div>
     );
   }

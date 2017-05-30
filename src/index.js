@@ -86,7 +86,7 @@ ReactDOM.render(
         <NavLayoutRoute path={urlHost + "/Create"} name="Create" component={CreateNew}/>
         <NavLayoutRoute path={urlHost + "/profile"} name="profile" component={Profile}/>
         <NavLayoutRoute path={urlHost + "/testPage"} name="testPage" component={TestPage}/>
-        <LayoutRoute path={urlHost + "/editAppventure/summary"} name="editAppventureSummary" component={Summary}/>
+        <NavLayoutRoute path={urlHost + "/editAppventure/summary"} name="editAppventureSummary" component={Summary}/>
       </div>
     </Router>
   </Provider>,

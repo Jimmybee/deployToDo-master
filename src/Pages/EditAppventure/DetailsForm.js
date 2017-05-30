@@ -8,77 +8,52 @@ class AppventureDetails extends Component {
 
 
   render() {
-    const themes = ["Outdoor", "Family", "Puzzle", "Night", "Museum", "Adventurous"]
-    const renderThemeSelector = ({ input, meta: { touched, error } }) => (
-      <div className="summaryThemeDiv">
-        <select {...input}>
-          <option value="">Select a time...</option>
-          {themes.map(val => <option value={val} key={val}>{val}</option>)}
-        </select>
-        {touched && error && <span>{error}</span>}
-      </div>
-    )
-
     const times = this.createTimeArray()
-    const renderTimeSelector = ({ input, meta: { touched, error } }) => (
-      <div className="summaryThemeDiv">
-        <select {...input}>
-          <option value="">Select a time...</option>
-          {times.map(val => <option value={val} key={val}>{val}</option>)}
-        </select>
-        {touched && error && <span>{error}</span>}
-      </div>
-    )
-
     const minutes = this.createMinuteArray()
-    const renderMinuteSelector = ({ input, meta: { touched, error } }) => (
-      <div>
-        <label> Minutes: </label>
-        <select {...input}>
-          <option value="">Select minutes...</option>
-          {minutes.map(val => <option value={val} key={val}>{val}</option>)}
-        </select>
-        {touched && error && <span>{error}</span>}
-      </div>
-    )
-
     const hours = this.createHoursArray()
-    const renderHourSelector = ({ input, meta: { touched, error } }) => (
-      <div>
-        <label> Hours: </label>
+    const themes = ["Outdoor", "Family", "Puzzle", "Night", "Museum", "Adventurous"]
+    const renderSelector = ({classNames, options, option1, input, meta: { touched, error } }) => (
+      <div className={classNames}>
         <select {...input}>
-          <option value="">Select hours...</option>
-          {hours.map(val => <option value={val} key={val}>{val}</option>)}
+          <option value="">{option1}</option>
+          {options.map(val => <option value={val} key={val}>{val}</option>)}
         </select>
         {touched && error && <span>{error}</span>}
       </div>
     )
-
-
 
    const { handleSubmit } = this.props;
     return (
-      <div>
-      <form onSubmit={handleSubmit} className="form-horizontal summaryComponent">
+      <div className="summaryComponent">
+      <div className="">
+      <form onSubmit={handleSubmit} className="form-horizontal">
         <div className="form-group">
-          <label htmlFor="title">Title</label>
+          <h4 htmlFor="title">Use a head line to give a short overview of your appventure:</h4>
           <Field name="title" component="input" type="text" placeholder="Title" className="form-control"/>
         </div>
-       
         <div className="form-group">
-          <label htmlFor="description">Description</label>
+          <h4 htmlFor="description">Write a paragraph or two to give an in depth review of your appventure:</h4>
           <Field name="description" component="textarea" placeholder="Description" className="form-control"/>
         </div>
         <div className="form-group">
-           <LabelSelect name="themeOne" labelTitle="Theme One" component={renderThemeSelector} classNames="col-xs-6"/> 
-           <LabelSelect name="themeTwo" labelTitle="Theme Two" component={renderThemeSelector} classNames="col-xs-6"/>
-           <LabelSelect name="startTime" labelTitle="Eariler start time:" component={renderTimeSelector} classNames="col-xs-6"/>
-           <LabelSelect name="endTime" labelTitle="Latest finish time:" component={renderTimeSelector} classNames="col-xs-6"/>    
-           <Field name="minutes" component={renderMinuteSelector} className="form-control"/>
-           <Field name="hours" component={renderHourSelector} className="form-control"/>
+           <h4>Add a theme to help people to discover your appventure:</h4>
+           <Field name="themeOne" options={themes} option1="Primary Theme" component={renderSelector}/> 
+           <Field name="themeTwo" options={themes} option1="Secondary Theme" component={renderSelector}/>
         </div>
-         <button type="submit">Submit</button>
+        <div className="form-group">
+            <h4>Are some parts of the route time restricted?</h4>
+            <h4>What are the ealiest & latest start times that you recommend?</h4>
+           <Field name="startTime" options={times} option1="Earliest Start Time" component={renderSelector}/>
+           <Field name="endTime" options={times} option1="Latest Start Time" component={renderSelector}/> 
+        </div>
+        <div className="form-group">
+           <h4>What is the estimated time to complete?</h4> 
+           <Field name="minutes" option1="Minutes" options={minutes} component={renderSelector} className="form-control"/>
+           <Field name="hours" option1="Hour" options={hours} component={renderSelector} className="form-control"/>
+        </div>
+         <button className="Save-Continue" type="submit">Save & Continue</button>
       </form>
+      </div>
       </div>
     );
   }
@@ -154,16 +129,18 @@ class LabelSelect extends React.Component {
 
   render() {
     const {
+      options,
       classNames,
-      labelTitle,
+      option1,
       name,
       component } = this.props;
 
     return(
       <div className={classNames}>
-        <label> {labelTitle} </label>
-        <Field name={name} component={component} className="form-control"/>
+        <Field options={options} option1={option1} name={name} component={component} className="form-control"/>
        </div>
     );
   }
 }
+
+//         <label> {labelTitle} </label>

@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { uploadFile } from '../../api/Backendless.js';
 
 import FadeInImage from './FadeImage.js';
+import './imageUploade.css'
 
 class Uploader extends Component {
   constructor(props) {
@@ -59,15 +60,21 @@ class Uploader extends Component {
 		        <div className="FileUpload">
               <canvas ref="canvas" width={800} height={600} style={{display: 'none'}}/>
 		          <Dropzone
-		            onDrop={this.onDrop.bind(this)}
+                onDrop={this.onDrop.bind(this)}
+                className="uploaderStyle"
 		            multiple={false}
 		            accept={uploadType}>
                   {
                     input.value === "" ?  
-                    <div>Select an image file to upload.</div>
+
+                    <div className="Aligner"> 
+                      <label>  Drag or drop an image file here to upload.</label>
+                      <i className="fa fa-camera-retro fa-5x" aria-hidden="true"></i>
+                    </div>
                   :
-                    <div>
-                       <FadeInImage src={input.value} alt="uploaded" style={{width: '200px', height: 'auto'}}/>
+                    <div className="Aligner">
+                       <FadeInImage src={input.value} alt="uploaded" style={{width: '80%', height: 'auto'}}/>
+                       <label>  Drag or drop an image file here to upload.</label>
                     </div>
                   }
 		          </Dropzone>
