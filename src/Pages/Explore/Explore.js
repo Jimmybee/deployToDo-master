@@ -9,6 +9,7 @@ import LazyLoad from 'react-lazy-load';
 import Search from './Components/Search';
 import AppventureCard from './Components/AppventureCard';
 import { fetchPublished } from '../../api/Backendless.js';
+import IosDownloadBttn from '../../Components/Common/IosDownloadBttn';
 
 @connect((store) => {
   return {
@@ -65,10 +66,11 @@ export default class Explore extends React.Component {
     const onSubmit = this.onSubmit.bind(this);
 
     return (
-      <div>
+      <div className="Explore">
         <div className='row' style={showPage}>
-          <div className='col-sm-3'>
-            <Search onNewSearch={fetchPublished} onSubmit={onSubmit}/>
+          <div className='col-sm-3 flexAlign'>
+            <Search className='flexObject' onNewSearch={fetchPublished} onSubmit={onSubmit}/>
+            <IosDownloadBttn className='flexObject' />
           </div>
           <div className='col-sm-9'>
               {calcMappedAppventures}

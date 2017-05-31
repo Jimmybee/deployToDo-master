@@ -1,3 +1,15 @@
+.Explore .flexAlign {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.Explore .Search {
+	margin-bottom: 10px;
+	width: 100%;
+}
+
 
 .Appventure-card {
 /*	border: 1px solid gray; 

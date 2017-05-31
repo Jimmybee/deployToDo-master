@@ -124,44 +124,42 @@ export default class Summary extends React.Component {
 
     return (
       <div>
-    <div className="row">
-      <div className="col-sm-3 xsRemove">
-	      <div className={"navMenuWrapper transition " + sideOpen}>
-	      	<div className="navScroller">
-            <button type="button" className="closeMenu" onClick={this.toggleCollapse.bind(this)}> X </button>
-            <ul className="sideNavUL">
-                <li className={appventureTopMenuClassName}>
-                  <button className={"sideNavListBtn"} onClick={() => this.showStep("APPVENTURE_SUMMARY")}>Appventure</button>
-               </li>
-            <ul className={"sideNavSubUl " + appventureSubMenuClassName}>
-                <div className="verticalLine"/>
-                {appventureSubMenuItems}
-              </ul>
+      <div className={"navMenuWrapper transition " + sideOpen}>
+      	<div className="navScroller">
+          <button type="button" className="closeMenu" onClick={this.toggleCollapse.bind(this)}> X </button>
+          <ul className="sideNavUL">
+              <li className={appventureTopMenuClassName}>
+                <button className={"sideNavListBtn"} onClick={() => this.showStep("APPVENTURE_SUMMARY")}>Appventure</button>
+             </li>
+          <ul className={"sideNavSubUl " + appventureSubMenuClassName}>
+              <div className="verticalLine"/>
+              {appventureSubMenuItems}
             </ul>
-		        {this.renderStepMenuItems()}
-            <ul className="sideNavUL">
-              <li className="sideNavListItem"><button type="button" className="sideNavListItem" onClick={this.addStep.bind(this)}> Add Step </button></li>
-            </ul>
-	      	</div>
-	      </div>
+          </ul>
+	        {this.renderStepMenuItems()}
+          <ul className="sideNavUL">
+            <li className="sideNavListItem"><button type="button" className="sideNavListItem" onClick={this.addStep.bind(this)}> Add Step </button></li>
+          </ul>
+      	</div>
       </div>
-      <div className="col-xs-12 col-sm-9 componentContainer transition">
-	      <div className="summaryHeader col-xs-12">
-          <button type="button" className="toggle" onClick={this.toggleCollapse.bind(this)} >
-             <span className="sr-only">Toggle navigation</span>
-             <span className="icon-bar"></span>
-             <span className="icon-bar"></span>
-             <span className="icon-bar"></span>
-          </button>
-	      </div>
-	      <div className="col-xs-12">
-	      	{component}
-	      </div> 
+        <div className="col-lg-offset-2 col-lg-10  componentContainer transition">
+          <div className="row">
+  	        <div className="summaryHeader col-xs-12">
+             <button type="button" className="toggle" onClick={this.toggleCollapse.bind(this)} >
+                 <span className="sr-only">Toggle navigation</span>
+                 <span className="icon-bar"></span>
+                 <span className="icon-bar"></span>
+                 <span className="icon-bar"></span>
+              </button>
+  	        </div>
+          </div>
+          <div className="row">
+	         <div className="col-lg-7 col-md-offset-1 col-md-9">
+	      	   {component}
+	          </div> 
+             <HelpBox className="col-lg-4 col-md-2" text="This is aosme fogoijsa m snldks"/>
+          </div>
       </div>
-    </div>
-    <div className="row">
-      <HelpBox text="This is aosme fogoijsa m snldks"/>
-    </div>
     </div>
     );
   }

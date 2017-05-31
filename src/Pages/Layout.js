@@ -5,6 +5,7 @@
 import React from "react";
 // import { Link } from "react-router";
 import '../App.css';
+import Nav from "../Components/Common/Nav";
 
 
 
@@ -15,15 +16,16 @@ export default class Layout extends React.Component {
 
     // const { location }  = this.props.storeLocation
     // console.log("store", location)
+    const containerStyle = {
+      marginTop: "60px",
+    };
 
     return (
       <div>
-        <div className="container">
+        <Nav/>
+        <div className="container-fluid" style={containerStyle}>
           <div className="row">
-            <div className="col-lg-12">
                {this.props.children}
-
-            </div>
           </div>
         </div>
       </div>

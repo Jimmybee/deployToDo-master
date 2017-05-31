@@ -24,17 +24,18 @@
 
 .navMenuWrapper {
     font-family: "Segoe UI",Arial,sans-serif;
-    height: 90vh !important;
-    width: 0%;
-    /*position: fixed !important;*/
+    height: 100vh !important;
+    width: 15%;
+    position: fixed !important;
     left: 0px;
+    top: 58px;
     overflow-x: hidden !important;
     overflow-y: scroll !important;
     -webkit-overflow-scrolling: touch !important;
     background-color: #fff;
     color: rgba(255, 255, 255, 0.65);
     z-index: 100;
-    box-shadow: 3px 0px 5px #fff;
+    box-shadow: 2px 0px 0px #a8a8a8;
 }
 
 .navMenuWrapper .closeMenu {
@@ -46,38 +47,30 @@
   border: 1px solid transparent;
   color: white;
   /*min-width: 100px;*/
-  
 }
 
-@media (max-width: 768px) {
-  .xsRemove {
-    width: 200px;
-  }
-
+@media (max-width: 1170px) {
   .navMenuWrapper {
-    position: fixed !important;
+    width: 0px;
+  }
+
+  .navMenuWrapper .navScroller {
+    margin-top: 80px;
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1170px) {
   .navMenuWrapper .closeMenu, 
   .summaryHeader .toggle  {
     visibility: hidden;
   }
 
-  .navMenuWrapper {
-    width: 100%;
-    /*width: 300px;*/
-  }
 }
 
 .open {
     width: 180px  !important;
 }
 
-@media (min-width: 768px) {
-
-}
 
 .summaryHeader .toggle {
   position: absolute;
@@ -87,6 +80,7 @@
   background-image: none;
   border: 1px solid transparent;
   border-radius: 4px;
+  z-index: 101;
 }
 
 .componentContainer {

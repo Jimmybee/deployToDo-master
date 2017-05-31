@@ -19,7 +19,7 @@ class Search extends Component {
     const themes = ["Outdoor", "Family", "Puzzle", "Night", "Museum", "Adventurous"]
     const nullTitle = "Select theme..."
     return (
-      <div>
+      <div className="Search">
         <form className="" onSubmit={handleSubmit}>
             <Field name='theme' component={selectComponent(themes, nullTitle)} onChange={this.onChangeSubmit(handleSubmit)}/> 
          </form>
