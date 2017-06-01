@@ -69,11 +69,7 @@ export default class Nav extends React.Component {
   }
 
   render() {
-    // const { location } = this.props;
     const { listNav, collapsed } = this.state;
-    // const featuredClass = location.pathname === "/" ? "active" : "";
-    // const archivesClass = location.pathname.match(/^\/explore/) ? "active" : "";
-    // const settingsClass = location.pathname.match(/^\/login/) ? "active" : "";
     const navClass = collapsed ? "collapse" : "";
 
     const logo = <a href="#" className="navbar-left"><img src={require('./AppLogo.png')} alt="boohoo"/></a>;
@@ -81,7 +77,6 @@ export default class Nav extends React.Component {
     var expandedLogo = listNav ? "" : logo;
 
     const user = this.props.user;
-    // console.log(user);
 
     return (
       <nav className="navbar navbar-fixed-top navbar-default" role="navigation">
@@ -93,16 +88,12 @@ export default class Nav extends React.Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-             <p><Link className="nav navbar-left" to="/"><img src={require('./AppLogo.png')} alt="boohoo" /></Link></p>
+             <p><Link className="nav navbar-left" to="explore"><img src={require('./AppLogo.png')} alt="boohoo" /></Link></p>
           </div>
           <div className={"navbar-collapse " + navClass} id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav navbar-right">
-              <li> <Link to="about" onClick={this.toggleCollapse.bind(this)}>About</Link> </li>
-              <li> <Link 
-                to="/appDownload?filter=12&appventureId=1232132123" 
-                onClick={this.toggleCollapse.bind(this)}>
-                The App
-                </Link> </li>
+              <li> <Link to="about" onClick={this.toggleCollapse.bind(this)}> About </Link> </li>
+              <li> <Link to="/" onClick={this.toggleCollapse.bind(this)}> The App </Link> </li>
               <li> <Link to="howItWorks" onClick={this.toggleCollapse.bind(this)}>How It Works</Link> </li>
               <li> <Link to="explore" onClick={this.toggleCollapse.bind(this)}>Find Appventures</Link> </li>
               <li> <Link to="../create" onClick={this.toggleCollapse.bind(this)}>Create Appventures</Link> </li>

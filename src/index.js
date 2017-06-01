@@ -39,11 +39,9 @@ import store from './store/store';
 const app = document.getElementById('root')
 
 // wrapping/composing
-const LayoutRoute = ({ component: Component, ...rest }) => (
+const SingleRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
-    <Layout {...props}>
       <Component {...props}/>
-    </Layout>
   )}/>
 )
 
@@ -80,7 +78,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <div>
-        <NavLayoutRoute path={urlHost + "/appDownload"} component={LandingPage}/>
+        <NavLayoutRoute exact={true} path={urlHost + "/"} component={LandingPage}/>
         <NavLayoutRoute path={urlHost + "/about"} component={About}/>
         <NavLayoutRoute path={urlHost + "/howItWorks"} component={HowItWorks}/>
         <NavLayoutRoute path={urlHost + "/explore"} component={Explore}/>
@@ -88,7 +86,7 @@ ReactDOM.render(
         <NavLayoutRoute path={urlHost + "/Create"} name="Create" component={CreateNew}/>
         <NavLayoutRoute path={urlHost + "/profile"} name="profile" component={Profile}/>
         <NavLayoutRoute path={urlHost + "/testPage"} name="testPage" component={TestPage}/>
-        <LayoutRoute path={urlHost + "/editAppventure/summary"} name="editAppventureSummary" component={Summary}/>
+        <SingleRoute path={urlHost + "/editAppventure/summary"} name="editAppventureSummary" component={Summary}/>
       </div>
     </Router>
   </Provider>,
